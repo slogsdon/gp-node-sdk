@@ -1,5 +1,5 @@
 {
-  "name": "heartland-sdk",
+  "name": "heartland-nodejs",
   "version": "3.0.0-dev",
   "description": "Heartland Payment Systems SDK for NodeJS",
   "author": "Heartland Payment Systems",
