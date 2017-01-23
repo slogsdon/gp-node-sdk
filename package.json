@@ -1,0 +1,43 @@
+{
+  "name": "heartland-nodejs",
+  "version": "3.0.0-dev",
+  "description": "Heartland Payment Systems SDK for NodeJS",
+  "author": "Heartland Payment Systems",
+  "license": "GPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hps/heartland-nodejs.git"
+  },
+  "main": "./lib/src/index.js",
+  "typings": "./lib/src/index",
+  "scripts": {
+    "build": "tsc",
+    "build:clean": "rimraf lib",
+    "prepublish": "npm run build",
+    "pretest": "npm run build:clean && npm run test:lint && npm run build",
+    "test": "ava --verbose",
+    "test:lint": "tslint --project tsconfig.json"
+  },
+  "dependencies": {
+    "@derflatulator/elementtree": "^0.1.7",
+    "node-uuid": "^1.4.7",
+    "sha1": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.0",
+    "@types/node-uuid": "^0.0.28",
+    "ava": "^0.17.0",
+    "rimraf": "^2.5.4",
+    "tslint": "^4.3.1",
+    "typescript": "^2.1.5"
+  },
+  "ava": {
+    "timeout": "1m",
+    "files": [
+      "lib/test/**/*.js"
+    ],
+    "source": [
+      "lib/src/**/*.js"
+    ]
+  }
+}
