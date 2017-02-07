@@ -1,6 +1,6 @@
 import {
   AuthorizationBuilder,
-  ManageTransactionBuilder,
+  ManagementBuilder,
 } from "../Builders";
 import { Transaction } from "../Entities";
 
@@ -37,9 +37,9 @@ export interface IGateway {
     /**
      * Serializes and executes follow up transactions
      *
-     * @param ManageTransactionBuilder $builder The transaction's builder
+     * @param ManagementBuilder $builder The transaction's builder
      *
      * @return Transaction
      */
-    manageTransaction(builder: ManageTransactionBuilder): Promise<Transaction>;
+    manageTransaction(builder: ManagementBuilder): Promise<Transaction>;
 }

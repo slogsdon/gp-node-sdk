@@ -26,6 +26,7 @@
     "no-debugger": true,
     "no-duplicate-variable": true,
     "no-empty": true,
+    "no-empty-interface": false,
     "no-eval": true,
     "no-shadowed-variable": true,
     "no-string-literal": true,

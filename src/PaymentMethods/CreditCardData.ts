@@ -1,7 +1,8 @@
 import { CvnPresenceIndicator } from "../";
-import { PaymentMethod } from "./PaymentMethod";
+import { Credit } from "./Credit";
+import { ICardData } from "./Interfaces";
 
-export class CreditCard extends PaymentMethod {
+export class CreditCardData extends Credit implements ICardData {
   public static cardTypes = [
     { name: "Visa", regex: /^4/ },
     { name: "MasterCard", regex: /^(5[1-5]|2[2-7])/ },
@@ -33,7 +34,7 @@ export class CreditCard extends PaymentMethod {
       .replace(" ", "")
       .replace("-", "");
 
-    for (const type of CreditCard.cardTypes) {
+    for (const type of CreditCardData.cardTypes) {
       if (type.regex.test(number)) {
         return type.name;
       }

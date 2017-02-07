@@ -1,11 +1,17 @@
-import { ArgumentError, Transaction, TransactionType } from "../Entities";
-import { IPaymentMethod } from "../PaymentMethods/IPaymentMethod";
+import {
+  ArgumentError,
+  Transaction,
+  TransactionModifier,
+  TransactionType,
+} from "../";
+import { IPaymentMethod } from "../PaymentMethods/Interfaces";
 import { Validations } from "./BaseBuilder/Validations";
 
 export abstract class BaseBuilder {
   protected validations: Validations;
   protected executed: boolean;
   public transactionType: TransactionType;
+  public transactionModifier = TransactionModifier.None;
   [key: string]: any;
 
   public constructor(type: TransactionType, _paymentMethod?: IPaymentMethod) {
@@ -17,6 +23,13 @@ export abstract class BaseBuilder {
   public execute(): Promise<Transaction> {
     this.validate();
     return Promise.resolve(new Transaction());
+  }
+
+  public withModifier(modifier?: TransactionModifier) {
+    if (modifier) {
+      this.transactionModifier = modifier;
+    }
+    return this;
   }
 
   protected abstract setupValidations(): void;

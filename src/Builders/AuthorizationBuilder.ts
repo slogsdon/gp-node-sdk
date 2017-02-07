@@ -1,4 +1,8 @@
 import {
+  Address,
+  AliasAction,
+  GiftCard,
+  InquiryType,
   IPaymentMethod,
   ServicesContainer,
   Transaction,
@@ -9,6 +13,9 @@ import { BaseBuilder } from "./BaseBuilder";
 
 export class AuthorizationBuilder
   extends BaseBuilder {
+  public address: Address;
+  public alias: string;
+  public aliasAction: AliasAction;
   public allowDuplicates: boolean;
   public allowPartialAuth: boolean;
   public amount: string;
@@ -23,6 +30,8 @@ export class AuthorizationBuilder
   public orderId: string;
   public paymentMethod: IPaymentMethod;
   public requestMultiUseToken: boolean;
+  public balanceInquiryType: InquiryType;
+  public replacementCard: GiftCard;
 
   public constructor(type: number, paymentMethod?: IPaymentMethod) {
     super(type, paymentMethod);
@@ -42,9 +51,9 @@ export class AuthorizationBuilder
   protected setupValidations(): void {
     this.validations.of(
       /* tslint:disable:trailing-comma */
-      TransactionType.CreditAuth |
-      TransactionType.CreditSale |
-      TransactionType.CreditReturn
+      TransactionType.Auth |
+      TransactionType.Sale |
+      TransactionType.Refund
       /* tslint:enable:trailing-comma */
     )
       .check("amount").isNotNull()
@@ -53,11 +62,26 @@ export class AuthorizationBuilder
 
     this.validations.of(
       /* tslint:disable:trailing-comma */
-      TransactionType.CreditOfflineAuth |
-      TransactionType.CreditOfflineSale
+      TransactionType.Auth |
+      TransactionType.Sale
       /* tslint:enable:trailing-comma */
     )
       .check("offlineAuthCode").isNotNull();
+  }
+
+  public withAddress(address?: Address) {
+    if (address) {
+      this.address = address;
+    }
+    return this;
+  }
+
+  public withAlias(aliasAction: AliasAction, alias?: string) {
+    if (alias) {
+      this.alias = alias;
+    }
+    this.aliasAction = aliasAction;
+    return this;
   }
 
   public withAllowDuplicates(allowDuplicates?: boolean) {
@@ -161,6 +185,20 @@ export class AuthorizationBuilder
   public withTransactionId(transactionId?: string) {
     if (transactionId) {
       this.paymentMethod = new TransactionReference(transactionId);
+    }
+    return this;
+  }
+
+  public withBalanceInquiryType(inquiry?: InquiryType) {
+    if (inquiry) {
+      this.balanceInquiryType = inquiry;
+    }
+    return this;
+  }
+
+  public withReplacementCard(replacementCard?: GiftCard) {
+    if (replacementCard) {
+      this.replacementCard = replacementCard;
     }
     return this;
   }

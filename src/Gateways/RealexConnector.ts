@@ -9,11 +9,12 @@ import {
 
 import {
   AuthorizationBuilder,
-  CreditCard,
+  CreditCardData,
   GenerationUtils,
-  ManageTransactionBuilder,
+  ManagementBuilder,
   StringUtils,
   Transaction,
+  TransactionReference,
   TransactionType,
 } from "../";
 import { XmlGateway } from "./XmlGateway";
@@ -47,7 +48,7 @@ export class RealexConnector extends XmlGateway {
     subElement(request, "amount", amountAttrs).append(cData(builder.amount));
 
     // hydrate the payment data fields
-    if (builder.paymentMethod instanceof CreditCard) {
+    if (builder.paymentMethod instanceof CreditCardData) {
       const card = builder.paymentMethod;
 
       const cardElement = subElement(request, "card");
@@ -69,7 +70,7 @@ export class RealexConnector extends XmlGateway {
     }
 
     // a TODO: This needs to be figured out based on txn type and set to 0, 1 or MULTI
-    const autoSettle = builder.transactionType === TransactionType.CreditSale ? "1" : "0";
+    const autoSettle = builder.transactionType === TransactionType.Sale ? "1" : "0";
     subElement(request, "autosettle", {flag: autoSettle});
 
     // const comments = subElement(request, "comments");
@@ -106,7 +107,7 @@ export class RealexConnector extends XmlGateway {
     });
   }
 
-  public manageTransaction(builder: ManageTransactionBuilder): Promise<Transaction> {
+  public manageTransaction(builder: ManagementBuilder): Promise<Transaction> {
     const timestamp = GenerationUtils.generateTimestamp();
     const orderId = GenerationUtils.generateOrderId();
 
@@ -125,7 +126,10 @@ export class RealexConnector extends XmlGateway {
       subElement(request, "channel").append(cData(this.channel));
     }
     subElement(request, "orderid").append(cData(orderId));
-    subElement(request, "pasref").append(cData(builder.transactionId));
+    if (builder.paymentMethod) {
+      const ref = builder.paymentMethod as TransactionReference;
+      subElement(request, "pasref").append(cData(ref.transactionId));
+    }
 
     if (builder.amount) {
       const amountAttrs = builder.currency ? {currency: builder.currency} : {};
@@ -154,7 +158,7 @@ export class RealexConnector extends XmlGateway {
 
     result.responseCode = root.findtext(".//result");
     result.responseMessage = root.findtext(".//message");
-    result.transactionId = root.findtext(".//pasref");
+    result.transactionReference = new TransactionReference(root.findtext(".//pasref"));
 
     return result;
   }
@@ -185,19 +189,19 @@ export class RealexConnector extends XmlGateway {
 
   protected mapAuthRequestType(type: TransactionType): string {
     switch (type) {
-      case TransactionType.CreditSale:
-      case TransactionType.CreditAuth:
+      case TransactionType.Sale:
+      case TransactionType.Auth:
         return "auth";
-      case TransactionType.CreditAddToBatch:
+      case TransactionType.Capture:
         return "settle";
-      case TransactionType.CreditAccountVerify:
+      case TransactionType.Verify:
         return "otb";
-      case TransactionType.CreditReturn:
+      case TransactionType.Refund:
         return "credit";
-      case TransactionType.CreditOfflineAuth:
-      case TransactionType.CreditOfflineSale:
+      case TransactionType.Auth:
+      case TransactionType.Sale:
         return "offline";
-      case TransactionType.CreditReversal:
+      case TransactionType.Reversal:
         // a TODO: should be customer type
         throw new Error(
           "The selected gateway does not support this transaction type.",
@@ -209,12 +213,12 @@ export class RealexConnector extends XmlGateway {
 
   protected mapManageRequestType(type: TransactionType): string {
     switch (type) {
-      case TransactionType.CreditAddToBatch:
+      case TransactionType.Capture:
         return "settle";
-      case TransactionType.CreditReturn:
+      case TransactionType.Refund:
         return "rebate";
-      case TransactionType.CreditVoid:
-      case TransactionType.CreditReversal:
+      case TransactionType.Void:
+      case TransactionType.Reversal:
         // a TODO: should be customer type
         return "void";
       default:

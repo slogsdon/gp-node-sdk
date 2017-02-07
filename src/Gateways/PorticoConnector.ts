@@ -9,9 +9,10 @@ import {
 
 import {
   AuthorizationBuilder,
-  CreditCard,
-  ManageTransactionBuilder,
+  CreditCardData,
+  ManagementBuilder,
   Transaction,
+  TransactionReference,
   TransactionType,
 } from "../";
 import {
@@ -58,8 +59,8 @@ export class PorticoConnector extends XmlGateway {
 
     // card data
     const cardData = subElement(block1, "CardData");
-    if (builder.paymentMethod instanceof CreditCard) {
-      const card: CreditCard = builder.paymentMethod;
+    if (builder.paymentMethod instanceof CreditCardData) {
+      const card: CreditCardData = builder.paymentMethod;
       const manualEntry = subElement(cardData, "ManualEntry");
       subElement(manualEntry, "CardNbr").append(cData(card.number));
       subElement(manualEntry, "ExpMonth").append(cData(card.expMonth));
@@ -106,7 +107,7 @@ export class PorticoConnector extends XmlGateway {
     });
   }
 
-  public manageTransaction(builder: ManageTransactionBuilder): Promise<Transaction> {
+  public manageTransaction(builder: ManagementBuilder): Promise<Transaction> {
     // build request
     const transaction = element(this.mapRequestType(builder.transactionType));
 
@@ -121,12 +122,13 @@ export class PorticoConnector extends XmlGateway {
     }
 
     // transaction ID
-    if (builder.transactionId) {
-      subElement(transaction, "GatewayTxnId").append(cData(builder.transactionId));
+    if (builder.paymentMethod) {
+      const ref = builder.paymentMethod as TransactionReference;
+      subElement(transaction, "GatewayTxnId").append(cData(ref.transactionId));
     }
 
     // level II Data
-    if (builder.transactionType === TransactionType.CreditCpcEdit) {
+    if (builder.transactionType === TransactionType.Edit) {
       const cpc = subElement(transaction, "CPCData");
       subElement(cpc, "CardHolderPONbr").append(cData(builder.poNumber));
       // subElement(cpc, "TaxType").append(cData(builder.taxType));
@@ -182,23 +184,23 @@ export class PorticoConnector extends XmlGateway {
 
   protected mapRequestType(type: TransactionType): string {
     switch (type) {
-      case TransactionType.CreditAuth:
+      case TransactionType.Auth:
         return "CreditAuth";
-      case TransactionType.CreditSale:
+      case TransactionType.Sale:
         return "CreditSale";
-      case TransactionType.CreditAccountVerify:
+      case TransactionType.Verify:
         return "CreditAccountVerify";
-      case TransactionType.CreditAddToBatch:
+      case TransactionType.Capture:
         return "CreditAddToBatch";
-      case TransactionType.CreditReturn:
+      case TransactionType.Refund:
         return "CreditReturn";
-      case TransactionType.CreditReversal:
+      case TransactionType.Reversal:
         return "CreditReversal";
-      case TransactionType.CreditOfflineAuth:
+      case TransactionType.Auth:
         return "CreditOfflineAuth";
-      case TransactionType.CreditOfflineSale:
+      case TransactionType.Sale:
         return "CreditOfflineSale";
-      case TransactionType.CreditVoid:
+      case TransactionType.Void:
         return "CreditVoid";
       default:
         return "Unknown";
@@ -230,7 +232,7 @@ export class PorticoConnector extends XmlGateway {
     result.responseMessage = root.findtext(".//RspText")
         ? root.findtext(".//RspText")
         : gatewayRspText;
-    result.transactionId = root.findtext(".//GatewayTxnId");
+    result.transactionReference = new TransactionReference(root.findtext(".//GatewayTxnId"));
 
     return result;
   }

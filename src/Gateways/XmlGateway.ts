@@ -4,7 +4,7 @@ import * as url from "url";
 
 import {
   AuthorizationBuilder,
-  ManageTransactionBuilder,
+  ManagementBuilder,
 } from "../Builders";
 import { Transaction } from "../Entities";
 import { IGateway } from "./IGateway";
@@ -14,7 +14,7 @@ export abstract class XmlGateway implements IGateway {
   public serviceUrl: string;
 
   public abstract processAuthorization(builder: AuthorizationBuilder): Promise<Transaction>;
-  public abstract manageTransaction(builder: ManageTransactionBuilder): Promise<Transaction>;
+  public abstract manageTransaction(builder: ManagementBuilder): Promise<Transaction>;
 
   protected doTransaction(requestData: string): Promise<string> {
     const uri = url.parse(this.serviceUrl);

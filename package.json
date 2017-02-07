@@ -36,7 +36,7 @@
   "ava": {
     "timeout": "1m",
     "files": [
-      "lib/test/**/*.js"
+      "lib/test/**/*Test.js"
     ],
     "source": [
       "lib/src/**/*.js"

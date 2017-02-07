@@ -1,6 +1,6 @@
 import test from "ava";
 import {
-  CreditCard,
+  CreditCardData,
   ServicesConfig,
   ServicesContainer,
 } from "../../../../src/";
@@ -16,9 +16,7 @@ test.before((_t) => {
 });
 
 test("credit authorization", (t) => {
-  t.plan(4);
-
-  const card = new CreditCard();
+  const card = new CreditCardData();
   card.number = "4111111111111111";
   card.expMonth = "12";
   card.expYear = "2025";

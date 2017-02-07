@@ -6,13 +6,13 @@ import {
 } from "../";
 import { BaseBuilder } from "./BaseBuilder";
 
-export class ManageTransactionBuilder
+export class ManagementBuilder
   extends BaseBuilder {
   public amount: string;
   public currency: string;
   public gratuity: string;
   public poNumber: string;
-  public transactionId: string;
+  public paymentMethod: IPaymentMethod;
 
   public constructor(type: number, paymentMethod?: IPaymentMethod) {
     super(type, paymentMethod);
@@ -28,14 +28,13 @@ export class ManageTransactionBuilder
   protected setupValidations() {
     this.validations.of(
       /* tslint:disable:trailing-comma */
-      TransactionType.CreditAddToBatch |
-      TransactionType.CreditCpcEdit |
-      TransactionType.CreditTxnEdit
+      TransactionType.Capture |
+      TransactionType.Edit
       /* tslint:enable:trailing-comma */
     )
       .check("transactionId").isNotNull();
 
-    this.validations.of(TransactionType.CreditCpcEdit)
+    this.validations.of(TransactionType.Edit)
       .check("taxType").isNotNull()
       .check("taxAmount").isNotNull()
       .check("poNumber").isNotNull();
@@ -55,9 +54,9 @@ export class ManageTransactionBuilder
     return this;
   }
 
-  public withTransactionId(transactionId?: string) {
-    if (transactionId) {
-      this.transactionId = transactionId;
+  public withPaymentMethod(paymentMethod?: IPaymentMethod) {
+    if (paymentMethod) {
+      this.paymentMethod = paymentMethod;
     }
     return this;
   }
