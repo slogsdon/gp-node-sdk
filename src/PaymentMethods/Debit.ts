@@ -7,15 +7,14 @@ import {
 import {
   IChargable,
   IEncryptable,
-  IPaymentMethod,
   IPinProtected,
   IPrePayable,
   IRefundable,
   IReversable,
 } from "./Interfaces";
+import { PaymentMethod } from "./PaymentMethod";
 
-export abstract class Debit implements
-  IPaymentMethod,
+export abstract class Debit extends PaymentMethod implements
   IChargable,
   IEncryptable,
   IRefundable,

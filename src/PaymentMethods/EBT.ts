@@ -8,15 +8,14 @@ import {
 import {
   IBalanceable,
   IChargable,
-  IPaymentMethod,
   IPinProtected,
   IPrePayable,
   IRefundable,
   IReversable,
 } from "./Interfaces";
+import { PaymentMethod } from "./PaymentMethod";
 
-export abstract class EBT implements
-  IPaymentMethod,
+export abstract class EBT extends PaymentMethod implements
   IBalanceable,
   IChargable,
   IRefundable,

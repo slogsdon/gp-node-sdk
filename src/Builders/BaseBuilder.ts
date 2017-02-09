@@ -1,5 +1,6 @@
 import {
   ArgumentError,
+  PaymentMethod,
   Transaction,
   TransactionModifier,
   TransactionType,
@@ -12,7 +13,7 @@ export abstract class BaseBuilder {
   protected executed: boolean;
   public transactionType: TransactionType;
   public transactionModifier = TransactionModifier.None;
-  public paymentMethod: IPaymentMethod;
+  public paymentMethod: PaymentMethod;
   [key: string]: any;
 
   public constructor(type: TransactionType, _paymentMethod?: IPaymentMethod) {
@@ -35,7 +36,7 @@ export abstract class BaseBuilder {
 
   public withPaymentMethod(paymentMethod?: IPaymentMethod) {
     if (paymentMethod) {
-      this.paymentMethod = paymentMethod;
+      this.paymentMethod = paymentMethod as PaymentMethod;
     }
     return this;
   }

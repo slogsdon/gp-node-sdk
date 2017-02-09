@@ -7,14 +7,10 @@ import {
   SecCode,
   TransactionType,
 } from "../";
-import {
-  IChargable,
-  IPaymentMethod,
-} from "./Interfaces";
+import { IChargable } from "./Interfaces";
+import { PaymentMethod } from "./PaymentMethod";
 
-export class ECheck implements
-  IPaymentMethod,
-  IChargable {
+export class ECheck extends PaymentMethod implements IChargable {
   public accountNumber: string;
   public accountType: AccountType;
   public achVerify: boolean;

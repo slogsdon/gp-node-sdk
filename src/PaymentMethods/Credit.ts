@@ -10,16 +10,15 @@ import {
   IBalanceable,
   IChargable,
   IEncryptable,
-  IPaymentMethod,
   IPrePayable,
   IRefundable,
   IReversable,
   ITokenizable,
   IVerifyable,
 } from "./Interfaces";
+import { PaymentMethod } from "./PaymentMethod";
 
-export abstract class Credit implements
-  IPaymentMethod,
+export abstract class Credit extends PaymentMethod implements
   IEncryptable,
   ITokenizable,
   IChargable,

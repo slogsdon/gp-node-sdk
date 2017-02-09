@@ -22,14 +22,11 @@ import {
   EntryMethod,
   GatewayError,
   GiftCard,
-  IBalanceable,
-  ICardData,
   IEncryptable,
   InquiryType,
   IPaymentMethod,
   IPinProtected,
   ITokenizable,
-  ITrackData,
   ManagementBuilder,
   NotImplementedError,
   PaymentMethodType,
@@ -137,7 +134,17 @@ export class PorticoConnector extends XmlGateway {
       builder.transactionType === TransactionType.Replace
         ? "OldCardData" : "CardData",
     );
-    if (builder.paymentMethod instanceof GiftCard) {
+    if (builder.paymentMethod.isCardData) {
+      cardData.append(this.hydrateManualEntry(builder, hasToken, tokenValue));
+    } else if (builder.paymentMethod.isTrackData) {
+      const trackData = this.hydrateTrackData(builder, hasToken, tokenValue);
+
+      if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Debit) {
+        block1.append(trackData);
+      } else {
+        cardData.append(trackData);
+      }
+    } else if (builder.paymentMethod instanceof GiftCard) {
       if (builder.transactionType === TransactionType.Replace) {
         const newCard = subElement(block1, "NewCardData");
         subElement(newCard, builder.replacementCard.valueType)
@@ -155,16 +162,6 @@ export class PorticoConnector extends XmlGateway {
 
       if (builder.paymentMethod.pin) {
         subElement(cardData, "PIN").append(cData(builder.paymentMethod.pin));
-      }
-    } else if (((builder.paymentMethod as Object) as ICardData).number !== undefined) {
-      cardData.append(this.hydrateManualEntry(builder, hasToken, tokenValue));
-    } else if (((builder.paymentMethod as Object) as ITrackData).value !== undefined) {
-      const trackData = this.hydrateTrackData(builder, hasToken, tokenValue);
-
-      if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Debit) {
-        block1.append(trackData);
-      } else {
-        cardData.append(trackData);
       }
     } else if (builder.paymentMethod instanceof ECheck) {
       subElement(block1, "CheckAction").append(cData("SALE"));
@@ -209,12 +206,12 @@ export class PorticoConnector extends XmlGateway {
         .append(cData(builder.paymentMethod.achVerify ? "Y" : "N"));
     }
 
-    if (((builder.paymentMethod as Object) as IPinProtected).pinBlock !== undefined) {
+    if (builder.paymentMethod.isPinProtected) {
       const pinBlock = ((builder.paymentMethod as Object) as IPinProtected).pinBlock;
       subElement(block1, "PinBlock").append(cData(pinBlock));
     }
 
-    if (((builder.paymentMethod as Object) as IEncryptable).encryptionData !== undefined) {
+    if (builder.paymentMethod.isEncryptable) {
       const enc = this.hydrateEncryptionData(builder);
 
       if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Debit) {
@@ -224,7 +221,7 @@ export class PorticoConnector extends XmlGateway {
       }
     }
 
-    if (((builder.paymentMethod as Object) as ITokenizable).tokenize !== undefined) {
+    if (builder.paymentMethod.isTokenizable) {
       subElement(cardData, "TokenRequest")
         .append(cData(builder.requestMultiUseToken ? "Y" : "N"));
     }
@@ -233,9 +230,7 @@ export class PorticoConnector extends XmlGateway {
       block1.append(cardData);
     }
 
-    if (((builder.paymentMethod as Object) as IBalanceable).balanceInquiry !== undefined
-      && builder.balanceInquiryType
-    ) {
+    if (builder.paymentMethod.isBalanceable && builder.balanceInquiryType) {
       subElement(block1, "BalanceInquiryType")
         .append(cData(
           this.hydrateInquiryType(builder.balanceInquiryType),
@@ -284,7 +279,7 @@ export class PorticoConnector extends XmlGateway {
 
       // transaction ID
       if (builder.paymentMethod) {
-        const ref = builder.paymentMethod as TransactionReference;
+        const ref = (builder.paymentMethod as Object) as TransactionReference;
         subElement(root, "GatewayTxnId").append(cData(ref.transactionId));
       }
 

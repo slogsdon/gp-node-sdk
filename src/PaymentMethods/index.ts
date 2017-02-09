@@ -9,5 +9,6 @@ export * from "./EbtCardData";
 export * from "./EbtTrackData";
 export * from "./ECheck";
 export * from "./GiftCard";
+export * from "./PaymentMethod";
 export * from "./Interfaces";
 export * from "./TransactionReference";

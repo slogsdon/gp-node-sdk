@@ -11,6 +11,7 @@ import {
   AuthorizationBuilder,
   CreditCardData,
   GenerationUtils,
+  IPaymentMethod,
   ManagementBuilder,
   StringUtils,
   Transaction,
@@ -136,7 +137,7 @@ export class RealexConnector extends XmlGateway {
     }
     subElement(request, "orderid").append(cData(orderId));
     if (builder.paymentMethod) {
-      const ref = builder.paymentMethod as TransactionReference;
+      const ref = (builder.paymentMethod as IPaymentMethod) as TransactionReference;
       subElement(request, "pasref").append(cData(ref.transactionId));
     }
 

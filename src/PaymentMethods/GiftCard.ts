@@ -9,13 +9,12 @@ import {
 import {
   IBalanceable,
   IChargable,
-  IPaymentMethod,
   IPrePayable,
   IReversable,
 } from "./Interfaces";
+import { PaymentMethod } from "./PaymentMethod";
 
-export class GiftCard implements
-  IPaymentMethod,
+export class GiftCard extends PaymentMethod implements
   IPrePayable,
   IBalanceable,
   IReversable,

@@ -4,6 +4,7 @@ import {
   GiftCard,
   InquiryType,
   IPaymentMethod,
+  PaymentMethod,
   ServicesContainer,
   Transaction,
   TransactionReference,
@@ -37,7 +38,7 @@ export class AuthorizationBuilder
     super(type, paymentMethod);
 
     if (paymentMethod) {
-      this.paymentMethod = paymentMethod;
+      this.paymentMethod = paymentMethod as PaymentMethod;
     }
   }
 
@@ -184,7 +185,7 @@ export class AuthorizationBuilder
 
   public withTransactionId(transactionId?: string) {
     if (transactionId) {
-      this.paymentMethod = new TransactionReference(transactionId);
+      return this.withPaymentMethod(new TransactionReference(transactionId));
     }
     return this;
   }

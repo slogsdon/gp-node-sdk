@@ -5,12 +5,11 @@ import {
 } from "../";
 import {
   IChargable,
-  IPaymentMethod,
   IRefundable,
 } from "./Interfaces";
+import { PaymentMethod } from "./PaymentMethod";
 
-export class Cash implements
-    IPaymentMethod,
+export class Cash extends PaymentMethod implements
     IChargable,
     IRefundable {
     public paymentMethodType = PaymentMethodType.Cash;
