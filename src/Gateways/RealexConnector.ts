@@ -45,7 +45,7 @@ export class RealexConnector extends XmlGateway {
     }
     subElement(request, "orderid").append(cData(orderId));
     const amountAttrs = builder.currency ? {currency: builder.currency} : {};
-    subElement(request, "amount", amountAttrs).append(cData(builder.amount));
+    subElement(request, "amount", amountAttrs).append(cData(builder.amount.toString()));
 
     // hydrate the payment data fields
     if (builder.paymentMethod instanceof CreditCardData) {
@@ -66,7 +66,16 @@ export class RealexConnector extends XmlGateway {
       }
       // issueno
 
-      subElement(request, "sha1hash").append(cData(this.generateHash(timestamp, orderId, builder.amount, builder.currency, card.number)));
+      subElement(request, "sha1hash")
+        .append(cData(
+          this.generateHash(
+            timestamp,
+            orderId,
+            builder.amount.toString(),
+            builder.currency,
+            card.number,
+          ),
+        ));
     }
 
     // a TODO: This needs to be figured out based on txn type and set to 0, 1 or MULTI
@@ -133,13 +142,13 @@ export class RealexConnector extends XmlGateway {
 
     if (builder.amount) {
       const amountAttrs = builder.currency ? {currency: builder.currency} : {};
-      subElement(request, "amount", amountAttrs).append(cData(builder.amount));
+      subElement(request, "amount", amountAttrs).append(cData(builder.amount.toString()));
     }
 
     // var comments = et.SubElement(request, "comments");
     // et.SubElement(comments, "comment", ""); // add id attribute
 
-    subElement(request, "sha1hash").append(cData(this.generateHash(timestamp, orderId, builder.amount, builder.currency, "")));
+    subElement(request, "sha1hash").append(cData(this.generateHash(timestamp, orderId, builder.amount.toString(), builder.currency, "")));
 
     return new Promise((resolve, reject) => {
       this.doTransaction(this.buildEnvelope(request))

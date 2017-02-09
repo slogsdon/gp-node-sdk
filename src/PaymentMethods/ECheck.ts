@@ -41,7 +41,7 @@ export class ECheck implements
    *
    * @return AuthorizationBuilder
    */
-  public charge(amount?: string) {
+  public charge(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.Sale, this))
       .withAmount(amount);
   }

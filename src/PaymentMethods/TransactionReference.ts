@@ -6,7 +6,9 @@ export class TransactionReference implements IPaymentMethod {
   public transactionId: string;
   public paymentMethodType: PaymentMethodType;
 
-  public constructor(transactionId: string) {
-    this.transactionId = transactionId;
+  public constructor(transactionId?: string) {
+    if (transactionId) {
+      this.transactionId = transactionId;
+    }
   }
 }

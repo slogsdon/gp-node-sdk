@@ -1,58 +1,70 @@
 import {
-    AuthorizationBuilder,
-    InquiryType,
+  AuthorizationBuilder,
+  EncryptionData,
+  EntryMethod,
+  InquiryType,
+  ManagementBuilder,
+  PaymentMethodType,
 } from "../";
 
 export interface IAuthable {
-    authorize(amount?: string): AuthorizationBuilder;
+  authorize(amount?: string | number): AuthorizationBuilder;
 }
 
 export interface IBalanceable {
-    balanceInquiry(inquiry?: InquiryType): AuthorizationBuilder;
+  balanceInquiry(inquiry?: InquiryType): AuthorizationBuilder;
 }
 
 export interface ICardData {
+  number: string;
 }
 
 export interface IChargable {
-    charge(amount?: string): AuthorizationBuilder;
+  charge(amount?: string | number): AuthorizationBuilder;
 }
 
 export interface IEditable {
-    edit(amount?: string): AuthorizationBuilder;
+  edit(amount?: string | number): AuthorizationBuilder;
 }
 
 export interface IEncryptable {
+  encryptionData: EncryptionData;
 }
 
 export interface IPaymentMethod {
+  paymentMethodType: PaymentMethodType;
 }
 
 export interface IPinProtected {
+  pinBlock: string;
 }
 
 export interface IPrePayable {
-    addValue(amount?: string): AuthorizationBuilder;
+  addValue(amount?: string | number): AuthorizationBuilder;
 }
 
 export interface IRefundable {
-    refund(amount?: string): AuthorizationBuilder;
+  refund(amount?: string | number): AuthorizationBuilder;
 }
 
 export interface IReversable {
-    reverse(amount?: string): AuthorizationBuilder;
+  reverse(amount?: string | number): AuthorizationBuilder;
 }
 
 export interface ITokenizable {
-    tokenize(): AuthorizationBuilder;
+  token: string;
+  tokenize(): AuthorizationBuilder;
 }
 
 export interface ITrackData {
+  value: string;
+  entryMethod: EntryMethod;
 }
 
 export interface IVerifyable {
-    verify(): AuthorizationBuilder;
+  verify(): AuthorizationBuilder;
 }
 
 export interface IVoidable {
+  void(): ManagementBuilder;
 }

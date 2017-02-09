@@ -18,7 +18,8 @@ export class AuthorizationBuilder
   public aliasAction: AliasAction;
   public allowDuplicates: boolean;
   public allowPartialAuth: boolean;
-  public amount: string;
+  public amount: string | number;
+  public cashBackAmount: string | number;
   public currency: string;
   public customerId: string;
   public description: string;
@@ -28,7 +29,6 @@ export class AuthorizationBuilder
   public level2Request: boolean;
   public offlineAuthCode: string;
   public orderId: string;
-  public paymentMethod: IPaymentMethod;
   public requestMultiUseToken: boolean;
   public balanceInquiryType: InquiryType;
   public replacementCard: GiftCard;
@@ -98,9 +98,16 @@ export class AuthorizationBuilder
     return this;
   }
 
-  public withAmount(amount?: string) {
+  public withAmount(amount?: string | number) {
     if (amount) {
       this.amount = amount;
+    }
+    return this;
+  }
+
+  public withCashBackAmount(amount?: string | number) {
+    if (amount) {
+      this.cashBackAmount = amount;
     }
     return this;
   }
@@ -147,7 +154,7 @@ export class AuthorizationBuilder
     return this;
   }
 
-  public withLevel2Request(level2Request?: boolean) {
+  public withCommercialRequest(level2Request?: boolean) {
     if (level2Request) {
       this.level2Request = level2Request;
     }
@@ -164,13 +171,6 @@ export class AuthorizationBuilder
   public withOrderId(orderId?: string) {
     if (orderId) {
       this.orderId = orderId;
-    }
-    return this;
-  }
-
-  public withPaymentMethod(paymentMethod?: IPaymentMethod) {
-    if (paymentMethod) {
-      this.paymentMethod = paymentMethod;
     }
     return this;
   }

@@ -6,7 +6,11 @@ import {
   AuthorizationBuilder,
   ManagementBuilder,
 } from "../Builders";
-import { Transaction } from "../Entities";
+import {
+  ApiError,
+  GatewayError,
+  Transaction,
+} from "../Entities";
 import { IGateway } from "./IGateway";
 
 export abstract class XmlGateway implements IGateway {
@@ -37,15 +41,21 @@ export abstract class XmlGateway implements IGateway {
         res.on("data", (d: string) => data += d);
         res.on("end", () => {
           if (res.statusCode !== 200) {
-            reject();
+            reject(new GatewayError(
+              `Unexpected HTTP status code [${res.statusCode}]`,
+            ));
           }
 
           resolve(data);
         });
+        res.on("error", reject);
       });
       req.on("socket", (socket: Socket) => {
         socket.setTimeout(this.timeout);
-        socket.on("timeout", () => req.abort());
+        socket.on("timeout", () => {
+          req.abort();
+          reject(new ApiError("Socket timeout occurred."));
+        });
       });
       req.on("error", reject);
       req.write(requestData);

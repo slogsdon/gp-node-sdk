@@ -15,11 +15,11 @@ export class Cash implements
     IRefundable {
     public paymentMethodType = PaymentMethodType.Cash;
 
-    public charge(_amount?: string): AuthorizationBuilder {
+    public charge(_amount?: string | number): AuthorizationBuilder {
         throw new NotImplementedError();
     }
 
-    public refund(_amount?: string): AuthorizationBuilder {
+    public refund(_amount?: string | number): AuthorizationBuilder {
         throw new NotImplementedError();
     }
 }

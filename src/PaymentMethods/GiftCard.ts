@@ -72,7 +72,7 @@ export class GiftCard implements
   public static create(alias?: string) {
     const card = new GiftCard();
 
-    (new AuthorizationBuilder(TransactionType.Alias, card))
+    return (new AuthorizationBuilder(TransactionType.Alias, card))
       .withAlias(AliasAction.Create, alias)
       .execute()
       .then((response) => {
@@ -106,7 +106,7 @@ export class GiftCard implements
    *
    * @return AuthorizationBuilder
    */
-  public activate(amount?: string) {
+  public activate(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.Activate, this))
       .withAmount(amount);
   }
@@ -118,7 +118,7 @@ export class GiftCard implements
    *
    * @return AuthorizationBuilder
    */
-  public addValue(amount?: string) {
+  public addValue(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.AddValue, this))
       .withAmount(amount);
   }
@@ -142,7 +142,7 @@ export class GiftCard implements
    *
    * @return AuthorizationBuilder
    */
-  public charge(amount?: string) {
+  public charge(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.Sale, this))
       .withAmount(amount);
   }
@@ -187,7 +187,7 @@ export class GiftCard implements
    *
    * @return AuthorizationBuilder
    */
-  public reverse(amount?: string) {
+  public reverse(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.Reversal, this))
       .withAmount(amount);
   }
@@ -199,7 +199,7 @@ export class GiftCard implements
    *
    * @return AuthorizationBuilder
    */
-  public rewards(amount?: string) {
+  public rewards(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.Reward, this))
       .withAmount(amount);
   }
@@ -210,7 +210,7 @@ export class GiftCard implements
 
   set alias(value: string) {
     this.value = value;
-    this.valueType = "CardNbr";
+    this.valueType = "Alias";
   }
 
   get number(): string {
@@ -228,7 +228,7 @@ export class GiftCard implements
 
   set token(value: string) {
     this.value = value;
-    this.valueType = "CardNbr";
+    this.valueType = "TokenValue";
   }
 
   get trackData(): string {
@@ -237,6 +237,6 @@ export class GiftCard implements
 
   set trackData(value: string) {
     this.value = value;
-    this.valueType = "CardNbr";
+    this.valueType = "TrackData";
   }
 }

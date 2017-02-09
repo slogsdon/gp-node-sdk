@@ -1,6 +1,7 @@
 import {
   IPaymentMethod,
   ServicesContainer,
+  TaxType,
   Transaction,
   TransactionType,
 } from "../";
@@ -8,11 +9,12 @@ import { BaseBuilder } from "./BaseBuilder";
 
 export class ManagementBuilder
   extends BaseBuilder {
-  public amount: string;
+  public amount: string | number;
   public currency: string;
   public gratuity: string;
   public poNumber: string;
-  public paymentMethod: IPaymentMethod;
+  public taxType: TaxType;
+  public taxAmount: string | number;
 
   public constructor(type: number, paymentMethod?: IPaymentMethod) {
     super(type, paymentMethod);
@@ -40,7 +42,7 @@ export class ManagementBuilder
       .check("poNumber").isNotNull();
   }
 
-  public withAmount(amount?: string) {
+  public withAmount(amount?: string | number) {
     if (amount) {
       this.amount = amount;
     }
@@ -54,9 +56,23 @@ export class ManagementBuilder
     return this;
   }
 
-  public withPaymentMethod(paymentMethod?: IPaymentMethod) {
-    if (paymentMethod) {
-      this.paymentMethod = paymentMethod;
+  public withPoNumber(poNumber?: string) {
+    if (poNumber) {
+      this.poNumber = poNumber;
+    }
+    return this;
+  }
+
+  public withTaxType(type?: TaxType) {
+    if (type) {
+      this.taxType = type;
+    }
+    return this;
+  }
+
+  public withTaxAmount(amount?: string | number) {
+    if (amount) {
+      this.taxAmount = amount;
     }
     return this;
   }

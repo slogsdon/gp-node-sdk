@@ -28,7 +28,7 @@ export class Transaction {
    *
    * @return AuthorizationBuilder
    */
-  public additionalAuth(amount?: string) {
+  public additionalAuth(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.Auth))
       .withPaymentMethod(this.transactionReference)
       .withAmount(amount);
@@ -41,7 +41,7 @@ export class Transaction {
    *
    * @return ManagementBuilder
    */
-  public capture(amount?: string) {
+  public capture(amount?: string | number) {
     return (new ManagementBuilder(TransactionType.Capture))
       .withPaymentMethod(this.transactionReference)
       .withAmount(amount);
@@ -70,7 +70,7 @@ export class Transaction {
    *
    * @return ManagementBuilder
    */
-  public refund(amount?: string) {
+  public refund(amount?: string | number) {
     return (new ManagementBuilder(TransactionType.Refund))
       .withPaymentMethod(this.transactionReference)
       .withAmount(amount);
@@ -83,7 +83,7 @@ export class Transaction {
    *
    * @return ManagementBuilder
    */
-  public reverse(amount?: string) {
+  public reverse(amount?: string | number) {
     return (new ManagementBuilder(TransactionType.Reversal))
       .withPaymentMethod(this.transactionReference)
       .withAmount(amount);

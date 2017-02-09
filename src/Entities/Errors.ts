@@ -11,3 +11,6 @@ export class GatewayError extends ApiError {
 
 export class NotImplementedError extends ApiError {
 }
+
+export class UnsupportedTransactionError extends ApiError {
+}

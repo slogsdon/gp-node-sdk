@@ -8,7 +8,6 @@ import {
 import {
   IBalanceable,
   IChargable,
-  IEncryptable,
   IPaymentMethod,
   IPinProtected,
   IPrePayable,
@@ -20,7 +19,6 @@ export abstract class EBT implements
   IPaymentMethod,
   IBalanceable,
   IChargable,
-  IEncryptable,
   IRefundable,
   IReversable,
   IPrePayable,
@@ -35,7 +33,7 @@ export abstract class EBT implements
    *
    * @return AuthorizationBuilder
    */
-  public charge(amount?: string) {
+  public charge(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.Sale, this))
       .withAmount(amount);
   }
@@ -47,7 +45,7 @@ export abstract class EBT implements
    *
    * @return AuthorizationBuilder
    */
-  public addValue(amount?: string) {
+  public addValue(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.AddValue, this))
       .withAmount(amount);
   }
@@ -71,7 +69,7 @@ export abstract class EBT implements
    *
    * @return AuthorizationBuilder
    */
-  public refund(amount?: string) {
+  public refund(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.Refund, this))
       .withAmount(amount);
   }
@@ -83,7 +81,7 @@ export abstract class EBT implements
    *
    * @return AuthorizationBuilder
    */
-  public reverse(_amount?: string): AuthorizationBuilder {
+  public reverse(_amount?: string | number): AuthorizationBuilder {
     throw new NotImplementedError();
   }
 }

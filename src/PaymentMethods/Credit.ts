@@ -40,7 +40,7 @@ export abstract class Credit implements
    *
    * @return AuthorizationBuilder
    */
-  public authorize(amount?: string) {
+  public authorize(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.Auth, this))
       .withAmount(amount);
   }
@@ -52,7 +52,7 @@ export abstract class Credit implements
    *
    * @return AuthorizationBuilder
    */
-  public charge(amount?: string) {
+  public charge(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.Sale, this))
       .withAmount(amount);
   }
@@ -64,7 +64,7 @@ export abstract class Credit implements
    *
    * @return AuthorizationBuilder
    */
-  public addValue(amount?: string) {
+  public addValue(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.AddValue, this))
       .withAmount(amount);
   }
@@ -88,7 +88,7 @@ export abstract class Credit implements
    *
    * @return AuthorizationBuilder
    */
-  public refund(amount?: string) {
+  public refund(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.Refund, this))
       .withAmount(amount);
   }
@@ -100,7 +100,7 @@ export abstract class Credit implements
    *
    * @return AuthorizationBuilder
    */
-  public reverse(amount?: string) {
+  public reverse(amount?: string | number) {
     return (new AuthorizationBuilder(TransactionType.Reversal, this))
       .withAmount(amount);
   }

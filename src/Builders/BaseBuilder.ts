@@ -12,6 +12,7 @@ export abstract class BaseBuilder {
   protected executed: boolean;
   public transactionType: TransactionType;
   public transactionModifier = TransactionModifier.None;
+  public paymentMethod: IPaymentMethod;
   [key: string]: any;
 
   public constructor(type: TransactionType, _paymentMethod?: IPaymentMethod) {
@@ -28,6 +29,13 @@ export abstract class BaseBuilder {
   public withModifier(modifier?: TransactionModifier) {
     if (modifier) {
       this.transactionModifier = modifier;
+    }
+    return this;
+  }
+
+  public withPaymentMethod(paymentMethod?: IPaymentMethod) {
+    if (paymentMethod) {
+      this.paymentMethod = paymentMethod;
     }
     return this;
   }
