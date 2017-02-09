@@ -180,10 +180,16 @@ All our code is open sourced and we encourage fellow developers to contribute an
 5. Push to the branch (`git push origin my-new-feature`)
 6. Create new Pull Request
 
-
-####Included Test Suite
+#### Included Test Suite
 
 The included test suite can help ensure your contribution doesn't cause unexpected errors and is a terrific resource of working examples that you can reference. As mentioned earlier, the [certification folder](https://github.com/hps/heartland-nodejs/tree/master/test) contains tests that mirror the types of requirements you will encounter when you certify your integration for production.
 
+The test suite can also be ran across multiple versions of NodeJS using Docker:
 
+```
+$ NODE_VERSION=4.7 docker-compose run --rm setup
+$ NODE_VERSION=4.7 docker-compose run --rm test
+```
+
+where `NODE_VERSION` is any version number compatible with the [official `node` Docker image](https://hub.docker.com/_/node/).
 
