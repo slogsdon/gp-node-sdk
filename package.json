@@ -16,7 +16,7 @@
     "docs": "typedoc --mode file --name \"GlobalPayments.Api\" --project tsconfig.json --exclude */test/* --out docs",
     "prepublish": "npm run build",
     "pretest": "npm run build:clean && npm run test:lint && npm run build",
-    "test": "ava --verbose",
+    "test": "ava",
     "test:lint": "tslint --project tsconfig.json"
   },
   "dependencies": {

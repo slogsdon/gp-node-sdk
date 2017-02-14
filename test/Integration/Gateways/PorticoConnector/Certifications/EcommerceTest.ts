@@ -33,7 +33,7 @@ ava.before((_t) => {
   ServicesContainer.configure(config);
 });
 
-test("000 - close batch", (t) => {
+test.before("000 - close batch", (t) => {
   t.plan(1);
 
   return new Promise((resolve, reject) => {
@@ -48,11 +48,16 @@ test("000 - close batch", (t) => {
         ) {
           t.pass();
           resolve();
+          return;
         }
         reject(e);
       });
   });
 });
+
+/// CARD VERIFY
+
+/// Account verification
 
 test("001 - verify visa", (t) => {
   t.plan(2);
@@ -62,6 +67,7 @@ test("001 - verify visa", (t) => {
   return new Promise((resolve, reject) => {
     card.verify()
       .withRequestMultiUseToken(useTokens)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -80,6 +86,7 @@ test("002 - verify mastercard", (t) => {
   return new Promise((resolve, reject) => {
     card.verify()
       .withRequestMultiUseToken(useTokens)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -101,6 +108,7 @@ test("003 - verify discover", (t) => {
     card.verify()
       .withAddress(address)
       .withRequestMultiUseToken(useTokens)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -110,6 +118,8 @@ test("003 - verify discover", (t) => {
       .catch(reject);
   });
 });
+
+/// Address verification
 
 test("004 - verify amex", (t) => {
   t.plan(2);
@@ -122,6 +132,7 @@ test("004 - verify amex", (t) => {
     card.verify()
       .withAddress(address)
       .withRequestMultiUseToken(useTokens)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -131,6 +142,8 @@ test("004 - verify amex", (t) => {
       .catch(reject);
   });
 });
+
+/// Balance Inquiry (for prepaid cards)
 
 test("005 - balance inquiry visa", (t) => {
   t.plan(2);
@@ -148,6 +161,8 @@ test("005 - balance inquiry visa", (t) => {
       .catch(reject);
   });
 });
+
+/// CREDIT SALE (for multi-use tokens only)
 
 test("006 - charge visa token", (t) => {
   t.plan(3);
@@ -256,6 +271,8 @@ test("009 - charge amex token", (t) => {
       .catch(reject);
   });
 });
+
+/// CREDIT SALE
 
 test("010 - charge visa", (t) => {
   t.plan(4);
@@ -412,6 +429,8 @@ test("014 - charge jcb", (t) => {
   });
 });
 
+/// AUTHORIZATION
+
 test("015 - authorization visa", (t) => {
   t.plan(4);
 
@@ -514,6 +533,8 @@ test("017 - authorization discover", (t) => {
   });
 });
 
+/// PARTIALLY APPROVED SALE
+
 test("018 - partial approval visa", (t) => {
   t.plan(4);
 
@@ -598,6 +619,8 @@ test("020 - partial approval mastercard", (t) => {
   });
 });
 
+/// LEVEL II CORPORATE PURCHASE CARD
+
 test("021 - level ii response b", (t) => {
   t.plan(5);
 
@@ -612,6 +635,7 @@ test("021 - level ii response b", (t) => {
       .withCurrency("USD")
       .withAddress(address)
       .withCommercialRequest(true)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -649,6 +673,7 @@ test("022 - level ii response b", (t) => {
       .withCurrency("USD")
       .withAddress(address)
       .withCommercialRequest(true)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -686,6 +711,7 @@ test("023 - level ii response r", (t) => {
       .withCurrency("USD")
       .withAddress(address)
       .withCommercialRequest(true)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -722,6 +748,7 @@ test("024 - level ii response s", (t) => {
       .withCurrency("USD")
       .withAddress(address)
       .withCommercialRequest(true)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -760,6 +787,7 @@ test("025 - level ii response s", (t) => {
       .withCurrency("USD")
       .withAddress(address)
       .withCommercialRequest(true)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -797,6 +825,7 @@ test("026 - level ii response s", (t) => {
       .withCurrency("USD")
       .withAddress(address)
       .withCommercialRequest(true)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -834,6 +863,7 @@ test("027 - level ii response s", (t) => {
       .withCurrency("USD")
       .withAddress(address)
       .withCommercialRequest(true)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -872,6 +902,7 @@ test("028 - level ii response s", (t) => {
       .withCurrency("USD")
       .withAddress(address)
       .withCommercialRequest(true)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -909,6 +940,7 @@ test("029 - level ii no response", (t) => {
       .withCurrency("USD")
       .withAddress(address)
       .withCommercialRequest(true)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -946,6 +978,7 @@ test("030 - level ii no response", (t) => {
       .withCurrency("USD")
       .withAddress(address)
       .withCommercialRequest(true)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -983,6 +1016,7 @@ test("031 - level ii no response", (t) => {
       .withCurrency("USD")
       .withAddress(address)
       .withCommercialRequest(true)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -1021,6 +1055,7 @@ test("032 - level ii no response", (t) => {
       .withCurrency("USD")
       .withAddress(address)
       .withCommercialRequest(true)
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -1128,6 +1163,7 @@ test.failing("037 - fraud prevention sale", (t) => {
   return new Promise((resolve, reject) => {
     card.charge(15000)
       .withCurrency("USD")
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -1146,6 +1182,7 @@ test.failing("038 - fraud prevention return", (t) => {
   return new Promise((resolve, reject) => {
     card.refund(15000)
       .withCurrency("USD")
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -1197,6 +1234,7 @@ test.failing("038 - fraud prevention return", (t) => {
   return new Promise((resolve, reject) => {
     card.addValue(15.00)
       .withCurrency("USD")
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -1223,6 +1261,7 @@ test.failing("038 - fraud prevention return", (t) => {
       .withCurrency("USD")
       .withAddress(address)
       .withInvoiceNumber("123456")
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -1257,6 +1296,7 @@ test.failing("038 - fraud prevention return", (t) => {
       .withCurrency("USD")
       .withAddress(address)
       .withInvoiceNumber("123456")
+      .withAllowDuplicates(true)
       .execute()
       .then((response) => {
         t.truthy(response);
@@ -1865,7 +1905,7 @@ test("074 - deactivate rewards 2", (t) => {
 
 test("075 - receipts messaging", () => true);
 
-test("999 - close batch", (t) => {
+test.after("999 - close batch", (t) => {
   t.plan(1);
 
   return new Promise((resolve, reject) => {
@@ -1880,6 +1920,7 @@ test("999 - close batch", (t) => {
         ) {
           t.pass();
           resolve();
+          return;
         }
         reject(e);
       });
