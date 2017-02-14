@@ -35,16 +35,21 @@ export class RealexConnector extends XmlGateway {
       timestamp,
       type: this.mapAuthRequestType(builder.transactionType),
     });
+
     if (this.merchantId) {
       subElement(request, "merchantid").append(cData(this.merchantId));
     }
+
     if (this.accountId) {
       subElement(request, "account").append(cData(this.accountId));
     }
+
     if (this.channel) {
       subElement(request, "channel").append(cData(this.channel));
     }
+
     subElement(request, "orderid").append(cData(orderId));
+
     const amountAttrs = builder.currency ? {currency: builder.currency} : {};
     subElement(request, "amount", amountAttrs).append(cData(builder.amount.toString()));
 
@@ -67,6 +72,7 @@ export class RealexConnector extends XmlGateway {
       }
       // issueno
 
+      const isVerify = builder.transactionType === TransactionType.Verify;
       subElement(request, "sha1hash")
         .append(cData(
           this.generateHash(
@@ -75,13 +81,24 @@ export class RealexConnector extends XmlGateway {
             builder.amount.toString(),
             builder.currency,
             card.number,
+            isVerify,
           ),
         ));
     }
 
-    // a TODO: This needs to be figured out based on txn type and set to 0, 1 or MULTI
-    const autoSettle = builder.transactionType === TransactionType.Sale ? "1" : "0";
-    subElement(request, "autosettle", {flag: autoSettle});
+    // refund hash
+    if (builder.transactionType === TransactionType.Refund) {
+      subElement(request, "refundhash")
+        .append(cData("e51118f58785274e117efe1bf99d4d50ccb96949"));
+    }
+
+    // this needs to be figured out based on txn type and set to 0, 1 or MULTI
+    if (builder.transactionType === TransactionType.Sale
+      || builder.transactionType === TransactionType.Auth
+    ) {
+      const autoSettle = builder.transactionType === TransactionType.Sale ? "1" : "0";
+      subElement(request, "autosettle", {flag: autoSettle});
+    }
 
     // const comments = subElement(request, "comments");
     // subElement(comments, "comment", ""); // add id attribute
@@ -110,11 +127,8 @@ export class RealexConnector extends XmlGateway {
 
     // subElement(request, "mobile");
     // subElement(request, "token", token);
-    return new Promise((resolve, reject) => {
-      this.doTransaction(this.buildEnvelope(request))
-        .then((response) => resolve(this.mapResponse(response)))
-        .catch(reject);
-    });
+    return this.doTransaction(this.buildEnvelope(request))
+      .then((response) => this.mapResponse(response));
   }
 
   public manageTransaction(builder: ManagementBuilder): Promise<Transaction> {
@@ -126,16 +140,21 @@ export class RealexConnector extends XmlGateway {
       timestamp,
       type: this.mapManageRequestType(builder.transactionType),
     });
+
     if (this.merchantId) {
       subElement(request, "merchantid").append(cData(this.merchantId));
     }
+
     if (this.accountId) {
       subElement(request, "account").append(cData(this.accountId));
     }
+
     if (this.channel) {
       subElement(request, "channel").append(cData(this.channel));
     }
+
     subElement(request, "orderid").append(cData(orderId));
+
     if (builder.paymentMethod) {
       const ref = (builder.paymentMethod as IPaymentMethod) as TransactionReference;
       subElement(request, "pasref").append(cData(ref.transactionId));
@@ -151,11 +170,8 @@ export class RealexConnector extends XmlGateway {
 
     subElement(request, "sha1hash").append(cData(this.generateHash(timestamp, orderId, builder.amount.toString(), builder.currency, "")));
 
-    return new Promise((resolve, reject) => {
-      this.doTransaction(this.buildEnvelope(request))
-        .then((response) => resolve(this.mapResponse(response)))
-        .catch(reject);
-    });
+    return this.doTransaction(this.buildEnvelope(request))
+      .then((response) => this.mapResponse(response));
   }
 
   protected buildEnvelope(transaction: Element): string {

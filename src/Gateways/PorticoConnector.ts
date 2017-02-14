@@ -254,11 +254,8 @@ export class PorticoConnector extends XmlGateway {
       subElement(block1, "TxnDescriptor").append(cData(builder.dynamicDescriptor));
     }
 
-    return new Promise((resolve, reject) => {
-      this.doTransaction(this.buildEnvelope(transaction))
-        .then((response) => resolve(this.mapResponse(response, builder)))
-        .catch(reject);
-    });
+    return this.doTransaction(this.buildEnvelope(transaction))
+      .then((response) => this.mapResponse(response, builder));
   }
 
   public manageTransaction(builder: ManagementBuilder): Promise<Transaction> {
@@ -318,11 +315,8 @@ export class PorticoConnector extends XmlGateway {
       }
     }
 
-    return new Promise((resolve, reject) => {
-      this.doTransaction(this.buildEnvelope(transaction))
-        .then((response) => resolve(this.mapResponse(response, builder)))
-        .catch(reject);
-    });
+    return this.doTransaction(this.buildEnvelope(transaction))
+      .then((response) => this.mapResponse(response, builder));
   }
 
   protected buildEnvelope(transaction: Element): string {
