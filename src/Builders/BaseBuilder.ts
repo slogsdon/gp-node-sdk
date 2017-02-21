@@ -14,6 +14,7 @@ export abstract class BaseBuilder {
   public transactionType: TransactionType;
   public transactionModifier = TransactionModifier.None;
   public paymentMethod: PaymentMethod;
+  public allowDuplicates: boolean;
   [key: string]: any;
 
   public constructor(type: TransactionType, _paymentMethod?: IPaymentMethod) {
@@ -28,15 +29,22 @@ export abstract class BaseBuilder {
   }
 
   public withModifier(modifier?: TransactionModifier) {
-    if (modifier) {
+    if (modifier !== undefined) {
       this.transactionModifier = modifier;
     }
     return this;
   }
 
   public withPaymentMethod(paymentMethod?: IPaymentMethod) {
-    if (paymentMethod) {
+    if (paymentMethod !== undefined) {
       this.paymentMethod = paymentMethod as PaymentMethod;
+    }
+    return this;
+  }
+
+  public withAllowDuplicates(allowDuplicates?: boolean) {
+    if (allowDuplicates !== undefined) {
+      this.allowDuplicates = allowDuplicates;
     }
     return this;
   }

@@ -22,7 +22,7 @@ export abstract class EBT extends PaymentMethod implements
   IReversable,
   IPrePayable,
   IPinProtected {
-  public paymentMethodType: PaymentMethodType = PaymentMethodType.Credit;
+  public paymentMethodType: PaymentMethodType = PaymentMethodType.EBT;
   public pinBlock: string;
 
   /**
@@ -56,9 +56,10 @@ export abstract class EBT extends PaymentMethod implements
    *
    * @return AuthorizationBuilder
    */
-  public balanceInquiry(inquiry?: InquiryType) {
+  public balanceInquiry(inquiry = InquiryType.Foodstamp) {
     return (new AuthorizationBuilder(TransactionType.Balance, this))
-      .withBalanceInquiryType(inquiry);
+      .withBalanceInquiryType(inquiry)
+      .withAmount(0);
   }
 
   /**

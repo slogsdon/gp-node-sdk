@@ -18,6 +18,6 @@ export class ValidationClause {
     this.message = message
       ? message
       : `${this.target.property} cannot be null for this transaction type.`;
-    return this.parent.of(this.target.type);
+    return this.parent.of(this.target.type, this.target.modifier);
   }
 }

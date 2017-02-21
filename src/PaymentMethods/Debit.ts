@@ -22,7 +22,7 @@ export abstract class Debit extends PaymentMethod implements
   IPrePayable,
   IPinProtected {
   public encryptionData: EncryptionData;
-  public paymentMethodType: PaymentMethodType = PaymentMethodType.Credit;
+  public paymentMethodType: PaymentMethodType = PaymentMethodType.Debit;
   public pinBlock: string;
 
   /**

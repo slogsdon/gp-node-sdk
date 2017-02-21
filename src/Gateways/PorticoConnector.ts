@@ -73,7 +73,7 @@ export class PorticoConnector extends XmlGateway {
       }
     }
 
-    if (builder.amount) {
+    if (builder.amount !== undefined && builder.amount !== null) {
       subElement(block1, "Amt").append(cData(builder.amount.toString()));
     }
 
@@ -82,10 +82,10 @@ export class PorticoConnector extends XmlGateway {
     }
 
     if (builder.gratuity) {
-      subElement(block1, "GratuityAmtInfo").append(cData(builder.gratuity));
+      subElement(block1, "GratuityAmtInfo").append(cData(builder.gratuity.toString()));
     }
 
-    if (builder.cashBackAmount) {
+    if (builder.cashBackAmount !== undefined && builder.cashBackAmount !== null) {
       subElement(
         block1,
         builder.paymentMethod.paymentMethodType === PaymentMethodType.Debit
@@ -300,9 +300,14 @@ export class PorticoConnector extends XmlGateway {
           subElement(root, "Amt").append(cData(builder.amount.toString()));
         }
 
+        // auth amount
+        if (builder.authAmount) {
+          subElement(root, "AuthAmt").append(cData(builder.authAmount.toString()));
+        }
+
         // gratuity
         if (builder.gratuity) {
-          subElement(root, "GratuityAmtInfo").append(cData(builder.gratuity));
+          subElement(root, "GratuityAmtInfo").append(cData(builder.gratuity.toString()));
         }
       }
 
@@ -700,7 +705,7 @@ export class PorticoConnector extends XmlGateway {
   }
 
   protected hydrateManualEntry(builder: BaseBuilder, hasToken: boolean, tokenValue: string) {
-    const me = new Element("ManualEntry");
+    const me = new Element(hasToken ? "TokenData" : "ManualEntry");
     let card: CreditCardData | EBTCardData;
     if (builder.paymentMethod instanceof CreditCardData) {
       card = builder.paymentMethod as CreditCardData;
@@ -708,7 +713,7 @@ export class PorticoConnector extends XmlGateway {
       card = builder.paymentMethod as EBTCardData;
     }
 
-    if (card.number) {
+    if (card.number || hasToken) {
       subElement(me, hasToken ? "TokenValue" : "CardNbr")
         .append(cData(hasToken ? tokenValue : card.number));
     }

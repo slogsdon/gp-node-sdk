@@ -29,7 +29,9 @@ export abstract class PaymentMethod implements IPaymentMethod {
   }
 
   get isCardData() {
-    return ((this as Object) as ICardData).number !== undefined
+    return (this.isTokenizable
+        && ((this as Object) as ITokenizable).token !== undefined
+        || ((this as Object) as ICardData).number !== undefined)
       && this.paymentMethodType !== PaymentMethodType.Gift;
   }
 
@@ -67,7 +69,8 @@ export abstract class PaymentMethod implements IPaymentMethod {
 
   get isTrackData() {
     return ((this as Object) as ITrackData).value !== undefined
-      && ((this as Object) as ITrackData).entryMethod !== undefined;
+      && (((this as Object) as ITrackData).entryMethod !== undefined
+        || ((this as Object) as IPinProtected).pinBlock !== undefined);
   }
 
   get isVerifyable() {
