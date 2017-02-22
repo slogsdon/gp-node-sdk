@@ -3,35 +3,50 @@ import { Socket } from "net";
 import * as url from "url";
 
 import {
-  AuthorizationBuilder,
-  ManagementBuilder,
-  ReportBuilder,
-} from "../Builders";
-import {
   ApiError,
   GatewayError,
-  Transaction,
 } from "../Entities";
-import { IGateway } from "./IGateway";
 
-export abstract class XmlGateway implements IGateway {
+export interface IDictionary<T> {
+  [key: string]: T;
+}
+
+export abstract class RestGateway {
+  public static AUTHORIZATION_HEADER = "Authorization";
+
   public timeout: number;
   public serviceUrl: string;
+  public headers: IDictionary<string>;
 
-  public abstract processAuthorization(builder: AuthorizationBuilder): Promise<Transaction>;
-  public abstract manageTransaction(builder: ManagementBuilder): Promise<Transaction>;
-  public abstract processReport<T>(builder: ReportBuilder<T>): Promise<T>;
+  public constructor() {
+    this.headers = {};
+  }
 
-  protected doTransaction(requestData: string): Promise<string> {
-    const uri = url.parse(this.serviceUrl);
+  protected doTransaction(verb: string, endpoint: string, requestData?: string, queryStringParams?: IDictionary<string>): Promise<string> {
+    let queryString = "";
+    if (queryStringParams) {
+      const pairs: string[] = [];
+      for (const key in queryStringParams) {
+        if (queryStringParams.hasOwnProperty(key)) {
+          pairs.push(`${key}=${queryStringParams[key]}`);
+        }
+      }
+      queryString = "?" + pairs.join("&");
+    }
+
+    const headers: IDictionary<string> = {
+      "Content-Type": "application/json; charset=\"utf-8\"",
+      "SoapAction": "\"\"",
+    };
+    if (requestData) {
+      headers["Content-Length"] = requestData.length.toString();
+    }
+
+    const uri = url.parse(this.serviceUrl + endpoint + queryString);
     const options: https.RequestOptions = {
-      headers: {
-        "Content-Length": requestData.length,
-        "Content-Type": "text/xml; charset=\"utf-8\"",
-        "SoapAction": "\"\"",
-      },
+      headers,
       host: uri.host,
-      method: "POST",
+      method: verb,
       path: uri.path,
       port: uri.port ? parseInt(uri.port, 10) : 443,
     };
@@ -60,7 +75,9 @@ export abstract class XmlGateway implements IGateway {
         });
       });
       req.on("error", reject);
-      req.write(requestData);
+      if (requestData) {
+        req.write(requestData);
+      }
       req.end();
     });
   }

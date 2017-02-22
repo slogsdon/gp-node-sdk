@@ -34,6 +34,9 @@ export class NotImplementedError extends ApiError {
 
 export class UnsupportedTransactionError extends ApiError {
   constructor(m?: string) {
+    if (!m) {
+      m = "Transaction type not supported for this payment method.";
+    }
     super(m);
     Object.setPrototypeOf(this, UnsupportedTransactionError.prototype);
     this.name = this.constructor.name;

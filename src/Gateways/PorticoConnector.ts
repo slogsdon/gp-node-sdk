@@ -11,7 +11,6 @@ import {
   AccountType,
   AliasAction,
   AuthorizationBuilder,
-  BaseBuilder,
   CheckType,
   CreditCardData,
   CreditTrackData,
@@ -30,11 +29,16 @@ import {
   ManagementBuilder,
   NotImplementedError,
   PaymentMethodType,
+  ReportBuilder,
+  ReportType,
   SecCode,
   TaxType,
   Transaction,
+  TransactionBuilder,
   TransactionModifier,
   TransactionReference,
+  TransactionReportBuilder,
+  TransactionSummary,
   TransactionType,
   UnsupportedTransactionError,
 } from "../";
@@ -324,6 +328,36 @@ export class PorticoConnector extends XmlGateway {
       .then((response) => this.mapResponse(response, builder));
   }
 
+  public processReport<T>(builder: ReportBuilder<T>): Promise<T> {
+    const transaction = element(this.mapReportRequestType(builder));
+
+    if (builder.timeZoneConversion) {
+      subElement(transaction, "TzConversion").append(cData(builder.timeZoneConversion.toString()));
+    }
+
+    if (builder instanceof TransactionReportBuilder) {
+      const trb = builder as TransactionReportBuilder<T>;
+
+      if (trb.deviceId) {
+        subElement(transaction, "DeviceId").append(cData(trb.deviceId));
+      }
+
+      if (trb.startDate) {
+        subElement(transaction, "RptStartUtcDT").append(cData(trb.startDate.toISOString()));
+      }
+
+      if (trb.endDate) {
+        subElement(transaction, "RptEndUtcDT").append(cData(trb.endDate.toISOString()));
+      }
+
+      if (trb.transactionId) {
+        subElement(transaction, "TxnId").append(cData(trb.transactionId));
+      }
+    }
+    return this.doTransaction(this.buildEnvelope(transaction))
+      .then((response) => this.mapReportResponse(response, builder));
+  }
+
   protected buildEnvelope(transaction: Element): string {
     const envelope = element("soap:Envelope", {
       "xmlns:soap": "http://schemas.xmlsoap.org/soap/envelope/",
@@ -364,7 +398,7 @@ export class PorticoConnector extends XmlGateway {
     return new ElementTree(envelope).write();
   }
 
-  protected mapRequestType(builder: BaseBuilder): string {
+  protected mapRequestType(builder: TransactionBuilder<Transaction>): string {
     switch (builder.transactionType) {
       case TransactionType.BatchClose:
         return "BatchClose";
@@ -488,7 +522,18 @@ export class PorticoConnector extends XmlGateway {
     throw new UnsupportedTransactionError("Unknown transaction");
   }
 
-  protected mapResponse(rawResponse: string, builder: BaseBuilder): Transaction {
+  protected mapReportRequestType<T>(builder: ReportBuilder<T>): string {
+    switch (builder.reportType) {
+      case ReportType.Activity:
+        return "ReportActivity";
+      case ReportType.TransactionDetail:
+        return "ReportTxnDetail";
+      default:
+        throw new UnsupportedTransactionError();
+    }
+  }
+
+  protected mapResponse(rawResponse: string, builder: TransactionBuilder<Transaction>): Transaction {
     const result = new Transaction();
 
     // todo: handle non-200 responses
@@ -559,6 +604,24 @@ export class PorticoConnector extends XmlGateway {
     return result;
   }
 
+  protected mapReportResponse<T>(rawResponse: string, builder: ReportBuilder<T>): T {
+    // todo: handle non-200 responses
+
+    const posResponse = xml(rawResponse).find(".//PosResponse");
+    const doc = posResponse.find(`.//${this.mapReportRequestType(builder)}`);
+
+    let result: any;
+
+    if (builder.reportType === ReportType.Activity) {
+      result = doc.findall(".//Details")
+        .map(this.hydrateTransactionSummary.bind(this));
+    } else if (builder.reportType === ReportType.TransactionDetail) {
+      result = this.hydrateTransactionSummary(doc);
+    }
+
+    return result;
+  }
+
   protected normalizeResponse(input: string) {
     if (["0", "85"].indexOf(input) !== -1) {
       input = "00";
@@ -607,7 +670,7 @@ export class PorticoConnector extends XmlGateway {
     }
   }
 
-  protected hydrateEncryptionData(builder: BaseBuilder) {
+  protected hydrateEncryptionData(builder: TransactionBuilder<Transaction>) {
     const enc = new Element("EncryptionData");
     const data = ((builder.paymentMethod as Object) as IEncryptable).encryptionData;
 
@@ -704,7 +767,7 @@ export class PorticoConnector extends XmlGateway {
     }
   }
 
-  protected hydrateManualEntry(builder: BaseBuilder, hasToken: boolean, tokenValue: string) {
+  protected hydrateManualEntry(builder: TransactionBuilder<Transaction>, hasToken: boolean, tokenValue: string) {
     const me = new Element(hasToken ? "TokenData" : "ManualEntry");
     let card: CreditCardData | EBTCardData;
     if (builder.paymentMethod instanceof CreditCardData) {
@@ -768,7 +831,7 @@ export class PorticoConnector extends XmlGateway {
     }
   }
 
-  protected hydrateTrackData(builder: BaseBuilder, hasToken: boolean, tokenValue: string) {
+  protected hydrateTrackData(builder: TransactionBuilder<Transaction>, hasToken: boolean, tokenValue: string) {
     const trackData = new Element(hasToken ? "TokenValue" : "TrackData");
 
     if (hasToken) {
@@ -791,5 +854,29 @@ export class PorticoConnector extends XmlGateway {
     }
 
     return trackData;
+  }
+
+  protected hydrateTransactionSummary(root: Element): TransactionSummary {
+    const result = new TransactionSummary();
+
+    result.amount = root.findtext(".//Amt");
+    result.authorizedAmount = root.findtext(".//AuthAmt");
+    result.authCode = root.findtext(".//AuthCode");
+    result.clientTransactionId = root.findtext(".//ClientTxnId");
+    result.deviceId = root.findtext(".//DeviceId");
+    result.issuerResponseCode = this.normalizeResponse(root.findtext(".//IssuerRspCode"));
+    result.issuerResponseMessage = root.findtext(".//IssuerRspText");
+    result.maskedCardNumber = root.findtext(".//MaskedCardNbr");
+    result.originalTransactionId = root.findtext(".//OriginalGatewayTxnId");
+    result.gatewayResponseCode = this.normalizeResponse(root.findtext(".//GatewayRspCode"));
+    result.gatewayResponseMessage = root.findtext(".//GatewayRspMsg");
+    result.referenceNumber = root.findtext(".//RefNbr");
+    result.serviceName = root.findtext(".//ServiceName");
+    result.settlementAmount = root.findtext(".//SettlementAmt");
+    result.status = root.findtext(".//Status");
+    result.transactionDate = new Date(root.findtext(".//TxnUtcDT"));
+    result.transactionId = root.findtext(".//GatewayTxnId");
+
+    return result;
   }
 }

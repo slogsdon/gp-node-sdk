@@ -1,26 +1,28 @@
-import { TransactionModifier } from "../../";
 import { ValidationClause } from "./ValidationClause";
 import { Validations } from "./Validations";
 
 export class ValidationTarget {
   public parent: Validations;
   public type: number;
-  public modifier: TransactionModifier;
   public property: string;
   public clause: ValidationClause;
+  public constraint: number;
+  public constraintProperty: string;
+  public enumName: string;
 
   public constructor(
     parent: Validations,
+    enumName: string,
     type: number,
-    modifier: TransactionModifier,
   ) {
     this.parent = parent;
     this.type = type;
-    this.modifier = modifier;
+    this.enumName = enumName;
   }
 
-  public with(modifier: TransactionModifier) {
-    this.modifier = modifier;
+  public with(property: string, constraint: number) {
+    this.constraintProperty = property;
+    this.constraint = constraint;
     return this;
   }
 

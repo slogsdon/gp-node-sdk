@@ -16,6 +16,7 @@ export class Transaction {
   public transactionReference: TransactionReference;
   public token: string;
   public giftCard: GiftCard;
+  public clientTransactionId: string;
 
   get transactionId(): string {
     return this.transactionReference.transactionId;
@@ -56,7 +57,7 @@ export class Transaction {
     let builder = (new ManagementBuilder(TransactionType.Edit))
       .withPaymentMethod(this.transactionReference);
 
-    if (this.commercialIndicator !== null) {
+    if (this.commercialIndicator) {
       builder = builder.withModifier(TransactionModifier.LevelII);
     }
 

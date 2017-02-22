@@ -16,7 +16,7 @@ import {
 
 const config = new ServicesConfig();
 config.secretApiKey = "skapi_cert_MaePAQBr-1QAqjfckFC8FTbRTT120bVQUlfVOjgCBw";
-config.serviceUrl = "https://cert.api2.heartlandportico.com/Hps.Exchange.PosGateway/PosGatewayService.asmx";
+config.serviceUrl = "https://cert.api2.heartlandportico.com";
 
 const BATCH_NOT_OPEN = "Transaction was rejected because it requires a batch to be open.";
 const BATCH_EMPTY = "Batch close was rejected because no transactions are associated with the currently open batch";
@@ -1277,7 +1277,7 @@ test("046 - charge mastercard swipe gratuity", (t) => {
 
 /// LEVEL II CORPORATE PURCHASE CARD
 
-test("047 - LevelIIVisaSwipeResponseB", (t) => {
+test("047 - level ii visa swipe response b", (t) => {
   t.plan(5);
 
   const card = TestCards.visaSwipe();
@@ -1306,7 +1306,7 @@ test("047 - LevelIIVisaSwipeResponseB", (t) => {
     });
 });
 
-test("047a - LevelIIVisaSwipeResponseB", (t) => {
+test("047a - level ii visa swipe response b", (t) => {
   t.plan(5);
 
   const card = TestCards.visaSwipe();
@@ -1334,7 +1334,7 @@ test("047a - LevelIIVisaSwipeResponseB", (t) => {
     });
 });
 
-test("048 - LevelIIVisaSwipeResponseR", (t) => {
+test("048 - level ii visa swipe response r", (t) => {
   t.plan(5);
 
   const card = TestCards.visaSwipe();
@@ -1362,7 +1362,7 @@ test("048 - LevelIIVisaSwipeResponseR", (t) => {
     });
 });
 
-test("049 - LevelIIVisaManualResponseS", (t) => {
+test("049 - level ii visa manual response s", (t) => {
   t.plan(5);
 
   const address = new Address();
@@ -1396,7 +1396,7 @@ test("049 - LevelIIVisaManualResponseS", (t) => {
     });
 });
 
-test("050 - LevelIIMasterCardSwipeResponseS", (t) => {
+test("050 - level ii mastercard swipe response s", (t) => {
   t.plan(5);
 
   const card = TestCards.masterCardSwipe();
@@ -1425,7 +1425,7 @@ test("050 - LevelIIMasterCardSwipeResponseS", (t) => {
     });
 });
 
-test("051 - LevelIIMasterCardManualResponseS", (t) => {
+test("051 - level ii mastercard manual response s", (t) => {
   t.plan(5);
 
   const address = new Address();
@@ -1459,7 +1459,7 @@ test("051 - LevelIIMasterCardManualResponseS", (t) => {
     });
 });
 
-test("051 - aLevelIIMasterCardManualResponseS", (t) => {
+test("051a - level ii mastercard manual response s", (t) => {
   t.plan(5);
 
   const address = new Address();
@@ -1493,7 +1493,7 @@ test("051 - aLevelIIMasterCardManualResponseS", (t) => {
     });
 });
 
-test("052 - LevelIIMasterCardManualResponseS", (t) => {
+test("052 - level ii mastercard manual response s", (t) => {
   t.plan(5);
 
   const address = new Address();
@@ -1526,7 +1526,7 @@ test("052 - LevelIIMasterCardManualResponseS", (t) => {
     });
 });
 
-test("053 - LevelIIAmexSwipeNoResponse", (t) => {
+test("053 - level ii amex swipe no response", (t) => {
   t.plan(5);
 
   const card = TestCards.amexSwipe();
@@ -1555,7 +1555,7 @@ test("053 - LevelIIAmexSwipeNoResponse", (t) => {
     });
 });
 
-test("054 - LevelIIAmexManualNoResponse", (t) => {
+test("054 - level ii amex manual no response", (t) => {
   t.plan(5);
 
   const address = new Address();
@@ -1588,7 +1588,7 @@ test("054 - LevelIIAmexManualNoResponse", (t) => {
     });
 });
 
-test("055 - LevelIIAmexManualNoResponse", (t) => {
+test("055 - level ii amex manual no response", (t) => {
   t.plan(5);
 
   const address = new Address();
@@ -1621,7 +1621,7 @@ test("055 - LevelIIAmexManualNoResponse", (t) => {
     });
 });
 
-test("055 - aLevelIIAmexManualNoResponse", (t) => {
+test("055a - level ii amex manual no response", (t) => {
   t.plan(5);
 
   const address = new Address();
@@ -1925,7 +1925,7 @@ test("072 - debit reversal visa", (_t) => {
 /// EBT FUNCTIONS
 /// Food Stamp Purchase
 
-test("080 - EbtfsPurchaseVisaSwipe", (t) => {
+test("080 - ebt fs purchase visa swipe", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTTrack(TestCards.visaSwipe(), "32539F50C245A6A93D123412324000AA");
@@ -1940,7 +1940,7 @@ test("080 - EbtfsPurchaseVisaSwipe", (t) => {
     });
 });
 
-test("081 - EbtfsPurchaseVisaManual", (t) => {
+test("081 - ebt fs purchase visa manual", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTManual(TestCards.visaManual(false, true), "32539F50C245A6A93D123412324000AA");
@@ -1957,7 +1957,7 @@ test("081 - EbtfsPurchaseVisaManual", (t) => {
 
 /// Food Stamp Electronic Voucher (Manual Entry Only)
 
-test("082 - EbtVoucherPurchaseVisa", (t) => {
+test("082 - ebt voucher purchase visa", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTManual(TestCards.visaManual(false, true), "32539F50C245A6A93D123412324000AA");
@@ -1976,7 +1976,7 @@ test("082 - EbtVoucherPurchaseVisa", (t) => {
 
 /// Food Stamp Balance Inquiry
 
-test("083 - EbtfsReturnVisaSwipe", (t) => {
+test("083 - ebt fs return visa swipe", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTTrack(TestCards.visaSwipeEncrypted(), "32539F50C245A6A93D123412324000AA");
@@ -1991,7 +1991,7 @@ test("083 - EbtfsReturnVisaSwipe", (t) => {
     });
 });
 
-test("084 - EbtfsReturnVisaManual", (t) => {
+test("084 - ebt fs return visa manual", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTManual(TestCards.visaManual(false, true), "32539F50C245A6A93D123412324000AA");
@@ -2008,7 +2008,7 @@ test("084 - EbtfsReturnVisaManual", (t) => {
 
 /// Food Stamp Balance Inquiry
 
-test("085 - EbtBalanceInquiryVisaSwipe", (t) => {
+test("085 - ebt balance inquiry visa swipe", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTTrack(TestCards.visaSwipeEncrypted(), "32539F50C245A6A93D123412324000AA");
@@ -2021,7 +2021,7 @@ test("085 - EbtBalanceInquiryVisaSwipe", (t) => {
     });
 });
 
-test("086 - EbtBalanceInquiryVisaManual", (t) => {
+test("086 - ebt balance inquiry visa manual", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTManual(TestCards.visaManual(true, true), "32539F50C245A6A93D123412324000AA");
@@ -2037,7 +2037,7 @@ test("086 - EbtBalanceInquiryVisaManual", (t) => {
 /// EBT CASH BENEFITS
 /// Cash Back Purchase
 
-test("087 - EbtCashBackPurchaseVisaSwipe", (t) => {
+test("087 - ebt cash back purchase visa swipe", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTTrack(TestCards.visaSwipeEncrypted(), "32539F50C245A6A93D123412324000AA");
@@ -2053,7 +2053,7 @@ test("087 - EbtCashBackPurchaseVisaSwipe", (t) => {
     });
 });
 
-test("088 - EbtCashBackPurchaseVisaManual", (t) => {
+test("088 - ebt cash back purchase visa manual", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTManual(TestCards.visaManual(false, true), "32539F50C245A6A93D123412324000AA");
@@ -2071,7 +2071,7 @@ test("088 - EbtCashBackPurchaseVisaManual", (t) => {
 
 /// No Cash Back Purchase
 
-test("089 - EbtCashBackPurchaseVisaSwipeNoCashBack", (t) => {
+test("089 - ebt cash back purchase visa swipe no cash back", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTTrack(TestCards.visaSwipeEncrypted(), "32539F50C245A6A93D123412324000AA");
@@ -2087,7 +2087,7 @@ test("089 - EbtCashBackPurchaseVisaSwipeNoCashBack", (t) => {
     });
 });
 
-test("090 - EbtCashBackPurchaseVisaManualNoCashBack", (t) => {
+test("090 - ebt cash back purchase visa manual no cash back", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTManual(TestCards.visaManual(false, true), "32539F50C245A6A93D123412324000AA");
@@ -2105,7 +2105,7 @@ test("090 - EbtCashBackPurchaseVisaManualNoCashBack", (t) => {
 
 /// Cash Back Balance Inquiry
 
-test("091 - EbtBalanceInquiryVisaSwipeCash", (t) => {
+test("091 - ebt balance inquiry visa swipe cash", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTTrack(TestCards.visaSwipeEncrypted(), "32539F50C245A6A93D123412324000AA");
@@ -2118,7 +2118,7 @@ test("091 - EbtBalanceInquiryVisaSwipeCash", (t) => {
     });
 });
 
-test("092 - EbtBalanceInquiryVisaManualCash", (t) => {
+test("092 - ebt balance inquiry visa manual cash", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTManual(TestCards.visaManual(true, true), "32539F50C245A6A93D123412324000AA");
@@ -2133,7 +2133,7 @@ test("092 - EbtBalanceInquiryVisaManualCash", (t) => {
 
 /// Cash Benefits Withdrawal
 
-test("093 - EbtBenefitWithDrawalVisaSwipe", (t) => {
+test("093 - ebt benefit withdrawal visa swipe", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTTrack(TestCards.visaSwipeEncrypted(), "32539F50C245A6A93D123412324000AA");
@@ -2148,7 +2148,7 @@ test("093 - EbtBenefitWithDrawalVisaSwipe", (t) => {
     });
 });
 
-test("094 - EbtBenefitWithDrawalVisaManual", (t) => {
+test("094 - ebt benefit withdrawal visa manual", (t) => {
   t.plan(2);
 
   const card = TestCards.asEBTManual(TestCards.visaManual(false, true), "32539F50C245A6A93D123412324000AA");
@@ -2168,7 +2168,7 @@ test("094 - EbtBenefitWithDrawalVisaManual", (t) => {
 /// GIFT
 /// ACTIVATE
 
-test("095 - ActivateGift1Swipe", (t) => {
+test("095 - activate gift 1 swipe", (t) => {
   t.plan(2);
 
   const card = TestCards.giftCard1Swipe();
@@ -2181,7 +2181,7 @@ test("095 - ActivateGift1Swipe", (t) => {
     });
 });
 
-test("096 - ActivateGift2Manual", (t) => {
+test("096 - activate gift 2 manual", (t) => {
   t.plan(2);
 
   const card = TestCards.giftCard2Manual();
@@ -2196,7 +2196,7 @@ test("096 - ActivateGift2Manual", (t) => {
 
 /// ADD VALUE
 
-test("097 - AddValueGift1Swipe", (t) => {
+test("097 - add value gift 1 swipe", (t) => {
   t.plan(2);
 
   const card = TestCards.giftCard1Swipe();
@@ -2210,12 +2210,13 @@ test("097 - AddValueGift1Swipe", (t) => {
     });
 });
 
-test("098 - AddValueGift2Manual", (t) => {
+test("098 - add value gift 2 manual", (t) => {
   t.plan(2);
 
   const card = TestCards.giftCard2Manual();
 
-  return card.activate(9.00)
+  return card.addValue(9.00)
+    .withCurrency("USD")
     .execute()
     .then((response) => {
       t.truthy(response);
@@ -2225,7 +2226,7 @@ test("098 - AddValueGift2Manual", (t) => {
 
 /// BALANCE INQUIRY
 
-test("099 - BalanceInquiryGift1Swipe", (t) => {
+test("099 - balance inquiry gift 1 swipe", (t) => {
   t.plan(3);
 
   const card = TestCards.giftCard1Swipe();
@@ -2239,7 +2240,7 @@ test("099 - BalanceInquiryGift1Swipe", (t) => {
     });
 });
 
-test("100 - BalanceInquiryGift2Manual", (t) => {
+test("100 - balance inquiry gift 2 manual", (t) => {
   t.plan(3);
 
   const card = TestCards.giftCard2Manual();
@@ -2255,7 +2256,7 @@ test("100 - BalanceInquiryGift2Manual", (t) => {
 
 /// REPLACE / TRANSFER
 
-test("101 - ReplaceGift1Swipe", (t) => {
+test("101 - replace gift 1 swipe", (t) => {
   t.plan(2);
 
   const oldCard = TestCards.giftCard1Swipe();
@@ -2269,7 +2270,7 @@ test("101 - ReplaceGift1Swipe", (t) => {
     });
 });
 
-test("102 - ReplaceGift2Manual", (t) => {
+test("102 - replace gift 2 manual", (t) => {
   t.plan(2);
 
   const newCard = TestCards.giftCard1Swipe();
@@ -2285,7 +2286,7 @@ test("102 - ReplaceGift2Manual", (t) => {
 
 /// SALE / REDEEM
 
-test("103 - SaleGift1Swipe", (t) => {
+test("103 - sale gift 1 swipe", (t) => {
   t.plan(2);
 
   const card = TestCards.giftCard1Swipe();
@@ -2299,7 +2300,7 @@ test("103 - SaleGift1Swipe", (t) => {
     });
 });
 
-test("104 - SaleGift2Manual", (t) => {
+test("104 - sale gift 2 manual", (t) => {
   t.plan(2);
 
   const card = TestCards.giftCard2Manual();
@@ -2313,7 +2314,7 @@ test("104 - SaleGift2Manual", (t) => {
     });
 });
 
-test("105 - SaleGift1VoidSwipe", (t) => {
+test("105 - sale gift 1 void swipe", (t) => {
   t.plan(4);
 
   const card = TestCards.giftCard1Swipe();
@@ -2337,7 +2338,7 @@ test("105 - SaleGift1VoidSwipe", (t) => {
     });
 });
 
-test("106 - SaleGift2ReversalManual", (t) => {
+test("106 - sale gift 2 reversal manual", (t) => {
   t.plan(4);
 
   const card = TestCards.giftCard2Manual();
@@ -2363,19 +2364,19 @@ test("106 - SaleGift2ReversalManual", (t) => {
 
 /// VOID
 
-test("107 - VoidGift", (_t) => {
+test("107 - void gift", (_t) => {
   // see test case 105
 });
 
 /// REVERSAL
 
-test("108 - ReversalGift", (_t) => {
+test("108 - reversal gift", (_t) => {
   // see test case 106
 });
 
 /// DEACTIVATE
 
-test("109 - DeactivateGift1", (t) => {
+test("109 - deactivate gift 1", (t) => {
   t.plan(2);
 
   const card = TestCards.giftCard1Swipe();
@@ -2390,14 +2391,14 @@ test("109 - DeactivateGift1", (t) => {
 
 /// RECEIPTS MESSAGING
 
-test("110 - ReceiptsMessaging", (_t) => {
+test("110 - receipts messaging", (_t) => {
   /// PRINT AND SCAN RECEIPT FOR TEST 107
 });
 
 /// REWARDS
 /// BALANCE INQUIRY
 
-test("111 - BalanceInquiryRewards1", (t) => {
+test("111 - balance inquiry rewards 1", (t) => {
   t.plan(3);
 
   const card = TestCards.giftCard1Swipe();
@@ -2411,7 +2412,7 @@ test("111 - BalanceInquiryRewards1", (t) => {
     });
 });
 
-test("112 - BalanceInquiryRewards2", (t) => {
+test("112 - balance inquiry rewards 2", (t) => {
   t.plan(3);
 
   const card = TestCards.giftCard2Manual();
@@ -2427,7 +2428,7 @@ test("112 - BalanceInquiryRewards2", (t) => {
 
 /// ALIAS
 
-test("113 - CreateAliasGift1", (t) => {
+test("113 - create alias gift 1", (t) => {
   t.plan(1);
 
   return GiftCard.create("9725550100")
@@ -2436,7 +2437,7 @@ test("113 - CreateAliasGift1", (t) => {
     });
 });
 
-test("114 - CreateAliasGift2", (t) => {
+test("114 - create alias gift 2", (t) => {
   t.plan(1);
 
   return GiftCard.create("9725550100")
@@ -2445,7 +2446,7 @@ test("114 - CreateAliasGift2", (t) => {
     });
 });
 
-test("115 - AddAliasGift1", (t) => {
+test("115 - add alias gift 1", (t) => {
   t.plan(2);
 
   const card = TestCards.giftCard1Swipe();
@@ -2458,7 +2459,7 @@ test("115 - AddAliasGift1", (t) => {
     });
 });
 
-test("116 - AddAliasGift2", (t) => {
+test("116 - add alias gift 2", (t) => {
   t.plan(2);
 
   const card = TestCards.giftCard2Manual();
@@ -2471,7 +2472,7 @@ test("116 - AddAliasGift2", (t) => {
     });
 });
 
-test("117 - DeleteAliasGift1", (t) => {
+test("117 - delete alias gift 1", (t) => {
   t.plan(2);
 
   const card = TestCards.giftCard1Swipe();

@@ -3,6 +3,7 @@ import {
   CreditCardData,
   ServicesConfig,
   ServicesContainer,
+  UnsupportedTransactionError,
 } from "../../../../src/";
 
 const config = new ServicesConfig();
@@ -22,25 +23,13 @@ test.before((_t) => {
   ServicesContainer.configure(config);
 });
 
-test("credit authorization", (t) => {
-  t.plan(4);
+test("credit reverse", (t) => {
+  const error = t.throws(() => {
+    return card.reverse(15)
+      .withAllowDuplicates(true)
+      .execute();
+  }, UnsupportedTransactionError);
 
-  return card.authorize("14")
-    .withCurrency("USD")
-    .withAllowDuplicates(true)
-    .execute()
-    .then((authorization) => {
-      t.truthy(authorization);
-      t.is(authorization.responseCode, "00");
-      return authorization;
-    })
-    .then((authorization) => {
-      return authorization.capture("16")
-        .withGratuity("2")
-        .execute()
-        .then((capture) => {
-          t.truthy(capture);
-          t.is(capture.responseCode, "00");
-        });
-    });
+  t.is(error.name, "UnsupportedTransactionError");
+  t.true(-1 !== error.message.indexOf("selected gateway does not support this transaction type"));
 });

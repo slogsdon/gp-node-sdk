@@ -12,19 +12,27 @@ import {
   CreditCardData,
   GenerationUtils,
   IPaymentMethod,
+  IRecurringService,
   ManagementBuilder,
+  NotImplementedError,
+  RecurringBuilder,
+  ReportBuilder,
   StringUtils,
   Transaction,
   TransactionReference,
   TransactionType,
+  UnsupportedTransactionError,
 } from "../";
 import { XmlGateway } from "./XmlGateway";
 
-export class RealexConnector extends XmlGateway {
+export class RealexConnector extends XmlGateway implements IRecurringService {
   public merchantId: string;
   public accountId: string;
   public sharedSecret: string;
   public channel: string;
+  public rebatePassword: string;
+  public refundPassword: string;
+  public supportRetrieval = false;
 
   public processAuthorization(builder: AuthorizationBuilder): Promise<Transaction> {
     const timestamp = GenerationUtils.generateTimestamp();
@@ -174,6 +182,17 @@ export class RealexConnector extends XmlGateway {
       .then((response) => this.mapResponse(response));
   }
 
+  public processReport<T>(_builder: ReportBuilder<T>): Promise<T> {
+    throw new UnsupportedTransactionError(
+      "Reporting functionality is not supported through this gateway.",
+    );
+  }
+
+  public processRecurring<T>(_builder: RecurringBuilder<T>): Promise<T> {
+    // todo
+    throw new NotImplementedError();
+  }
+
   protected buildEnvelope(transaction: Element): string {
     return new ElementTree(transaction).write();
   }
@@ -229,7 +248,7 @@ export class RealexConnector extends XmlGateway {
         return "offline";
       case TransactionType.Reversal:
         // a TODO: should be customer type
-        throw new Error(
+        throw new UnsupportedTransactionError(
           "The selected gateway does not support this transaction type.",
         );
       default:

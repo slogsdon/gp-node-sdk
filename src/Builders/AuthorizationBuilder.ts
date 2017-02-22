@@ -5,16 +5,17 @@ import {
   InquiryType,
   IPaymentMethod,
   PaymentMethod,
+  PaymentMethodType,
   ServicesContainer,
   Transaction,
   TransactionModifier,
   TransactionReference,
   TransactionType,
 } from "../";
-import { BaseBuilder } from "./BaseBuilder";
+import { TransactionBuilder } from "./TransactionBuilder";
 
 export class AuthorizationBuilder
-  extends BaseBuilder {
+  extends TransactionBuilder<Transaction> {
   public address: Address;
   public alias: string;
   public aliasAction: AliasAction;
@@ -51,6 +52,7 @@ export class AuthorizationBuilder
 
   protected setupValidations(): void {
     this.validations.of(
+      "transactionType",
       /* tslint:disable:trailing-comma */
       TransactionType.Auth |
       TransactionType.Sale |
@@ -63,25 +65,30 @@ export class AuthorizationBuilder
       .check("paymentMethod").isNotNull();
 
     this.validations.of(
+      "transactionType",
       /* tslint:disable:trailing-comma */
       TransactionType.Auth |
       TransactionType.Sale
       /* tslint:enable:trailing-comma */
     )
-      .with(TransactionModifier.Offline)
+      .with("transactionModifier", TransactionModifier.Offline)
       .check("amount").isNotNull()
       .check("currency").isNotNull()
-      .check("offlineAuthCode").isNotNull();
+      .check("offlineAuthCode").isNotNull()
+      .check("offlineAuthCode").isNotEmpty();
 
-    this.validations.of(TransactionType.Balance)
+    this.validations.of("transactionType", TransactionType.Balance)
       .check("paymentMethod").isNotNull();
 
-    this.validations.of(TransactionType.Alias)
+    this.validations.of("transactionType", TransactionType.Alias)
       .check("aliasAction").isNotNull()
       .check("alias").isNotNull();
 
-    this.validations.of(TransactionType.Replace)
+    this.validations.of("transactionType", TransactionType.Replace)
       .check("replacementCard").isNotNull();
+
+    this.validations.of("paymentMethodType", PaymentMethodType.ACH)
+      .check("address").isNotNull();
   }
 
   public withAddress(address?: Address) {

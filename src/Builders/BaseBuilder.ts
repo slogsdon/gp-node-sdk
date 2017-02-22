@@ -1,45 +1,19 @@
-import {
-  ArgumentError,
-  PaymentMethod,
-  Transaction,
-  TransactionModifier,
-  TransactionType,
-} from "../";
-import { IPaymentMethod } from "../PaymentMethods/Interfaces";
 import { Validations } from "./BaseBuilder/Validations";
 
-export abstract class BaseBuilder {
+export abstract class BaseBuilder<T> {
   protected validations: Validations;
   protected executed: boolean;
-  public transactionType: TransactionType;
-  public transactionModifier = TransactionModifier.None;
-  public paymentMethod: PaymentMethod;
   public allowDuplicates: boolean;
   [key: string]: any;
 
-  public constructor(type: TransactionType, _paymentMethod?: IPaymentMethod) {
-    this.transactionType = type;
+  public constructor() {
     this.validations = new Validations();
     this.setupValidations();
   }
 
-  public execute(): Promise<Transaction> {
-    this.validate();
-    return Promise.resolve(new Transaction());
-  }
-
-  public withModifier(modifier?: TransactionModifier) {
-    if (modifier !== undefined) {
-      this.transactionModifier = modifier;
-    }
-    return this;
-  }
-
-  public withPaymentMethod(paymentMethod?: IPaymentMethod) {
-    if (paymentMethod !== undefined) {
-      this.paymentMethod = paymentMethod as PaymentMethod;
-    }
-    return this;
+  public execute(): Promise<T | undefined> {
+    this.validations.validate(this);
+    return Promise.resolve(undefined);
   }
 
   public withAllowDuplicates(allowDuplicates?: boolean) {
@@ -50,23 +24,4 @@ export abstract class BaseBuilder {
   }
 
   protected abstract setupValidations(): void;
-
-  protected validate(): void {
-    Object.keys(this.validations.rules).forEach((key) => {
-      const iKey = parseInt(key, 10);
-      if ((iKey & this.transactionType) !== this.transactionType) {
-        return;
-      }
-
-      for (const validation of this.validations.rules[iKey]) {
-        if (!validation.clause) {
-          continue;
-        }
-
-        if (!validation.clause.callback(this)) {
-          throw new ArgumentError(validation.clause.message);
-        }
-      }
-    });
-  }
 }

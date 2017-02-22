@@ -19,6 +19,7 @@ import {
 
 export abstract class PaymentMethod implements IPaymentMethod {
   public paymentMethodType: PaymentMethodType;
+  [key: string]: any;
 
   get isAuthable() {
     return ((this as Object) as IAuthable).authorize !== undefined;

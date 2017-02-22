@@ -1,15 +1,14 @@
 import {
-  IPaymentMethod,
   ServicesContainer,
   TaxType,
   Transaction,
   TransactionModifier,
   TransactionType,
 } from "../";
-import { BaseBuilder } from "./BaseBuilder";
+import { TransactionBuilder } from "./TransactionBuilder";
 
 export class ManagementBuilder
-  extends BaseBuilder {
+  extends TransactionBuilder<Transaction> {
   public amount: string | number;
   public authAmount: string | number;
   public currency: string;
@@ -18,8 +17,8 @@ export class ManagementBuilder
   public taxType: TaxType;
   public taxAmount: string | number;
 
-  public constructor(type: number, paymentMethod?: IPaymentMethod) {
-    super(type, paymentMethod);
+  public constructor(type: number) {
+    super(type);
   }
 
   public execute(): Promise<Transaction> {
@@ -31,6 +30,7 @@ export class ManagementBuilder
 
   protected setupValidations() {
     this.validations.of(
+      "transactionType",
       /* tslint:disable:trailing-comma */
       TransactionType.Capture |
       TransactionType.Edit
@@ -38,11 +38,9 @@ export class ManagementBuilder
     )
       .check("paymentMethod").isNotNull();
 
-    this.validations.of(TransactionType.Edit)
-      .with(TransactionModifier.LevelII)
-      .check("taxType").isNotNull()
-      .check("taxAmount").isNotNull()
-      .check("poNumber").isNotNull();
+    this.validations.of("transactionType", TransactionType.Edit)
+      .with("transactionModifier", TransactionModifier.LevelII)
+      .check("taxType").isNotNull();
   }
 
   public withAmount(amount?: string | number) {

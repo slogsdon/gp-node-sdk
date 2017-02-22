@@ -1,30 +1,11 @@
 import {
   AuthorizationBuilder,
   ManagementBuilder,
+  ReportBuilder,
 } from "../Builders";
 import { Transaction } from "../Entities";
 
 export interface IGateway {
-    // common
-    timeout: number;
-    serviceUrl: string;
-
-    // portico
-    siteId?: string;
-    licenseId?: string;
-    deviceId?: string;
-    username?: string;
-    password?: string;
-    secretApiKey?: string;
-    developerId?: string;
-    versionNumber?: string;
-
-    // realex
-    merchantId?: string;
-    accountId?: string;
-    sharedSecret?: string;
-    channel?: string;
-
     /**
      * Serializes and executes authorization transactions
      *
@@ -42,4 +23,13 @@ export interface IGateway {
      * @return Transaction
      */
     manageTransaction(builder: ManagementBuilder): Promise<Transaction>;
+
+    /**
+     * Serializes and executes report transactions
+     *
+     * @param ReportBuilder $builder The transaction's builder
+     *
+     * @return Transaction
+     */
+    processReport<T>(builder: ReportBuilder<T>): Promise<T>;
 }

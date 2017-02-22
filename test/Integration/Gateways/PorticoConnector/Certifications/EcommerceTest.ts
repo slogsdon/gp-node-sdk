@@ -16,7 +16,7 @@ import {
 
 const config = new ServicesConfig();
 config.secretApiKey = "skapi_cert_MTyMAQBiHVEAewvIzXVFcmUd2UcyBge_eCpaASUp0A";
-config.serviceUrl = "https://cert.api2.heartlandportico.com/Hps.Exchange.PosGateway/PosGatewayService.asmx";
+config.serviceUrl = "https://cert.api2.heartlandportico.com";
 
 const BATCH_NOT_OPEN = "Transaction was rejected because it requires a batch to be open.";
 const BATCH_EMPTY = "Batch close was rejected because no transactions are associated with the currently open batch";

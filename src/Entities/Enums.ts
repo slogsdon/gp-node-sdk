@@ -85,14 +85,25 @@ export enum InquiryType {
 }
 
 export enum PaymentMethodType {
-  Reference,
-  Credit,
-  Debit,
-  EBT,
-  Cash,
-  ACH,
-  Gift,
-  Recurring,
+  Reference = 1 << 0,
+  Credit = 1 << 1,
+  Debit = 1 << 2,
+  EBT = 1 << 3,
+  Cash = 1 << 4,
+  ACH = 1 << 5,
+  Gift = 1 << 6,
+  Recurring = 1 << 7,
+}
+
+export enum ReportType {
+  FindTransactions = 1 << 0,
+  Activity = 1 << 1,
+  BatchDetail = 1 << 2,
+  BatchHistory = 1 << 3,
+  BatchSummary = 1 << 4,
+  OpenAuths = 1 << 5,
+  Search = 1 << 6,
+  TransactionDetail = 1 << 7,
 }
 
 export enum SecCode {
@@ -110,16 +121,22 @@ export enum TaxType {
   TaxExempt,
 }
 
+export enum TimeZoneConversion {
+  UTC,
+  Merchant,
+  Datacenter,
+}
+
 export enum TransactionModifier {
-  None,
-  Incremental,
-  Additional,
-  Offline,
-  LevelII,
-  FraudDecline,
-  ChipDecline,
-  CashBack,
-  Voucher,
+  None = 1 << 0,
+  Incremental = 1 << 1,
+  Additional = 1 << 2,
+  Offline = 1 << 3,
+  LevelII = 1 << 4,
+  FraudDecline = 1 << 5,
+  ChipDecline = 1 << 6,
+  CashBack = 1 << 7,
+  Voucher = 1 << 8,
 }
 
 export enum TransactionType {
@@ -140,4 +157,8 @@ export enum TransactionType {
   Reward = 1 << 14,
   Deactivate = 1 << 15,
   BatchClose = 1 << 16,
+  Create = 1 << 17,
+  Delete = 1 << 18,
+  BenefitWithDrawal = 1 << 19,
+  Fetch = 1 << 20,
 }

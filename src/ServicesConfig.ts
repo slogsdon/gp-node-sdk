@@ -14,6 +14,8 @@ export class ServicesConfig {
   public merchantId: string;
   public sharedSecret: string;
   public channel: string;
+  public rebatePassword: string;
+  public refundPassword: string;
 
   // common
   public serviceUrl: string;
