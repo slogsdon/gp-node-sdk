@@ -1,4 +1,4 @@
-import * as uuid from "node-uuid";
+import * as uuid from "uuid";
 import * as sha1 from "sha1";
 
 import { StringUtils } from "../";
@@ -21,8 +21,8 @@ export class GenerationUtils {
   }
 
   public static generateOrderId(): string {
-    const id = uuid.v4();
-    return Buffer.from(id, "ascii")
+    const id = uuid.genV4();
+    return Buffer.from(id.toString(), "ascii")
       .toString("base64")
       .replace("=", "")
       .replace("+", "-")

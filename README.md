@@ -41,7 +41,7 @@ Supported Gateway Calls:
 | [![](http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-icon-secure)](#data-security)  | [![](http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-icon-resources)](#documentation-and-examples)  | [![](http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-icon-tools)](#testing--certification) | [![](http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-icon-keys)](#api-keys) | <a href="http://developer.heartlandpaymentsystems.com/Account/Register" target="_blank">Register an Account</a> <br> <a href="http://developer.heartlandpaymentsystems.com/Partnership" target="_blank">Partner with Heartland</a> <br>  |
 
 
-####Developer Support
+#### Developer Support
 
 You are not alone! If you have any questions while you are working through your development process, please feel free to <a href="https://developer.heartlandpaymentsystems.com/Support" target="_blank">reach out to our team for assistance</a>!
 
@@ -141,7 +141,7 @@ Testing your implementation in our Certification/Sandbox environment helps to id
 
 *Quick Tip*: You can get a head start on your certification by reviewing the [certification tests](https://github.com/hps/heartland-nodejs/blob/master/test/secure-submit-certification-test.js) in the included test suite.
 
-####Test Card Data
+#### Test Card Data
 
 The following card numbers are used by our Certification environment to verify that your tests worked. Note that while variations (such as 4111111111111111) will work for general testing the cards listed below are required to complete certification. For card present testing Heartland can provide you with EMV enabled test cards.
 
@@ -154,17 +154,17 @@ Discover   | 6011000990156527 | 12        | 2025     | 123  | 6860             |
 Amex       | 372700699251018  | 12        | 2025     | 1234 | 6860             | 75024
 JCB        | 3566007770007321 | 12        | 2025     | 123  | 6860             | 75024
 
-####Testing Exceptions
+#### Testing Exceptions
 
 During your integration you will want to test for specific issuer responses such as 'Card Declined'. Because our sandbox does not actually reach out to card brands for authorizations we have devised specific transaction amounts that will trigger  [issuer response codes](https://cert.api2.heartlandportico.com/Gateway/PorticoDevGuide/build/PorticoDeveloperGuide/Issuer%20Response%20Codes.html) and [gateway response codes](https://cert.api2.heartlandportico.com/Gateway/PorticoDevGuide/build/PorticoDeveloperGuide/Gateway%20Response%20Codes.html). Please <a href="mailto:SecureSubmitCert@e-hps.com?subject=Hard Coded Values Spreadsheet Request">contact</a> Heartland for a complete listing of values you can charge to simulate AVS, CVV and Transaction declines, errors, and other responses that you can catch in your code:
 
-```nodejs
-    chargeVisa: function (done) {
-        this.hpsCreditService.chargeWithCard(17.01, 'usd', config.get('validVisa'),
-            config.get('certCardHolderShortZip'), false, null, function (err, result) {
-                assert.equal(result.responseCode, '00', 'The response code should be "00".');
-                done();
-            });
+```javascript
+chargeVisa: function (done) {
+    this.hpsCreditService.chargeWithCard(17.01, 'usd', config.get('validVisa'),
+        config.get('certCardHolderShortZip'), false, null, function (err, result) {
+            assert.equal(result.responseCode, '00', 'The response code should be "00".');
+            done();
+        });
 ````
 
 More exceptions can be found [here](https://github.com/hps/heartland-nodejs/blob/master/lib/infrastructure/exception-mapper.js).
