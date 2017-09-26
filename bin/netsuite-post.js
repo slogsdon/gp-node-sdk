@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const requirements = {
-  'N/http': 'http',
+  'N/https': 'https',
 };
 
 const fileName = path.resolve(__dirname, '..', 'lib', 'netsuite', 'globalpayments.api.js');

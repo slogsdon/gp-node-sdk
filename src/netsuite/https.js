@@ -1,13 +1,13 @@
 function parseMethod(method) {
   switch (method.toUpperCase()) {
     case 'GET':
-      return http.Method.GET;
+      return https.Method.GET;
     case 'POST':
-      return http.Method.POST;
+      return https.Method.POST;
     case 'PUT':
-      return http.Method.PUT;
+      return https.Method.PUT;
     case 'DELETE':
-      return http.Method.DELETE;
+      return https.Method.DELETE;
   }
 }
 
@@ -18,5 +18,5 @@ export function request(body, options) {
     method: parseMethod(options.method),
     url: `https://${options.host}:${options.port}${options.path}`,
   };
-  return http.request.promise(requestOptions);
+  return https.request.promise(requestOptions);
 }
