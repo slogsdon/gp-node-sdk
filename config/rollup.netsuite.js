@@ -24,8 +24,6 @@ export default {
  */`,
 
   plugins: [
-    globals(),
-    builtins(),
     replace({
       'process.env.ENVIRONMENT': JSON.stringify('netsuite'),
     }),
@@ -33,6 +31,8 @@ export default {
       resolve: ['.js', '.ts'],
       https: path.resolve(__dirname, '../src/netsuite/https'),
     }),
+    globals(),
+    builtins(),
     resolve({
       preferBuiltins: false,
     }),
