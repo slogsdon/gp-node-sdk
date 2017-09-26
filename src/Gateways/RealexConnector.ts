@@ -5,7 +5,7 @@ import {
   ElementTree,
   SubElement as subElement,
   XML as xml,
-} from "@derflatulator/elementtree";
+} from "@azz/elementtree";
 
 import {
   AuthorizationBuilder,

@@ -13,7 +13,7 @@ test.before((_t) => {
   ServicesContainer.configure(config);
 });
 
-test("report activity", (t) => {
+test.only("report activity", (t) => {
   t.plan(2);
 
   const start = new Date(Date.now());

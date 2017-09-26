@@ -5,7 +5,7 @@ import {
   ElementTree,
   SubElement as subElement,
   XML as xml,
-} from "@derflatulator/elementtree";
+} from "@azz/elementtree";
 
 import {
   AccountType,
@@ -211,7 +211,7 @@ export class PorticoConnector extends XmlGateway {
     }
 
     if (builder.paymentMethod.isPinProtected) {
-      const pinBlock = ((builder.paymentMethod as Object) as IPinProtected).pinBlock;
+      const pinBlock = ((builder.paymentMethod as object) as IPinProtected).pinBlock;
       subElement(block1, "PinBlock").append(cData(pinBlock));
     }
 
@@ -280,7 +280,7 @@ export class PorticoConnector extends XmlGateway {
 
       // transaction ID
       if (builder.paymentMethod) {
-        const ref = (builder.paymentMethod as Object) as TransactionReference;
+        const ref = (builder.paymentMethod as object) as TransactionReference;
         subElement(root, "GatewayTxnId").append(cData(ref.transactionId));
       }
 
@@ -631,7 +631,7 @@ export class PorticoConnector extends XmlGateway {
   }
 
   protected hasToken(paymentMethod: IPaymentMethod) {
-    const tokenizable = (paymentMethod as Object) as ITokenizable;
+    const tokenizable = (paymentMethod as object) as ITokenizable;
 
     if (tokenizable.token) {
       return {
@@ -672,7 +672,7 @@ export class PorticoConnector extends XmlGateway {
 
   protected hydrateEncryptionData(builder: TransactionBuilder<Transaction>) {
     const enc = new Element("EncryptionData");
-    const data = ((builder.paymentMethod as Object) as IEncryptable).encryptionData;
+    const data = ((builder.paymentMethod as object) as IEncryptable).encryptionData;
 
     if (data.version) {
       subElement(enc, "Version").append(cData(data.version));

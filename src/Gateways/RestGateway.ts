@@ -51,34 +51,38 @@ export abstract class RestGateway {
       port: uri.port ? parseInt(uri.port, 10) : 443,
     };
 
-    return new Promise((resolve, reject) => {
-      const req = https.request(options, (res) => {
-        let data = "";
+    if (process.env.ENVIRONMENT === "netsuite") {
+      return (https as any).request(requestData, options);
+    } else {
+      return new Promise((resolve, reject) => {
+        const req = https.request(options, (res) => {
+          let data = "";
 
-        res.on("data", (d: string) => data += d);
-        res.on("end", () => {
-          if (res.statusCode !== 200) {
-            reject(new GatewayError(
-              `Unexpected HTTP status code [${res.statusCode}]`,
-            ));
-          }
+          res.on("data", (d: string) => data += d);
+          res.on("end", () => {
+            if (res.statusCode !== 200) {
+              reject(new GatewayError(
+                `Unexpected HTTP status code [${res.statusCode}]`,
+              ));
+            }
 
-          resolve(data);
+            resolve(data);
+          });
+          res.on("error", reject);
         });
-        res.on("error", reject);
-      });
-      req.on("socket", (socket: Socket) => {
-        socket.setTimeout(this.timeout);
-        socket.on("timeout", () => {
-          req.abort();
-          reject(new ApiError("Socket timeout occurred."));
+        req.on("socket", (socket: Socket) => {
+          socket.setTimeout(this.timeout);
+          socket.on("timeout", () => {
+            req.abort();
+            reject(new ApiError("Socket timeout occurred."));
+          });
         });
+        req.on("error", reject);
+        if (requestData) {
+          req.write(requestData);
+        }
+        req.end();
       });
-      req.on("error", reject);
-      if (requestData) {
-        req.write(requestData);
-      }
-      req.end();
-    });
+    }
   }
 }

@@ -1,4 +1,4 @@
-declare module "@derflatulator/elementtree" {
+declare module "@azz/elementtree" {
   export class ElementTree {
     constructor(element: Element);
     getroot(): Element;
