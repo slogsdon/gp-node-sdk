@@ -25,7 +25,7 @@ const address = new Address();
 address.streetAddress1 = "123 Main St.";
 address.city = "Downtown";
 address.province = "NJ";
-address.code = "12345";
+address.postalCode = "12345";
 
 ava.before((_t) => {
   ServicesContainer.configure(config);

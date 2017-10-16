@@ -16,6 +16,14 @@ export class ArgumentError extends ApiError {
   }
 }
 
+export class ConfigurationError extends ApiError {
+  constructor(m?: string) {
+    super(m);
+    Object.setPrototypeOf(this, ArgumentError.prototype);
+    this.name = this.constructor.name;
+  }
+}
+
 export class GatewayError extends ApiError {
   constructor(m?: string) {
     super(m);

@@ -11,7 +11,9 @@ import {
   AuthorizationBuilder,
   CreditCardData,
   GenerationUtils,
+  HostedPaymentConfig,
   IPaymentMethod,
+  IRecurringEntity,
   IRecurringService,
   ManagementBuilder,
   NotImplementedError,
@@ -32,7 +34,10 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
   public channel: string;
   public rebatePassword: string;
   public refundPassword: string;
-  public supportRetrieval = false;
+  public supportsHostedPayments = true;
+  public supportsRetrieval = false;
+  public supportsUpdatePaymentDetails = true;
+  public hostedPaymentConfig: HostedPaymentConfig;
 
   public processAuthorization(builder: AuthorizationBuilder): Promise<Transaction> {
     const timestamp = GenerationUtils.generateTimestamp();
@@ -139,6 +144,10 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
       .then((response) => this.mapResponse(response));
   }
 
+  public serializeRequest(_builder: AuthorizationBuilder): string {
+    throw new NotImplementedError();
+  }
+
   public manageTransaction(builder: ManagementBuilder): Promise<Transaction> {
     const timestamp = GenerationUtils.generateTimestamp();
     const orderId = GenerationUtils.generateOrderId();
@@ -188,7 +197,7 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
     );
   }
 
-  public processRecurring<T>(_builder: RecurringBuilder<T>): Promise<T> {
+  public processRecurring<T extends IRecurringEntity>(_builder: RecurringBuilder<T>): Promise<T> {
     // todo
     throw new NotImplementedError();
   }

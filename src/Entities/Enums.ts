@@ -3,6 +3,11 @@ export enum AccountType {
   Savings,
 }
 
+export enum AddressType {
+  Billing,
+  Shipping,
+}
+
 export enum AliasAction {
   Create,
   Add,
@@ -15,11 +20,28 @@ export enum CheckType {
   Payroll,
 }
 
+export enum CurrencyType {
+  CURRENCY,
+  POINTS,
+}
+
 export enum CvnPresenceIndicator {
   Present = 1,
   Illegible = 2,
   NotOnCard = 3,
   NotRequested = 4,
+}
+
+export enum EcommerceChannel {
+  Ecom,
+  Moto,
+}
+
+export enum EmailReceipt {
+  Never,
+  All,
+  Approvals,
+  Declines,
 }
 
 export enum EntryMethod {
@@ -77,6 +99,24 @@ export enum ExceptionCodes {
   PartialApproval,
 }
 
+export enum FraudFilterMode {
+  None,
+  Off,
+  Active,
+  Passive,
+}
+
+export enum GiftEntryMethod {
+  Swipe,
+  Alias,
+  Manual,
+}
+
+export enum HppVersion {
+  VERSION_1 = "1",
+  VERSION_2 = "2",
+}
+
 export enum InquiryType {
   Standard,
   Foodstamp,
@@ -95,6 +135,32 @@ export enum PaymentMethodType {
   Recurring = 1 << 7,
 }
 
+export enum PaymentSchedule {
+  Dynamic,
+  FirstDayOfTheMonth,
+  LastDayOfTheMonth,
+}
+
+export enum ReasonCode {
+  Fraud,
+  FalsePositive,
+  OutOfStock,
+  InStock,
+  Other,
+  NotGiven,
+}
+
+export enum RecurringSequence {
+  First,
+  Subsequent,
+  Last,
+}
+
+export enum RecurringType {
+  Fixed,
+  Variable,
+}
+
 export enum ReportType {
   FindTransactions = 1 << 0,
   Activity = 1 << 1,
@@ -104,6 +170,17 @@ export enum ReportType {
   OpenAuths = 1 << 5,
   Search = 1 << 6,
   TransactionDetail = 1 << 7,
+}
+
+export enum ScheduleFrequency {
+  Weekly,
+  BiWeekly,
+  BiMonthly,
+  SemiMonthly,
+  Monthly,
+  Quarterly,
+  SemiAnnually,
+  Annually,
 }
 
 export enum SecCode {
@@ -137,6 +214,9 @@ export enum TransactionModifier {
   ChipDecline = 1 << 6,
   CashBack = 1 << 7,
   Voucher = 1 << 8,
+  Secure3D = 1 << 9,
+  HostedRequest = 1 << 10,
+  Recurring = 1 << 11,
 }
 
 export enum TransactionType {
@@ -161,4 +241,7 @@ export enum TransactionType {
   Delete = 1 << 18,
   BenefitWithDrawal = 1 << 19,
   Fetch = 1 << 20,
+  Search = 1 << 21,
+  Hold = 1 << 22,
+  Release = 1 << 23,
 }

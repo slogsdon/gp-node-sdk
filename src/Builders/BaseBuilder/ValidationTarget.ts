@@ -9,6 +9,7 @@ export class ValidationTarget {
   public constraint: number;
   public constraintProperty: string;
   public enumName: string;
+  public precondition: ValidationClause;
 
   public constructor(
     parent: Validations,
@@ -30,5 +31,11 @@ export class ValidationTarget {
     this.property = targetProperty;
     this.clause = new ValidationClause(this.parent, this);
     return this.clause;
+  }
+
+  public when(targetProperty: string): ValidationClause {
+    this.property = targetProperty;
+    this.precondition = new ValidationClause(this.parent, this, true);
+    return this.precondition;
   }
 }

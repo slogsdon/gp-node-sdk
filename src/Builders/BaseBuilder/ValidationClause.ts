@@ -7,10 +7,12 @@ export class ValidationClause {
   public target: ValidationTarget;
   public callback: <T>(build: BaseBuilder<T>) => boolean;
   public message: string;
+  public precondition: boolean;
 
-  public constructor(parent: Validations, target: ValidationTarget) {
+  public constructor(parent: Validations, target: ValidationTarget, precondition = false) {
     this.parent = parent;
     this.target = target;
+    this.precondition = precondition;
   }
 
   public isNotNull(message?: string): ValidationTarget {
@@ -21,6 +23,11 @@ export class ValidationClause {
     this.message = message
       ? message
       : `${this.target.property} cannot be null for this transaction type.`;
+
+    if (this.precondition) {
+      return this.target;
+    }
+
     return this.parent
       .of(this.target.enumName, this.target.type)
       .with(this.target.constraintProperty, this.target.constraint);
@@ -34,6 +41,11 @@ export class ValidationClause {
     this.message = message
       ? message
       : `${this.target.property} cannot be set for this transaction type.`;
+
+    if (this.precondition) {
+      return this.target;
+    }
+
     return this.parent
       .of(this.target.enumName, this.target.type)
       .with(this.target.constraintProperty, this.target.constraint);
@@ -47,6 +59,11 @@ export class ValidationClause {
     this.message = message
       ? message
       : `${this.target.property} cannot be empty for this transaction type.`;
+
+    if (this.precondition) {
+      return this.target;
+    }
+
     return this.parent
       .of(this.target.enumName, this.target.type)
       .with(this.target.constraintProperty, this.target.constraint);

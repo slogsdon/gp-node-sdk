@@ -170,7 +170,7 @@ test("004 - card verify amex", (t) => {
   t.plan(5);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.amexManual(false, true);
 
@@ -310,7 +310,7 @@ test("010 - charge visa swipe", (t) => {
     .then((response) => {
       // test 059
       return response.reverse(15.01)
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .execute()
         .then((reverseResponse) => {
           t.truthy(reverseResponse);
@@ -381,7 +381,7 @@ test("014 - charge jcb swipe", (t) => {
     .then((response) => {
       // test 058
       return response.refund(15.05)
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withCurrency("USD")
         .execute()
         .then((refundResponse) => {
@@ -438,7 +438,7 @@ test("015 - charge visa swipe", (t) => {
     .then((response) => {
       // test 063
       return response.reverse(15.06)
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withAuthAmount(5.06)
         .execute()
         .then((reverseResponse) => {
@@ -454,7 +454,7 @@ test("016 - charge visa manual card present", (t) => {
   t.plan(2);
 
   const address = new Address();
-  address.code = "750241234";
+  address.postalCode = "750241234";
   address.streetAddress1 = "6860 Dallas Pkwy";
 
   const card = TestCards.visaManual(true, true);
@@ -474,7 +474,7 @@ test("017 - charge mastercard manual card present", (t) => {
   t.plan(4);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
   address.streetAddress1 = "6860 Dallas Pkwy";
 
   const card = TestCards.masterCardManual(true, true);
@@ -492,7 +492,7 @@ test("017 - charge mastercard manual card present", (t) => {
     .then((response) => {
       // test case 60
       return response.reverse(16.02)
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .execute()
         .then((reverseResponse) => {
           t.truthy(reverseResponse);
@@ -505,7 +505,7 @@ test("018 - charge discover manual card present", (t) => {
   t.plan(2);
 
   const address = new Address();
-  address.code = "750241234";
+  address.postalCode = "750241234";
 
   const card = TestCards.discoverManual(true, true);
 
@@ -524,7 +524,7 @@ test("019 - charge amex manual card present", (t) => {
   t.plan(2);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
   address.streetAddress1 = "6860";
 
   const card = TestCards.amexManual(true, true);
@@ -544,7 +544,7 @@ test("020 - charge jcb manual card present", (t) => {
   t.plan(2);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.jcbManual(true, true);
 
@@ -563,7 +563,7 @@ test("021 - charge discover manual card present", (t) => {
   t.plan(4);
 
   const address = new Address();
-  address.code = "750241234";
+  address.postalCode = "750241234";
   address.streetAddress1 = "6860 Dallas Pkwy";
 
   const card = TestCards.discoverManual(true, true);
@@ -581,7 +581,7 @@ test("021 - charge discover manual card present", (t) => {
     .then((response) => {
       // test case 64
       return response.reverse(16.07)
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withAuthAmount(6.07)
         .execute()
         .then((reverseResponse) => {
@@ -597,7 +597,7 @@ test("022 - charge visa manual card not present", (t) => {
   t.plan(2);
 
   const address = new Address();
-  address.code = "750241234";
+  address.postalCode = "750241234";
   address.streetAddress1 = "6860 Dallas Pkwy";
 
   let card: CreditCardData;
@@ -623,7 +623,7 @@ test("023 - charge mastercard manual card not present", (t) => {
   t.plan(4);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
   address.streetAddress1 = "6860 Dallas Pkwy";
 
   let card: CreditCardData;
@@ -647,7 +647,7 @@ test("023 - charge mastercard manual card not present", (t) => {
     .then((response) => {
       // test case 61
       return response.reverse(17.02)
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .execute()
         .then((reverseResponse) => {
           t.truthy(reverseResponse);
@@ -660,7 +660,7 @@ test("024 - charge discover manual card not present", (t) => {
   t.plan(2);
 
   const address = new Address();
-  address.code = "750241234";
+  address.postalCode = "750241234";
 
   let card: CreditCardData;
   if (useTokens) {
@@ -685,7 +685,7 @@ test("025 - charge amex manual card not present", (t) => {
   t.plan(2);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
   address.streetAddress1 = "6860";
 
   let card: CreditCardData;
@@ -711,7 +711,7 @@ test("026 - charge jcb manual card not present", (t) => {
   t.plan(2);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.jcbManual(false, true);
 
@@ -890,7 +890,7 @@ test("034 - authorize visa manual card present", (t) => {
   t.plan(4);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
   address.streetAddress1 = "6860 Dallas Pkwy";
 
   const card = TestCards.visaManual(true, true);
@@ -921,7 +921,7 @@ test("035 - authorize visa manual card present additional auth", (t) => {
   t.plan(4);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
   address.streetAddress1 = "6860 Dallas Pkwy";
 
   const card = TestCards.visaManual(true, true);
@@ -953,7 +953,7 @@ test("036 - authorize mastercard manual card present", (t) => {
   t.plan(4);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
   address.streetAddress1 = "6860 Dallas Pkwy";
 
   const card = TestCards.masterCardManual(true, true);
@@ -984,7 +984,7 @@ test("036a - authorize discover manual card present", (t) => {
   t.plan(2);
 
   const address = new Address();
-  address.code = "750241234";
+  address.postalCode = "750241234";
 
   const card = TestCards.discoverManual(true, true);
 
@@ -1005,7 +1005,7 @@ test("037 - authorize visa manual", (t) => {
   t.plan(4);
 
   const address = new Address();
-  address.code = "750241234";
+  address.postalCode = "750241234";
   address.streetAddress1 = "6860 Dallas Pkwy";
 
   const card = TestCards.visaManual(false, true);
@@ -1036,7 +1036,7 @@ test("038 - authorize mastercard manual", (t) => {
   t.plan(4);
 
   const address = new Address();
-  address.code = "750241234";
+  address.postalCode = "750241234";
   address.streetAddress1 = "6860";
 
   const card = TestCards.masterCardManual(false, true);
@@ -1067,7 +1067,7 @@ test("038a - authorize discover manual", (t) => {
   t.plan(2);
 
   const address = new Address();
-  address.code = "750241234";
+  address.postalCode = "750241234";
 
   const card = TestCards.discoverManual(false, true);
 
@@ -1122,7 +1122,7 @@ test("041 - charge discover manual partial approval", (t) => {
   t.plan(3);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.discoverManual(true, true);
 
@@ -1158,7 +1158,7 @@ test("042 - charge mastercard swipe partial approval", (t) => {
     // test case 62
     .then((response) => {
       return response.reverse(100.00)
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .execute()
         .then((reverseResponse) => {
           t.truthy(reverseResponse);
@@ -1184,7 +1184,7 @@ test("043 - charge visa swipe edit gratuity", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withAmount(18.12)
         .withGratuity(3.00)
         .execute()
@@ -1199,7 +1199,7 @@ test("044 - charge mastercard manual edit gratuity", (t) => {
   t.plan(4);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.masterCardManual(true, true);
   return card.charge(15.13)
@@ -1214,7 +1214,7 @@ test("044 - charge mastercard manual edit gratuity", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withAmount(18.13)
         .withGratuity(3.00)
         .execute()
@@ -1231,7 +1231,7 @@ test("045 - charge visa manual gratuity", (t) => {
   t.plan(2);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.visaManual(true, true);
 
@@ -1264,7 +1264,7 @@ test("046 - charge mastercard swipe gratuity", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withAmount(18.12)
         .withGratuity(3.00)
         .execute()
@@ -1295,7 +1295,7 @@ test("047 - level ii visa swipe response b", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withTaxType(TaxType.SalesTax)
         .withTaxAmount(1)
         .execute()
@@ -1324,7 +1324,7 @@ test("047a - level ii visa swipe response b", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withTaxType(TaxType.NotUsed)
         .execute()
         .then((cpcResponse) => {
@@ -1352,7 +1352,7 @@ test("048 - level ii visa swipe response r", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withTaxType(TaxType.TaxExempt)
         .execute()
         .then((cpcResponse) => {
@@ -1366,7 +1366,7 @@ test("049 - level ii visa manual response s", (t) => {
   t.plan(5);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.visaManual(true, true);
 
@@ -1384,7 +1384,7 @@ test("049 - level ii visa manual response s", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withPoNumber("9876543210")
         .withTaxType(TaxType.SalesTax)
         .withTaxAmount(1)
@@ -1414,7 +1414,7 @@ test("050 - level ii mastercard swipe response s", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withPoNumber("9876543210")
         .withTaxType(TaxType.NotUsed)
         .execute()
@@ -1429,7 +1429,7 @@ test("051 - level ii mastercard manual response s", (t) => {
   t.plan(5);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.masterCardManual(true, true);
 
@@ -1447,7 +1447,7 @@ test("051 - level ii mastercard manual response s", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withPoNumber("9876543210")
         .withTaxType(TaxType.SalesTax)
         .withTaxAmount(1)
@@ -1463,7 +1463,7 @@ test("051a - level ii mastercard manual response s", (t) => {
   t.plan(5);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.masterCardManual(true, true);
 
@@ -1481,7 +1481,7 @@ test("051a - level ii mastercard manual response s", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withPoNumber("9876543210")
         .withTaxType(TaxType.SalesTax)
         .withTaxAmount(1)
@@ -1497,7 +1497,7 @@ test("052 - level ii mastercard manual response s", (t) => {
   t.plan(5);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.masterCardManual(true, true);
 
@@ -1515,7 +1515,7 @@ test("052 - level ii mastercard manual response s", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withPoNumber("9876543210")
         .withTaxType(TaxType.TaxExempt)
         .execute()
@@ -1544,7 +1544,7 @@ test("053 - level ii amex swipe no response", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withTaxType(TaxType.SalesTax)
         .withTaxAmount(1)
         .execute()
@@ -1559,7 +1559,7 @@ test("054 - level ii amex manual no response", (t) => {
   t.plan(5);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.amexManual(true, true);
 
@@ -1577,7 +1577,7 @@ test("054 - level ii amex manual no response", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withPoNumber("9876543210")
         .withTaxType(TaxType.NotUsed)
         .execute()
@@ -1592,7 +1592,7 @@ test("055 - level ii amex manual no response", (t) => {
   t.plan(5);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.amexManual(true, true);
 
@@ -1610,7 +1610,7 @@ test("055 - level ii amex manual no response", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withPoNumber("9876543210")
         .withTaxType(TaxType.NotUsed)
         .execute()
@@ -1625,7 +1625,7 @@ test("055a - level ii amex manual no response", (t) => {
   t.plan(5);
 
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.amexManual(true, true);
   return card.charge(111.13)
@@ -1642,7 +1642,7 @@ test("055a - level ii amex manual no response", (t) => {
     })
     .then((response) => {
       return response.edit()
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .withPoNumber("9876543210")
         .withTaxType(TaxType.TaxExempt)
         .execute()
@@ -1783,7 +1783,7 @@ test("066 - debit sale mastercard swipe", (t) => {
     .then((response) => {
       // test case 71
       return response.reverse(14.02)
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .execute()
         .then((reverseResponse) => {
           t.truthy(reverseResponse);
@@ -1861,7 +1861,7 @@ test("069 - debit sale visa partial approval", (t) => {
     .then((response) => {
       // test case 72
       return response.reverse(33.00)
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .execute()
         .then((reverseResponse) => {
           t.truthy(reverseResponse);
@@ -1903,7 +1903,7 @@ test("070a - debit return visa swipe", (t) => {
     })
     .then((response) => {
       return response.reverse(14.08)
-        .withAllowDuplicates(true)
+        // .withAllowDuplicates(true)
         .execute()
         .then((reverseResponse) => {
           t.truthy(reverseResponse);

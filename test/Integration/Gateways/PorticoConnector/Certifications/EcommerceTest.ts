@@ -102,7 +102,7 @@ test("003 - verify discover", (t) => {
 
   const card = TestCards.discoverManual();
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   return new Promise((resolve, reject) => {
     card.verify()
@@ -126,7 +126,7 @@ test("004 - verify amex", (t) => {
 
   const card = TestCards.amexManual();
   const address = new Address();
-  address.code = "75024";
+  address.postalCode = "75024";
 
   return new Promise((resolve, reject) => {
     card.verify()
@@ -170,7 +170,7 @@ test("006 - charge visa token", (t) => {
   const card = TestCards.visaManual();
   const address = new Address();
   address.streetAddress1 = "6860 Dallas Pkwy";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   return new Promise((resolve, reject) => {
     card.charge()
@@ -197,7 +197,7 @@ test("007 - charge mastercard token", (t) => {
   const card = TestCards.masterCardManual();
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   return new Promise((resolve, reject) => {
     card.charge()
@@ -224,7 +224,7 @@ test("008 - charge discover token", (t) => {
   const card = TestCards.discoverManual();
   const address = new Address();
   address.streetAddress1 = "6860 Dallas Pkwy";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   return new Promise((resolve, reject) => {
     card.charge()
@@ -251,7 +251,7 @@ test("009 - charge amex token", (t) => {
   const card = TestCards.amexManual();
   const address = new Address();
   address.streetAddress1 = "6860 Dallas Pkwy";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   return new Promise((resolve, reject) => {
     card.charge()
@@ -280,7 +280,7 @@ test("010 - charge visa", (t) => {
   let card = TestCards.visaManual();
   const address = new Address();
   address.streetAddress1 = "6860 Dallas Pkwy";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   if (useTokens) {
     card = new CreditCardData();
@@ -320,7 +320,7 @@ test("011 - charge mastercard", (t) => {
   let card = TestCards.masterCardManual();
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   if (useTokens) {
     card = new CreditCardData();
@@ -350,7 +350,7 @@ test("012 - charge discover", (t) => {
   let card = TestCards.discoverManual();
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "750241234";
+  address.postalCode = "750241234";
 
   if (useTokens) {
     card = new CreditCardData();
@@ -380,7 +380,7 @@ test("013 - charge amex", (t) => {
   let card = TestCards.amexManual();
   const address = new Address();
   address.streetAddress1 = "6860 Dallas Pkwy";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   if (useTokens) {
     card = new CreditCardData();
@@ -410,7 +410,7 @@ test("014 - charge jcb", (t) => {
   const card = TestCards.jcbManual();
   const address = new Address();
   address.streetAddress1 = "6860 Dallas Pkwy";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   return new Promise((resolve, reject) => {
     card.charge()
@@ -438,7 +438,7 @@ test("015 - authorization visa", (t) => {
   const card = TestCards.visaManual();
   const address = new Address();
   address.streetAddress1 = "6860 Dallas Pkwy";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   return new Promise((resolve, reject) => {
     card.authorize("17.06")
@@ -474,7 +474,7 @@ test("016 - authorization mastercard", (t) => {
   const card = TestCards.masterCardManual();
   const address = new Address();
   address.streetAddress1 = "6860 Dallas Pkwy";
-  address.code = "750241234";
+  address.postalCode = "750241234";
 
   return new Promise((resolve, reject) => {
     card.authorize("17.07")
@@ -510,7 +510,7 @@ test("017 - authorization discover", (t) => {
   const card = TestCards.discoverManual();
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   return new Promise((resolve, reject) => {
     card.authorize("17.08")
@@ -540,7 +540,7 @@ test("018 - partial approval visa", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.visaManual();
 
@@ -568,7 +568,7 @@ test("019 - partial approval discover", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.discoverManual();
 
@@ -596,7 +596,7 @@ test("020 - partial approval mastercard", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.masterCardManual();
 
@@ -626,7 +626,7 @@ test("021 - level ii response b", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860 Dallas Pkwy";
-  address.code = "750241234";
+  address.postalCode = "750241234";
 
   const card = TestCards.visaManual();
 
@@ -664,7 +664,7 @@ test("022 - level ii response b", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "750241234";
+  address.postalCode = "750241234";
 
   const card = TestCards.visaManual();
 
@@ -702,7 +702,7 @@ test("023 - level ii response r", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.visaManual();
 
@@ -739,7 +739,7 @@ test("024 - level ii response s", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.visaManual();
 
@@ -778,7 +778,7 @@ test("025 - level ii response s", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.masterCardManual();
 
@@ -816,7 +816,7 @@ test("026 - level ii response s", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.masterCardManual();
 
@@ -854,7 +854,7 @@ test("027 - level ii response s", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.masterCardManual();
 
@@ -893,7 +893,7 @@ test("028 - level ii response s", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.masterCardManual();
 
@@ -931,7 +931,7 @@ test("029 - level ii no response", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.amexManual();
 
@@ -969,7 +969,7 @@ test("030 - level ii no response", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "750241234";
+  address.postalCode = "750241234";
 
   const card = TestCards.amexManual();
 
@@ -1007,7 +1007,7 @@ test("031 - level ii no response", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.amexManual();
 
@@ -1046,7 +1046,7 @@ test("032 - level ii no response", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.amexManual();
 
@@ -1202,7 +1202,7 @@ test.failing("038 - fraud prevention return", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.gsbManual();
 
@@ -1226,7 +1226,7 @@ test.failing("038 - fraud prevention return", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = new CreditTrackData();
   card.value = "%B6277220572999800^   /                         ^49121010557010000016000000?F;6277220572999800=49121010557010000016?";
@@ -1252,7 +1252,7 @@ test.failing("038 - fraud prevention return", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.gsbManual();
 
@@ -1287,7 +1287,7 @@ test.failing("038 - fraud prevention return", (t) => {
 
   const address = new Address();
   address.streetAddress1 = "6860";
-  address.code = "75024";
+  address.postalCode = "75024";
 
   const card = TestCards.gsbManual();
 

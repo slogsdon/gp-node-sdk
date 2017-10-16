@@ -18,17 +18,20 @@ import {
   EBTCardData,
   EBTTrackData,
   ECheck,
+  EcommerceChannel,
   EntryMethod,
   GatewayError,
   GiftCard,
   IEncryptable,
   InquiryType,
+  IPaymentGateway,
   IPaymentMethod,
   IPinProtected,
   ITokenizable,
   ManagementBuilder,
   NotImplementedError,
   PaymentMethodType,
+  RecurringPaymentMethod,
   ReportBuilder,
   ReportType,
   SecCode,
@@ -46,7 +49,7 @@ import {
   XmlGateway,
 } from "./XmlGateway";
 
-export class PorticoConnector extends XmlGateway {
+export class PorticoConnector extends XmlGateway implements IPaymentGateway {
   protected static XmlNamespace = "http://Hps.Exchange.PosGateway";
   public siteId: string;
   public licenseId: string;
@@ -56,11 +59,11 @@ export class PorticoConnector extends XmlGateway {
   public secretApiKey: string;
   public developerId: string;
   public versionNumber: string;
+  public supportsHostedPayments = false;
 
   public processAuthorization(builder: AuthorizationBuilder): Promise<Transaction> {
     // build request
     const transaction = element(this.mapRequestType(builder));
-    // const transaction = Element(builder.transactionType);
     const block1 = subElement(transaction, "Block1");
 
     if (builder.paymentMethod.paymentMethodType !== PaymentMethodType.Gift
@@ -72,24 +75,29 @@ export class PorticoConnector extends XmlGateway {
 
       if (builder.transactionModifier === TransactionModifier.None
         && builder.paymentMethod.paymentMethodType !== PaymentMethodType.EBT
+        && builder.paymentMethod.paymentMethodType !== PaymentMethodType.Recurring
       ) {
         subElement(block1, "AllowPartialAuth").append(cData(builder.allowPartialAuth ? "Y" : "N"));
       }
     }
 
-    if (builder.amount !== undefined && builder.amount !== null) {
+    if (builder.amount) {
       subElement(block1, "Amt").append(cData(builder.amount.toString()));
-    }
-
-    if (builder.currency && builder.paymentMethod.paymentMethodType === PaymentMethodType.Gift) {
-      subElement(block1, "Currency").append(cData(builder.currency.toUpperCase()));
     }
 
     if (builder.gratuity) {
       subElement(block1, "GratuityAmtInfo").append(cData(builder.gratuity.toString()));
     }
 
-    if (builder.cashBackAmount !== undefined && builder.cashBackAmount !== null) {
+    if (builder.convenienceAmt) {
+      subElement(block1, "ConvenienceAmtInfo").append(cData(builder.convenienceAmt.toString()));
+    }
+
+    if (builder.shippingAmt) {
+      subElement(block1, "ShippingAmtInfo").append(cData(builder.shippingAmt.toString()));
+    }
+
+    if (builder.cashBackAmount) {
       subElement(
         block1,
         builder.paymentMethod.paymentMethodType === PaymentMethodType.Debit
@@ -134,21 +142,26 @@ export class PorticoConnector extends XmlGateway {
     const { hasToken, tokenValue } = this.hasToken(builder.paymentMethod);
 
     // card data
-    const cardData = new Element(
-      builder.transactionType === TransactionType.Replace
-        ? "OldCardData" : "CardData",
-    );
+    let cardData: Element;
+    if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Debit
+      || builder.paymentMethod.paymentMethodType === PaymentMethodType.ACH
+    ) {
+      cardData = block1;
+    } else {
+      cardData = new Element(
+        builder.transactionType === TransactionType.Replace
+          ? "OldCardData" : "CardData",
+      );
+    }
+
     if (builder.paymentMethod.isCardData) {
-      cardData.append(this.hydrateManualEntry(builder, hasToken, tokenValue));
+      cardData.append(this.hydrateManualEntry(block1, builder, hasToken, tokenValue));
     } else if (builder.paymentMethod.isTrackData) {
       const trackData = this.hydrateTrackData(builder, hasToken, tokenValue);
-
-      if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Debit) {
-        block1.append(trackData);
-      } else {
-        cardData.append(trackData);
-      }
+      cardData.append(trackData);
     } else if (builder.paymentMethod instanceof GiftCard) {
+      subElement(block1, "Currency").append(cData(builder.currency));
+
       if (builder.transactionType === TransactionType.Replace) {
         const newCard = subElement(block1, "NewCardData");
         subElement(newCard, builder.replacementCard.valueType)
@@ -157,6 +170,8 @@ export class PorticoConnector extends XmlGateway {
         if (builder.replacementCard.pin) {
           subElement(newCard, "PIN").append(cData(builder.replacementCard.pin));
         }
+
+        cardData = new Element("OldCardData");
       }
 
       if (builder.paymentMethod.value) {
@@ -210,6 +225,44 @@ export class PorticoConnector extends XmlGateway {
         .append(cData(builder.paymentMethod.achVerify ? "Y" : "N"));
     }
 
+    if (builder.paymentMethod instanceof TransactionReference) {
+      if (builder.paymentMethod.transactionId) {
+        subElement(block1, "GatewayTxnId").append(cData(builder.paymentMethod.transactionId));
+      }
+      if (builder.paymentMethod.clientTransactionId) {
+        subElement(block1, "ClientTxnId").append(cData(builder.paymentMethod.clientTransactionId));
+      }
+    }
+
+    if (builder.paymentMethod instanceof RecurringPaymentMethod) {
+      if (builder.paymentMethod.paymentMethodType === PaymentMethodType.ACH) {
+        subElement(block1, "CheckAction").append(cData("SALE"));
+      }
+
+      subElement(block1, "PaymentMethodKey").append(cData(builder.paymentMethod.key));
+
+      if (builder.paymentMethod.paymentMethod && builder.paymentMethod.paymentMethod instanceof CreditCardData) {
+        const card = builder.paymentMethod.paymentMethod;
+        const data = subElement(block1, "PaymentMethodKeyData");
+
+        if (card.expMonth) {
+          subElement(data, "ExpMonth").append(cData(card.expMonth));
+        }
+        if (card.expYear) {
+          subElement(data, "ExpYear").append(cData(card.expYear));
+        }
+        if (card.cvn) {
+          subElement(data, "CVV2").append(cData(card.cvn));
+        }
+      }
+
+      if (builder.transactionModifier === TransactionModifier.Recurring) {
+        const recurring = subElement(block1, "RecurringData");
+        subElement(recurring, "ScheduleID").append(cData(builder.scheduleId));
+        subElement(recurring, "OneTime").append(cData(builder.oneTimePayment ? "Y" : "N"));
+      }
+    }
+
     if (builder.paymentMethod.isPinProtected) {
       const pinBlock = ((builder.paymentMethod as object) as IPinProtected).pinBlock;
       subElement(block1, "PinBlock").append(cData(pinBlock));
@@ -234,13 +287,6 @@ export class PorticoConnector extends XmlGateway {
       block1.append(cardData);
     }
 
-    if (builder.paymentMethod.isBalanceable && builder.balanceInquiryType) {
-      subElement(block1, "BalanceInquiryType")
-        .append(cData(
-          this.hydrateInquiryType(builder.balanceInquiryType),
-        ));
-    }
-
     // cpc request
     if (builder.level2Request === true) {
       subElement(block1, "CPCReq").append(cData("Y"));
@@ -254,12 +300,52 @@ export class PorticoConnector extends XmlGateway {
       subElement(addons, "InvoiceNbr").append(cData(builder.invoiceNumber));
     }
 
+    if (builder.ecommerceInfo) {
+      let channel = "";
+      switch (builder.ecommerceInfo.channel) {
+        case EcommerceChannel.Ecom:
+          channel = "ECOM";
+          break;
+        case EcommerceChannel.Moto:
+          channel = "MOTO";
+          break;
+        default:
+      }
+      subElement(block1, "Ecommerce").append(cData(channel));
+
+      if (builder.invoiceNumber || builder.ecommerceInfo.shipMonth) {
+        const direct = subElement(block1, "DirectMktData");
+        if (builder.invoiceNumber) {
+          subElement(direct, "DirectMktInvoiceNbr").append(cData(builder.invoiceNumber));
+        }
+        if (builder.ecommerceInfo.shipDay) {
+          subElement(direct, "DirectMktShipDay").append(cData(builder.ecommerceInfo.shipDay));
+        }
+        if (builder.ecommerceInfo.shipMonth) {
+          subElement(direct, "DirectMktShipMonth").append(cData(builder.ecommerceInfo.shipMonth));
+        }
+      }
+
+      if (builder.ecommerceInfo.cavv) {
+        const secureEcommerce = subElement(block1, "SecureECommerce");
+        subElement(secureEcommerce, "PaymentDataSource").append(cData(builder.ecommerceInfo.paymentDataSource));
+        subElement(secureEcommerce, "TypeOfPaymentData").append(cData(builder.ecommerceInfo.paymentDataType));
+        subElement(secureEcommerce, "PaymentData").append(cData(builder.ecommerceInfo.cavv));
+        subElement(secureEcommerce, "ECommerceIndicator").append(cData(builder.ecommerceInfo.eci));
+        subElement(secureEcommerce, "XID").append(cData(builder.ecommerceInfo.xid));
+      }
+    }
+
     if (builder.dynamicDescriptor) {
       subElement(block1, "TxnDescriptor").append(cData(builder.dynamicDescriptor));
     }
 
-    return this.doTransaction(this.buildEnvelope(transaction))
+    return this.doTransaction(this.buildEnvelope(transaction, builder.clientTransactionId))
       .then((response) => this.mapResponse(response, builder));
+  }
+
+  public serializeRequest(_builder: AuthorizationBuilder): string {
+    throw new UnsupportedTransactionError("Portico does not support hosted payments.");
   }
 
   public manageTransaction(builder: ManagementBuilder): Promise<Transaction> {
@@ -276,6 +362,25 @@ export class PorticoConnector extends XmlGateway {
         root = new Element("Block1");
       } else {
         root = transaction;
+      }
+
+      // amount
+      if (builder.amount) {
+        subElement(root, "Amt").append(cData(builder.amount.toString()));
+      }
+
+      // auth amount
+      if (builder.authAmount) {
+        subElement(root, "AuthAmt").append(cData(builder.authAmount.toString()));
+      }
+
+      // gratuity
+      if (builder.gratuity) {
+        subElement(root, "GratuityAmtInfo").append(cData(builder.gratuity.toString()));
+      }
+
+      if (builder.clientTransactionId) {
+        subElement(root, "ClientTxnId").append(cData(builder.clientTransactionId));
       }
 
       // transaction ID
@@ -298,21 +403,6 @@ export class PorticoConnector extends XmlGateway {
         if (builder.taxAmount) {
           subElement(cpc, "TaxAmt").append(cData(builder.taxAmount.toString()));
         }
-      } else {
-        // amount
-        if (builder.amount) {
-          subElement(root, "Amt").append(cData(builder.amount.toString()));
-        }
-
-        // auth amount
-        if (builder.authAmount) {
-          subElement(root, "AuthAmt").append(cData(builder.authAmount.toString()));
-        }
-
-        // gratuity
-        if (builder.gratuity) {
-          subElement(root, "GratuityAmtInfo").append(cData(builder.gratuity.toString()));
-        }
       }
 
       if (builder.transactionType === TransactionType.Reversal
@@ -324,7 +414,7 @@ export class PorticoConnector extends XmlGateway {
       }
     }
 
-    return this.doTransaction(this.buildEnvelope(transaction))
+    return this.doTransaction(this.buildEnvelope(transaction, builder.clientTransactionId))
       .then((response) => this.mapResponse(response, builder));
   }
 
@@ -358,7 +448,7 @@ export class PorticoConnector extends XmlGateway {
       .then((response) => this.mapReportResponse(response, builder));
   }
 
-  protected buildEnvelope(transaction: Element): string {
+  protected buildEnvelope(transaction: Element, clientTransactionId?: string): string {
     const envelope = element("soap:Envelope", {
       "xmlns:soap": "http://schemas.xmlsoap.org/soap/envelope/",
     });
@@ -392,6 +482,9 @@ export class PorticoConnector extends XmlGateway {
     if (this.versionNumber) {
       subElement(header, "VersionNumber").append(cData(this.versionNumber));
     }
+    if (clientTransactionId) {
+      subElement(header, "ClientTxnId").append(cData(clientTransactionId));
+    }
 
     // transaction
     subElement(version1, "Transaction").append(transaction);
@@ -403,14 +496,12 @@ export class PorticoConnector extends XmlGateway {
       case TransactionType.BatchClose:
         return "BatchClose";
       case TransactionType.Decline:
-        if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Gift) {
-          return "GiftCardDeactivate";
-        } else if (builder.transactionModifier === TransactionModifier.ChipDecline) {
+        if (builder.transactionModifier === TransactionModifier.ChipDecline) {
           return "ChipCardDecline";
         } else if (builder.transactionModifier === TransactionModifier.FraudDecline) {
           return "OverrideFraudDecline";
         }
-        throw new NotImplementedError();
+        throw new UnsupportedTransactionError();
       case TransactionType.Verify:
         return "CreditAccountVerify";
       case TransactionType.Capture:
@@ -423,20 +514,29 @@ export class PorticoConnector extends XmlGateway {
             return "CreditIncrementalAuth";
           } else if (builder.transactionModifier === TransactionModifier.Offline) {
             return "CreditOfflineAuth";
+          } else if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Recurring) {
+            return "RecurringBillingAuth";
           }
 
           return "CreditAuth";
         } else if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Recurring) {
           return "RecurringBillingAuth";
         }
-        throw new UnsupportedTransactionError("Transaction not supported for this payment method.");
+        throw new UnsupportedTransactionError();
       case TransactionType.Sale:
         if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Credit) {
           if (builder.transactionModifier === TransactionModifier.Offline) {
             return "CreditOfflineSale";
+          } else if (builder.transactionModifier === TransactionModifier.Recurring) {
+            return "RecurringBilling";
           } else {
             return "CreditSale";
           }
+        } else if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Recurring) {
+          if (builder.paymentMethod.paymentType === "ACH") {
+            return "CheckSale";
+          }
+          return "RecurringBilling";
         } else if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Debit) {
           return "DebitSale";
         } else if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Cash) {
@@ -454,27 +554,36 @@ export class PorticoConnector extends XmlGateway {
         } else if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Gift) {
           return "GiftCardSale";
         }
-        throw new UnsupportedTransactionError("Transaction not supported for this payment method.");
+        throw new UnsupportedTransactionError();
       case TransactionType.Refund:
         if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Credit) {
           return "CreditReturn";
         } else if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Debit) {
+          if (builder.paymentMethod instanceof TransactionReference) {
+            throw new UnsupportedTransactionError();
+          }
           return "DebitReturn";
         } else if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Cash) {
           return "CashReturn";
         } else if (builder.paymentMethod.paymentMethodType === PaymentMethodType.EBT) {
+          if (builder.paymentMethod instanceof TransactionReference) {
+            throw new UnsupportedTransactionError();
+          }
           return "EBTFSReturn";
         }
-        throw new UnsupportedTransactionError("Transaction not supported for this payment method.");
+        throw new UnsupportedTransactionError();
       case TransactionType.Reversal:
         if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Credit) {
           return "CreditReversal";
         } else if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Debit) {
+          if (builder.paymentMethod instanceof TransactionReference) {
+            throw new UnsupportedTransactionError();
+          }
           return "DebitReversal";
         } else if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Gift) {
           return "GiftCardReversal";
         }
-        throw new UnsupportedTransactionError("Transaction not supported for this payment method.");
+        throw new UnsupportedTransactionError();
       case TransactionType.Edit:
         if (builder.transactionModifier === TransactionModifier.LevelII) {
           return "CreditCPCEdit";
@@ -488,7 +597,7 @@ export class PorticoConnector extends XmlGateway {
         } else if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Gift) {
           return "GiftCardVoid";
         }
-        throw new UnsupportedTransactionError("Transaction not supported for this payment method.");
+        throw new UnsupportedTransactionError();
       case TransactionType.AddValue:
         if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Credit) {
           return "PrePaidAddValue";
@@ -497,7 +606,7 @@ export class PorticoConnector extends XmlGateway {
         } else if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Gift) {
           return "GiftCardAddValue";
         }
-        throw new UnsupportedTransactionError("Transaction not supported for this payment method.");
+        throw new UnsupportedTransactionError();
       case TransactionType.Balance:
         if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Credit) {
           return "PrePaidBalanceInquiry";
@@ -506,7 +615,7 @@ export class PorticoConnector extends XmlGateway {
         } else if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Gift) {
           return "GiftCardBalance";
         }
-        throw new UnsupportedTransactionError("Transaction not supported for this payment method.");
+        throw new UnsupportedTransactionError();
       case TransactionType.Activate:
           return "GiftCardActivate";
       case TransactionType.Alias:
@@ -519,7 +628,7 @@ export class PorticoConnector extends XmlGateway {
         break;
     }
 
-    throw new UnsupportedTransactionError("Unknown transaction");
+    throw new NotImplementedError();
   }
 
   protected mapReportRequestType<T>(builder: ReportBuilder<T>): string {
@@ -535,49 +644,47 @@ export class PorticoConnector extends XmlGateway {
 
   protected mapResponse(rawResponse: string, builder: TransactionBuilder<Transaction>): Transaction {
     const result = new Transaction();
-
-    // todo: handle non-200 responses
-
     const root = xml(rawResponse).find(".//PosResponse");
     const acceptedCodes = [ "00", "0", "85", "10" ];
 
-    let gatewayRspCode = this.normalizeResponse(root.findtext(".//GatewayRspCode"));
+    const gatewayRspCode = this.normalizeResponse(root.findtext(".//GatewayRspCode"));
     const gatewayRspText = root.findtext(".//GatewayRspMsg");
 
     if (acceptedCodes.indexOf(gatewayRspCode) === -1) {
       throw new GatewayError(`Unexpected Gateway Response: ${gatewayRspCode} - ${gatewayRspText}`);
     }
 
-    if (["0", "85"].indexOf(gatewayRspCode) !== -1) {
-      gatewayRspCode = "00";
-    }
-
-    const item = root.find(`.//${this.mapRequestType(builder)}`);
-
-    result.responseCode = item && item.findtext(".//RspCode")
-      ? this.normalizeResponse(item.findtext(".//RspCode"))
+    result.responseCode = root.findtext(".//RspCode")
+      ? this.normalizeResponse(root.findtext(".//RspCode"))
       : gatewayRspCode;
-    result.responseMessage = item && item.findtext(".//RspText")
-      ? item.findtext(".//RspText")
+    result.responseMessage = root.findtext(".//RspText")
+      ? root.findtext(".//RspText")
       : gatewayRspText;
+
+    result.authorizedAmount = root.findtext(".//AuthAmt");
+    result.availableBalance = root.findtext(".//AvailableBalance");
+    result.avsResponseCode = root.findtext(".//AVSRsltCode");
+    result.avsResponseMessage = root.findtext(".//AVSRsltText");
+    result.balanceAmount = root.findtext(".//BalanceAmt");
+    result.cardType = root.findtext(".//CardType");
+    result.cardLast4 = root.findtext(".//TokenPANLast4");
+    result.cavvResponseCode = root.findtext(".//CAVVResultCode");
+    result.commercialIndicator = root.findtext(".//CPCInd");
+    result.cvnResponseCode = root.findtext(".//CVVRsltCode");
+    result.cvnResponseMessage = root.findtext(".//CVVRsltText");
+    result.pointsBalanceAmount = root.findtext(".//PointsBalanceAmt");
+    result.recurringDataCode = root.findtext(".//RecurringDataCode");
+    result.referenceNumber = root.findtext(".//RefNbr");
+    result.transactionDescriptor = root.findtext(".//TxnDescriptor");
 
     if (builder.paymentMethod) {
       result.transactionReference = new TransactionReference(root.findtext(".//GatewayTxnId"));
       result.transactionReference.paymentMethodType = builder.paymentMethod.paymentMethodType;
     }
 
-    if (item && item.findtext(".//AuthCode")) {
+    if (root.findtext(".//AuthCode")) {
       result.transactionReference = result.transactionReference || new TransactionReference();
-      result.transactionReference.authCode = item.findtext(".//AuthCode");
-    }
-
-    if (item && item.findtext(".//CPCInd")) {
-      result.transactionReference = result.transactionReference || new TransactionReference();
-      result.commercialIndicator = item.findtext(".//CPCInd");
-    }
-
-    if (item && item.findtext(".//AuthAmt")) {
-      result.authorizedAmount = item.findtext(".//AuthAmt");
+      result.transactionReference.authCode = root.findtext(".//AuthCode");
     }
 
     if (root.find(".//TokenData") && root.find(".//TokenData").findtext(".//TokenValue")) {
@@ -585,16 +692,8 @@ export class PorticoConnector extends XmlGateway {
       result.token = tokenData.findtext(".//TokenValue");
     }
 
-    if (item && item.findtext(".//BalanceAmt")) {
-      result.balanceAmount = item.findtext(".//BalanceAmt");
-    }
-
-    if (item && item.findtext(".//PointsBalanceAmt")) {
-      result.pointsBalanceAmount = item.findtext(".//PointsBalanceAmt");
-    }
-
-    if (item && item.find(".//CardData")) {
-      const cardData = item.find(".//CardData");
+    if (root.find(".//CardData")) {
+      const cardData = root.find(".//CardData");
       result.giftCard = new GiftCard();
       result.giftCard.number = cardData.findtext(".//CardNbr");
       result.giftCard.alias = cardData.findtext(".//Alias");
@@ -767,7 +866,7 @@ export class PorticoConnector extends XmlGateway {
     }
   }
 
-  protected hydrateManualEntry(builder: TransactionBuilder<Transaction>, hasToken: boolean, tokenValue: string) {
+  protected hydrateManualEntry(block1: Element, builder: TransactionBuilder<Transaction>, hasToken: boolean, tokenValue: string) {
     const me = new Element(hasToken ? "TokenData" : "ManualEntry");
     let card: CreditCardData | EBTCardData;
     if (builder.paymentMethod instanceof CreditCardData) {
@@ -795,6 +894,12 @@ export class PorticoConnector extends XmlGateway {
 
     subElement(me, "ReaderPresent").append(cData(card.readerPresent ? "Y" : "N"));
     subElement(me, "CardPresent").append(cData(card.cardPresent ? "Y" : "N"));
+
+    if (builder.transactionModifier === TransactionModifier.Recurring) {
+      const recurring = subElement(block1, "RecurringData");
+      subElement(recurring, "ScheduleID").append(cData((builder as AuthorizationBuilder).scheduleId));
+      subElement(recurring, "OneTime").append(cData((builder as AuthorizationBuilder).oneTimePayment ? "Y" : "N"));
+    }
 
     return me;
   }

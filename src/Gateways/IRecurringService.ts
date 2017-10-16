@@ -1,8 +1,10 @@
 import {
+  IRecurringEntity,
   RecurringBuilder,
 } from "../";
 
 export interface IRecurringService {
-  supportRetrieval: boolean;
-  processRecurring<T>(builder: RecurringBuilder<T>): Promise<T>;
+  supportsRetrieval: boolean;
+  supportsUpdatePaymentDetails: boolean;
+  processRecurring<T extends IRecurringEntity>(builder: RecurringBuilder<T>): Promise<T>;
 }

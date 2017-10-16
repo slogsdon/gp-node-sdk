@@ -1,18 +1,29 @@
 import {
+  IRecurringEntity,
   ServicesContainer,
+  TransactionType,
 } from "../";
 import { TransactionBuilder } from "./TransactionBuilder";
 
-/* tslint:disable:no-empty-interface */
-export interface IRecurringEntity {
+export interface IDictionary<T> {
+  [key: string]: T;
 }
-/* tslint:enable:no-empty-interface */
 
-export class RecurringBuilder<T>
+export class RecurringBuilder<T extends IRecurringEntity>
   extends TransactionBuilder<T> {
+  public key: string;
   public orderId: string;
-  public create: IRecurringEntity;
-  public edit: IRecurringEntity;
+  public entity: IRecurringEntity;
+  public searchCriteria: IDictionary<string>;
+
+  public constructor(type: TransactionType, entity?: IRecurringEntity) {
+    super(type);
+    this.searchCriteria = {};
+    if (entity) {
+      this.entity = entity;
+      this.key = entity.key;
+    }
+  }
 
   public execute(): Promise<T> {
     super.execute();

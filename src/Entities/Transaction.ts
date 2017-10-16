@@ -13,6 +13,17 @@ export class Transaction {
   public commercialIndicator: string;
   public responseCode: string;
   public responseMessage: string;
+  public transactionDescriptor: string;
+  public referenceNumber: string;
+  public recurringDataCode: string;
+  public cvnResponseMessage: string;
+  public cvnResponseCode: string;
+  public cavvResponseCode: string;
+  public cardLast4: string;
+  public cardType: string;
+  public avsResponseMessage: string;
+  public avsResponseCode: string;
+  public availableBalance: string;
   public transactionReference: TransactionReference;
   public token: string;
   public giftCard: GiftCard;

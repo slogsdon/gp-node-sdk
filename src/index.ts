@@ -1,3 +1,9 @@
+import "../netsuite/set-timeout-polyfill";
+
+import "es6-promise/auto";
+import "typedarray";
+
+export * from "./HostedPaymentConfig";
 export * from "./ServicesConfig";
 export * from "./ServicesContainer";
 

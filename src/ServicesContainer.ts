@@ -1,20 +1,21 @@
 import {
+  ApiError,
+  IPaymentGateway,
   IRecurringService,
   PayPlanConnector,
   PorticoConnector,
   RealexConnector,
-} from "./Gateways";
-import { IGateway } from "./Gateways/IGateway";
-import { ServicesConfig } from "./ServicesConfig";
+  ServicesConfig,
+} from "./";
 
 export class ServicesContainer {
   private static _instance: ServicesContainer;
-  private _gateway: IGateway;
+  private _gateway: IPaymentGateway;
   private _recurring: IRecurringService;
 
   public static instance(): ServicesContainer {
     if (ServicesContainer._instance === null) {
-      ServicesContainer._instance = new ServicesContainer();
+      throw new ApiError("Services container not configured.");
     }
 
     return ServicesContainer._instance;
@@ -54,7 +55,7 @@ export class ServicesContainer {
     }
   }
 
-  public constructor(gateway?: IGateway, recurring?: IRecurringService) {
+  public constructor(gateway?: IPaymentGateway, recurring?: IRecurringService) {
     if (gateway) {
       this._gateway = gateway;
     }
@@ -63,7 +64,7 @@ export class ServicesContainer {
     }
   }
 
-  public getClient(): IGateway {
+  public getClient(): IPaymentGateway {
     return this._gateway;
   }
 
