@@ -16,19 +16,35 @@ export class ArgumentError extends ApiError {
   }
 }
 
+export class BuilderError extends ApiError {
+  constructor(m?: string) {
+    super(m);
+    Object.setPrototypeOf(this, BuilderError.prototype);
+    this.name = this.constructor.name;
+  }
+}
+
 export class ConfigurationError extends ApiError {
   constructor(m?: string) {
     super(m);
-    Object.setPrototypeOf(this, ArgumentError.prototype);
+    Object.setPrototypeOf(this, ConfigurationError.prototype);
     this.name = this.constructor.name;
   }
 }
 
 export class GatewayError extends ApiError {
-  constructor(m?: string) {
+  public responseCode: string;
+  public responseMessage: string;
+  constructor(m?: string, code?: string, message?: string) {
     super(m);
     Object.setPrototypeOf(this, GatewayError.prototype);
     this.name = this.constructor.name;
+    if (code) {
+      this.responseCode = code;
+    }
+    if (message) {
+      this.responseMessage = message;
+    }
   }
 }
 

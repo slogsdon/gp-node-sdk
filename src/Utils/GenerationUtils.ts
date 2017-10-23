@@ -3,8 +3,11 @@ import { hex_sha1 as sha1 } from "./Sha1";
 import { StringUtils } from "../";
 
 export class GenerationUtils {
-  public static generateHash(toHash: string, secret: string): string {
+  public static generateHash(toHash: string, secret?: string): string {
     const toHashFirstPass = sha1(toHash);
+    if (!secret) {
+      return toHashFirstPass;
+    }
     const toHashSecondPass = `${toHashFirstPass}.${secret}`;
     return sha1(toHashSecondPass);
   }

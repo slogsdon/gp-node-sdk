@@ -82,7 +82,7 @@ export class Customer extends RecurringEntity<Customer> {
    */
   public addPaymentMethod(paymentId: string, paymentMethod: IPaymentMethod) {
     let nameOnAccount = `${this.firstName} ${this.lastName}`;
-    if (!nameOnAccount) {
+    if (!this.firstName && !this.lastName) {
       nameOnAccount = this.company;
     }
 

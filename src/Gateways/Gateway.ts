@@ -23,7 +23,7 @@ export abstract class Gateway {
       headers: this.headers,
       host: uri.host,
       method: httpMethod,
-      path: (endpoint || uri.path) + queryString,
+      path: uri.path + endpoint + queryString,
       port: uri.port ? parseInt(uri.port, 10) : 443,
     };
 

@@ -1,5 +1,6 @@
 import {
   ConfigurationError,
+  HostedPaymentConfig,
 } from "./";
 
 export class ServicesConfig {
@@ -20,6 +21,7 @@ export class ServicesConfig {
   public channel: string;
   public rebatePassword: string;
   public refundPassword: string;
+  public hostedPaymentConfig: HostedPaymentConfig;
 
   // common
   public serviceUrl: string;

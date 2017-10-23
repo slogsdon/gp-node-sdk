@@ -18,16 +18,17 @@ import {
   EBTCardData,
   EBTTrackData,
   ECheck,
-  EcommerceChannel,
   EntryMethod,
   GatewayError,
   GiftCard,
+  ICardData,
   IEncryptable,
   InquiryType,
   IPaymentGateway,
   IPaymentMethod,
   IPinProtected,
   ITokenizable,
+  ITrackData,
   ManagementBuilder,
   NotImplementedError,
   PaymentMethodType,
@@ -65,46 +66,47 @@ export class PorticoConnector extends XmlGateway implements IPaymentGateway {
     // build request
     const transaction = element(this.mapRequestType(builder));
     const block1 = subElement(transaction, "Block1");
+    let allowDuplicates: Element | undefined;
 
-    if (builder.paymentMethod.paymentMethodType !== PaymentMethodType.Gift
-      && builder.paymentMethod.paymentMethodType !== PaymentMethodType.ACH
-      && (builder.transactionType === TransactionType.Auth
-        || builder.transactionType === TransactionType.Sale)
+    if (builder.transactionType === TransactionType.Sale
+      || builder.transactionType === TransactionType.Auth
     ) {
-      subElement(block1, "AllowDup").append(cData(builder.allowDuplicates ? "Y" : "N"));
-
-      if (builder.transactionModifier === TransactionModifier.None
-        && builder.paymentMethod.paymentMethodType !== PaymentMethodType.EBT
-        && builder.paymentMethod.paymentMethodType !== PaymentMethodType.Recurring
+      if (builder.paymentMethod.paymentMethodType !== PaymentMethodType.Gift
+        && builder.paymentMethod.paymentMethodType !== PaymentMethodType.ACH
       ) {
-        subElement(block1, "AllowPartialAuth").append(cData(builder.allowPartialAuth ? "Y" : "N"));
+        allowDuplicates = subElement(block1, "AllowDup");
+        allowDuplicates.append(cData(builder.allowDuplicates ? "Y" : "N"));
+
+        if (builder.transactionModifier === TransactionModifier.None
+          && builder.paymentMethod.paymentMethodType !== PaymentMethodType.EBT
+          && builder.paymentMethod.paymentMethodType !== PaymentMethodType.Recurring
+        ) {
+          subElement(block1, "AllowPartialAuth").append(cData(builder.allowPartialAuth ? "Y" : "N"));
+        }
       }
     }
 
-    if (builder.amount) {
+    if (builder.amount !== undefined && builder.amount !== "") {
       subElement(block1, "Amt").append(cData(builder.amount.toString()));
     }
-
     if (builder.gratuity) {
       subElement(block1, "GratuityAmtInfo").append(cData(builder.gratuity.toString()));
     }
-
     if (builder.convenienceAmt) {
       subElement(block1, "ConvenienceAmtInfo").append(cData(builder.convenienceAmt.toString()));
     }
-
     if (builder.shippingAmt) {
       subElement(block1, "ShippingAmtInfo").append(cData(builder.shippingAmt.toString()));
     }
 
-    if (builder.cashBackAmount) {
+    if (builder.cashBackAmount !== undefined && builder.cashBackAmount !== "") {
       subElement(
         block1,
+        // because plano
         builder.paymentMethod.paymentMethodType === PaymentMethodType.Debit
           ? "CashbackAmtInfo"
           : "CashBackAmount",
-      )
-        .append(cData(builder.cashBackAmount.toString()));
+      ).append(cData(builder.cashBackAmount.toString()));
     }
 
     if (builder.offlineAuthCode) {
@@ -112,227 +114,231 @@ export class PorticoConnector extends XmlGateway implements IPaymentGateway {
     }
 
     if (builder.transactionType === TransactionType.Alias) {
-      let action: string;
-      switch (builder.aliasAction) {
-        case AliasAction.Add:
-          action = "ADD";
-          break;
-        case AliasAction.Create:
-          action = "CREATE";
-          break;
-        case AliasAction.Delete:
-          action = "DELETE";
-          break;
-        default:
-          action = "";
-      }
-
-      subElement(block1, "Action").append(cData(action));
+      subElement(block1, "Action").append(cData(builder.aliasAction.toString()));
       subElement(block1, "Alias").append(cData(builder.alias));
     }
 
     const isCheck = builder.paymentMethod.paymentMethodType === PaymentMethodType.ACH;
-    if (isCheck || builder.address) {
-      const address = this.hydrateHolder(builder, isCheck);
-      if (address && address.getchildren().length > 0) {
-        block1.append(address);
+    if (isCheck || builder.billingAddress) {
+      const holder = subElement(block1, isCheck ? "ConsumerInfo" : "CardHolderData");
+
+      if (builder.billingAddress) {
+        subElement(holder, isCheck ? "Address1" : "CardHolderAddr").append(cData(builder.billingAddress.streetAddress1));
+        subElement(holder, isCheck ? "City" : "CardHolderCity").append(cData(builder.billingAddress.city));
+        subElement(holder, isCheck ? "State" : "CardHolderState")
+          .append(cData(builder.billingAddress.province || builder.billingAddress.state));
+        subElement(holder, isCheck ? "Zip" : "CardHolderZip").append(cData(builder.billingAddress.postalCode));
+      }
+
+      if (isCheck) {
+        const check = builder.paymentMethod as ECheck;
+
+        if (check.checkHolderName) {
+          const names = check.checkHolderName.split(" ", 2);
+          subElement(holder, "FirstName").append(cData(names[0]));
+          subElement(holder, "LastName").append(cData(names[1]));
+        }
+
+        subElement(holder, "CheckName").append(cData(check.checkName || check.checkHolderName));
+        subElement(holder, "PhoneNumber").append(cData(check.phoneNumber));
+        subElement(holder, "DLNumber").append(cData(check.driversLicenseNumber));
+        subElement(holder, "DLState").append(cData(check.driversLicenseState));
+
+        if (check.ssnLast4 || check.birthYear) {
+          const identity = subElement(holder, "IdentityInfo");
+          subElement(identity, "SSNL4").append(cData(check.ssnLast4));
+          subElement(identity, "DOBYear").append(cData(check.birthYear));
+        }
       }
     }
 
-    const { hasToken, tokenValue } = this.hasToken(builder.paymentMethod);
+    const {hasToken, tokenValue} = this.hasToken(builder.paymentMethod);
 
-    // card data
     let cardData: Element;
     if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Debit
       || builder.paymentMethod.paymentMethodType === PaymentMethodType.ACH
     ) {
       cardData = block1;
     } else {
-      cardData = new Element(
-        builder.transactionType === TransactionType.Replace
-          ? "OldCardData" : "CardData",
-      );
+      cardData = element("CardData");
     }
 
     if (builder.paymentMethod.isCardData) {
-      cardData.append(this.hydrateManualEntry(block1, builder, hasToken, tokenValue));
-    } else if (builder.paymentMethod.isTrackData) {
-      const trackData = this.hydrateTrackData(builder, hasToken, tokenValue);
-      cardData.append(trackData);
-    } else if (builder.paymentMethod instanceof GiftCard) {
-      subElement(block1, "Currency").append(cData(builder.currency));
+      const card = (builder.paymentMethod as any) as ICardData;
 
-      if (builder.transactionType === TransactionType.Replace) {
-        const newCard = subElement(block1, "NewCardData");
-        subElement(newCard, builder.replacementCard.valueType)
-          .append(cData(builder.replacementCard.value));
-
-        if (builder.replacementCard.pin) {
-          subElement(newCard, "PIN").append(cData(builder.replacementCard.pin));
-        }
-
-        cardData = new Element("OldCardData");
-      }
-
-      if (builder.paymentMethod.value) {
-        subElement(cardData, builder.paymentMethod.valueType)
-          .append(cData(builder.paymentMethod.value));
-      }
-
-      if (builder.paymentMethod.pin) {
-        subElement(cardData, "PIN").append(cData(builder.paymentMethod.pin));
-      }
-    } else if (builder.paymentMethod instanceof ECheck) {
-      subElement(block1, "CheckAction").append(cData("SALE"));
-
-      if (hasToken) {
-        subElement(block1, "TokenValue").append(cData(tokenValue));
-      } else {
-        const accountInfo = subElement(block1, "AccountInfo");
-        subElement(accountInfo, "RoutingNumber")
-          .append(cData(builder.paymentMethod.routingNumber));
-        subElement(accountInfo, "AccountNumber")
-          .append(cData(builder.paymentMethod.accountNumber));
-        subElement(accountInfo, "CheckNumber")
-          .append(cData(builder.paymentMethod.checkNumber));
-        subElement(accountInfo, "MICRData")
-          .append(cData(builder.paymentMethod.micrNumber));
-        subElement(accountInfo, "AccountType")
-          .append(cData(
-            this.hydrateAccountType(builder.paymentMethod.accountType),
-          ));
-      }
-
-      subElement(block1, "DataEntryMode")
-        .append(cData(
-          this.hydrateEntryMethod(builder.paymentMethod.entryMode).toUpperCase(),
-        ));
-
-      subElement(block1, "CheckType")
-        .append(cData(
-          this.hydrateCheckType(builder.paymentMethod.checkType),
-        ));
-
-      subElement(block1, "SECCode")
-        .append(cData(
-          this.hydrateSecCode(builder.paymentMethod.secCode),
-        ));
-
-      const verifyInfo = subElement(block1, "VerifyInfo");
-      subElement(verifyInfo, "CheckVerify")
-        .append(cData(builder.paymentMethod.checkVerify ? "Y" : "N"));
-      subElement(verifyInfo, "ACHVerify")
-        .append(cData(builder.paymentMethod.achVerify ? "Y" : "N"));
-    }
-
-    if (builder.paymentMethod instanceof TransactionReference) {
-      if (builder.paymentMethod.transactionId) {
-        subElement(block1, "GatewayTxnId").append(cData(builder.paymentMethod.transactionId));
-      }
-      if (builder.paymentMethod.clientTransactionId) {
-        subElement(block1, "ClientTxnId").append(cData(builder.paymentMethod.clientTransactionId));
-      }
-    }
-
-    if (builder.paymentMethod instanceof RecurringPaymentMethod) {
-      if (builder.paymentMethod.paymentMethodType === PaymentMethodType.ACH) {
-        subElement(block1, "CheckAction").append(cData("SALE"));
-      }
-
-      subElement(block1, "PaymentMethodKey").append(cData(builder.paymentMethod.key));
-
-      if (builder.paymentMethod.paymentMethod && builder.paymentMethod.paymentMethod instanceof CreditCardData) {
-        const card = builder.paymentMethod.paymentMethod;
-        const data = subElement(block1, "PaymentMethodKeyData");
-
-        if (card.expMonth) {
-          subElement(data, "ExpMonth").append(cData(card.expMonth));
-        }
-        if (card.expYear) {
-          subElement(data, "ExpYear").append(cData(card.expYear));
-        }
-        if (card.cvn) {
-          subElement(data, "CVV2").append(cData(card.cvn));
-        }
-      }
+      const manualEntry = subElement(cardData, hasToken ? "TokenData" : "ManualEntry");
+      subElement(manualEntry, hasToken ? "TokenValue" : "CardNbr").append(cData(tokenValue || card.number));
+      subElement(manualEntry, "ExpMonth").append(cData(card.expMonth.toString()));
+      subElement(manualEntry, "ExpYear").append(cData(card.expYear.toString()));
+      subElement(manualEntry, "CVV2").append(cData(card.cvn));
+      subElement(manualEntry, "ReaderPresent").append(cData(card.readerPresent ? "Y" : "N"));
+      subElement(manualEntry, "CardPresent").append(cData(card.cardPresent ? "Y" : "N"));
+      block1.append(cardData);
 
       if (builder.transactionModifier === TransactionModifier.Recurring) {
         const recurring = subElement(block1, "RecurringData");
         subElement(recurring, "ScheduleID").append(cData(builder.scheduleId));
         subElement(recurring, "OneTime").append(cData(builder.oneTimePayment ? "Y" : "N"));
       }
+    } else if (builder.paymentMethod.isTrackData) {
+      const track = (builder.paymentMethod as any) as ITrackData;
+
+      const trackData = subElement(cardData, hasToken ? "TokenData" : "TrackData");
+      if (!hasToken) {
+        trackData.append(cData(track.value));
+        if (builder.paymentMethod.paymentMethodType !== PaymentMethodType.Debit) {
+          trackData.set("method", track.entryMethod === EntryMethod.Swipe ? "swipe" : "proximity");
+          block1.append(cardData);
+        }
+      } else if (tokenValue) {
+        subElement(trackData, "TokenValue").append(cData(tokenValue));
+      }
+    } else if (builder.paymentMethod instanceof GiftCard) {
+      const card = builder.paymentMethod;
+
+      if (builder.currency) {
+        subElement(block1, "Currency").append(cData(builder.currency.toUpperCase()));
+      }
+
+      // if it's replace, add the new card, and change the card data name to be old card data
+      if (builder.transactionType === TransactionType.Replace) {
+        const newCardData = subElement(block1, "NewCardData");
+        subElement(newCardData, builder.replacementCard.valueType).append(cData(builder.replacementCard.value));
+        subElement(newCardData, "PIN").append(cData(builder.replacementCard.pin));
+
+        cardData = element("OldCardData");
+      }
+
+      subElement(cardData, card.valueType).append(cData(card.value));
+      if (card.pin) {
+        subElement(cardData, "PIN").append(cData(card.pin));
+      }
+
+      if (builder.aliasAction !== AliasAction.Create) {
+        block1.append(cardData);
+      }
+    } else if (builder.paymentMethod instanceof ECheck) {
+      const check = builder.paymentMethod;
+
+      subElement(block1, "CheckAction").append(cData("SALE"));
+
+      if (!hasToken) {
+        const accountInfo = subElement(block1, "AccountInfo");
+        subElement(accountInfo, "RoutingNumber").append(cData(check.routingNumber));
+        subElement(accountInfo, "AccountNumber").append(cData(check.accountNumber));
+        subElement(accountInfo, "CheckNumber").append(cData(check.checkNumber));
+        subElement(accountInfo, "MICRData").append(cData(check.micrNumber));
+        subElement(accountInfo, "AccountType").append(cData(check.accountType.toString()));
+      } else if (tokenValue) {
+        subElement(block1, "TokenValue").append(cData(tokenValue));
+      }
+
+      subElement(block1, "DataEntryMode").append(cData(check.entryMode.toString().toUpperCase()));
+      subElement(block1, "CheckType").append(cData(check.checkType.toString()));
+      subElement(block1, "SECCode").append(cData(check.secCode.toString()));
+
+      const verify = subElement(block1, "VerifyInfo");
+      subElement(verify, "CheckVerify").append(cData(check.checkVerify ? "Y" : "N"));
+      subElement(verify, "ACHVerify").append(cData(check.achVerify ? "Y" : "N"));
     }
 
-    if (builder.paymentMethod.isPinProtected) {
-      const pinBlock = ((builder.paymentMethod as object) as IPinProtected).pinBlock;
-      subElement(block1, "PinBlock").append(cData(pinBlock));
+    if (builder.paymentMethod instanceof TransactionReference) {
+      const reference = builder.paymentMethod;
+      if (reference.transactionId) {
+        subElement(block1, "GatewayTxnId").append(cData(reference.transactionId));
+      }
+      if (reference.clientTransactionId) {
+        subElement(block1, "ClientTxnId").append(cData(reference.clientTransactionId));
+      }
+    }
+
+    if (builder.paymentMethod instanceof RecurringPaymentMethod) {
+      const method = builder.paymentMethod;
+
+      if (method.paymentType === "ACH") {
+        if (allowDuplicates) {
+          block1.remove(allowDuplicates);
+        }
+        subElement(block1, "CheckAction").append(cData("SALE"));
+      }
+
+      subElement(block1, "PaymentMethodKey").append(cData(method.key));
+
+      if (method.paymentMethod && method.paymentMethod instanceof CreditCardData) {
+        const card = method.paymentMethod;
+        const data = subElement(block1, "PaymentMethodKeyData");
+        subElement(data, "ExpMonth").append(cData(card.expMonth));
+        subElement(data, "ExpYear").append(cData(card.expYear));
+        subElement(data, "CVV2").append(cData(card.cvn));
+      }
+
+      const recurring = subElement(block1, "RecurringData");
+      subElement(recurring, "ScheduleID").append(cData(builder.scheduleId));
+      subElement(recurring, "OneTime").append(cData(builder.oneTimePayment ? "Y" : "N"));
+    }
+
+    if (builder.paymentMethod.isPinProtected && builder.transactionType !== TransactionType.Reversal) {
+      subElement(block1, "PinBlock").append(cData(((builder.paymentMethod as any) as IPinProtected).pinBlock));
     }
 
     if (builder.paymentMethod.isEncryptable) {
-      const enc = this.hydrateEncryptionData(builder);
+      const encryptionData = ((builder.paymentMethod as any) as IEncryptable).encryptionData;
 
-      if (builder.paymentMethod.paymentMethodType === PaymentMethodType.Debit) {
-        block1.append(enc);
-      } else {
-        cardData.append(enc);
+      if (encryptionData) {
+        const enc = subElement(cardData, "EncryptionData");
+        if (encryptionData.version) {
+          subElement(enc, "Version").append(cData(encryptionData.version));
+        }
+        if (encryptionData.trackNumber) {
+          subElement(enc, "EncryptedTrackNumber").append(cData(encryptionData.trackNumber));
+        }
+        if (encryptionData.ktb) {
+          subElement(enc, "KTB").append(cData(encryptionData.ktb));
+        }
+        if (encryptionData.ksn) {
+          subElement(enc, "KSN").append(cData(encryptionData.ksn));
+        }
       }
     }
 
-    if (builder.paymentMethod.isTokenizable) {
-      subElement(cardData, "TokenRequest")
-        .append(cData(builder.requestMultiUseToken ? "Y" : "N"));
+    if (builder.paymentMethod.isTokenizable && builder.paymentMethod.paymentMethodType !== PaymentMethodType.ACH) {
+      subElement(cardData, "TokenRequest").append(cData("Y"));
     }
 
-    if (cardData.getchildren().length > 0 && builder.aliasAction !== AliasAction.Create) {
-      block1.append(cardData);
+    if (builder.paymentMethod.isBalanceable && builder.balanceInquiryType) {
+      subElement(block1, "BalanceInquiryType").append(cData(builder.balanceInquiryType.toString()));
     }
 
-    // cpc request
-    if (builder.level2Request === true) {
+    if (builder.level2Request) {
       subElement(block1, "CPCReq").append(cData("Y"));
     }
 
-    // details
     if (builder.customerId || builder.description || builder.invoiceNumber) {
-      const addons = subElement(block1, "AdditionalTxnFields");
-      subElement(addons, "CustomerID").append(cData(builder.customerId));
-      subElement(addons, "Description").append(cData(builder.description));
-      subElement(addons, "InvoiceNbr").append(cData(builder.invoiceNumber));
+      const fields = subElement(block1, "AdditionalTxnFields");
+      subElement(fields, "CustomerID").append(cData(builder.customerId));
+      subElement(fields, "Description").append(cData(builder.description));
+      subElement(fields, "InvoiceNbr").append(cData(builder.invoiceNumber));
     }
 
     if (builder.ecommerceInfo) {
-      let channel = "";
-      switch (builder.ecommerceInfo.channel) {
-        case EcommerceChannel.Ecom:
-          channel = "ECOM";
-          break;
-        case EcommerceChannel.Moto:
-          channel = "MOTO";
-          break;
-        default:
+      if (builder.ecommerceInfo.channel) {
+        subElement(block1, "Ecommerce").append(cData(builder.ecommerceInfo.channel.toString()));
       }
-      subElement(block1, "Ecommerce").append(cData(channel));
 
       if (builder.invoiceNumber || builder.ecommerceInfo.shipMonth) {
         const direct = subElement(block1, "DirectMktData");
-        if (builder.invoiceNumber) {
-          subElement(direct, "DirectMktInvoiceNbr").append(cData(builder.invoiceNumber));
-        }
-        if (builder.ecommerceInfo.shipDay) {
-          subElement(direct, "DirectMktShipDay").append(cData(builder.ecommerceInfo.shipDay));
-        }
-        if (builder.ecommerceInfo.shipMonth) {
-          subElement(direct, "DirectMktShipMonth").append(cData(builder.ecommerceInfo.shipMonth));
-        }
+        subElement(direct, "DirectMktInvoiceNbr").append(cData(builder.invoiceNumber));
+        subElement(direct, "DirectMktShipDay").append(cData(builder.ecommerceInfo.shipDay));
+        subElement(direct, "DirectMktShipMonth").append(cData(builder.ecommerceInfo.shipMonth));
       }
 
-      if (builder.ecommerceInfo.cavv) {
-        const secureEcommerce = subElement(block1, "SecureECommerce");
-        subElement(secureEcommerce, "PaymentDataSource").append(cData(builder.ecommerceInfo.paymentDataSource));
-        subElement(secureEcommerce, "TypeOfPaymentData").append(cData(builder.ecommerceInfo.paymentDataType));
-        subElement(secureEcommerce, "PaymentData").append(cData(builder.ecommerceInfo.cavv));
-        subElement(secureEcommerce, "ECommerceIndicator").append(cData(builder.ecommerceInfo.eci));
-        subElement(secureEcommerce, "XID").append(cData(builder.ecommerceInfo.xid));
+      if (builder.ecommerceInfo.cavv || builder.ecommerceInfo.eci || builder.ecommerceInfo.xid) {
+        const secure = subElement(block1, "SecureECommerce");
+        subElement(secure, "PaymentDataSource").append(cData(builder.ecommerceInfo.paymentDataSource));
+        subElement(secure, "TypeOfPaymentData").append(cData(builder.ecommerceInfo.paymentDataType));
+        subElement(secure, "PaymentData").append(cData(builder.ecommerceInfo.cavv));
+        subElement(secure, "ECommerceIndicator").append(cData(builder.ecommerceInfo.eci));
+        subElement(secure, "XID").append(cData(builder.ecommerceInfo.xid));
       }
     }
 
@@ -384,7 +390,7 @@ export class PorticoConnector extends XmlGateway implements IPaymentGateway {
       }
 
       // transaction ID
-      if (builder.paymentMethod) {
+      if (builder.paymentMethod && ((builder.paymentMethod as object) as TransactionReference).transactionId) {
         const ref = (builder.paymentMethod as object) as TransactionReference;
         subElement(root, "GatewayTxnId").append(cData(ref.transactionId));
       }
@@ -616,14 +622,18 @@ export class PorticoConnector extends XmlGateway implements IPaymentGateway {
           return "GiftCardBalance";
         }
         throw new UnsupportedTransactionError();
+      case TransactionType.BenefitWithDrawal:
+        return "EBTCashBenefitWithdrawal";
       case TransactionType.Activate:
-          return "GiftCardActivate";
+        return "GiftCardActivate";
       case TransactionType.Alias:
-          return "GiftCardAlias";
+        return "GiftCardAlias";
+      case TransactionType.Deactivate:
+        return "GiftCardDeactivate";
       case TransactionType.Replace:
-          return "GiftCardReplace";
+        return "GiftCardReplace";
       case TransactionType.Reward:
-          return "GiftCardReward";
+        return "GiftCardReward";
       default:
         break;
     }
@@ -808,13 +818,13 @@ export class PorticoConnector extends XmlGateway implements IPaymentGateway {
   protected hydrateHolder(builder: AuthorizationBuilder, isCheck: boolean): Element {
     const holder = new Element(isCheck ? "ConsumerInfo" : "CardHolderData");
     subElement(holder, isCheck ? "Address1" : "CardHolderAddr")
-      .append(cData(builder.address.streetAddress1));
+      .append(cData(builder.billingAddress.streetAddress1));
     subElement(holder, isCheck ? "City" : "CardHolderCity")
-      .append(cData(builder.address.city));
+      .append(cData(builder.billingAddress.city));
     subElement(holder, isCheck ? "State" : "CardHolderState")
-      .append(cData(builder.address.province));
+      .append(cData(builder.billingAddress.province));
     subElement(holder, isCheck ? "Zip" : "CardHolderZip")
-      .append(cData(builder.address.code));
+      .append(cData(builder.billingAddress.postalCode));
 
     if (isCheck) {
       const check = builder.paymentMethod as ECheck;
@@ -981,6 +991,8 @@ export class PorticoConnector extends XmlGateway implements IPaymentGateway {
     result.status = root.findtext(".//Status");
     result.transactionDate = new Date(root.findtext(".//TxnUtcDT"));
     result.transactionId = root.findtext(".//GatewayTxnId");
+    result.convenienceAmt = root.findtext(".//ConvenienceAmtInfo");
+    result.shippingAmt = root.findtext(".//ShippingAmtInfo");
 
     return result;
   }

@@ -299,7 +299,7 @@ export class AuthorizationBuilder
       this.paymentMethod = (new TransactionReference() as IPaymentMethod) as PaymentMethod;
     }
 
-    // ((this.paymentMethod as IPaymentMethod) as TransactionReference).clientTransactionId = clientTransactionId;
+    ((this.paymentMethod as IPaymentMethod) as TransactionReference).clientTransactionId = clientTransactionId;
     return this;
   }
 

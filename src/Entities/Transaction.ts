@@ -2,6 +2,7 @@ import {
   AuthorizationBuilder,
   GiftCard,
   ManagementBuilder,
+  PaymentMethodType,
   TransactionModifier,
   TransactionReference,
   TransactionType,
@@ -28,9 +29,25 @@ export class Transaction {
   public token: string;
   public giftCard: GiftCard;
   public clientTransactionId: string;
+  public timestamp: string;
 
   get transactionId(): string {
     return this.transactionReference.transactionId;
+  }
+
+  public static fromId(transactionId: string, orderId?: string | PaymentMethodType, paymentMethodType = PaymentMethodType.Credit) {
+    const transaction = new Transaction();
+    transaction.transactionReference = new TransactionReference();
+    transaction.transactionReference.transactionId = transactionId;
+
+    if (orderId && (typeof orderId === "string" || Object.prototype.toString.call(orderId) === "[object String]")) {
+      transaction.transactionReference.orderId = orderId as string;
+    } else if (orderId) {
+      paymentMethodType = orderId as PaymentMethodType;
+    }
+
+    transaction.transactionReference.paymentMethodType = paymentMethodType;
+    return transaction;
   }
 
   /**

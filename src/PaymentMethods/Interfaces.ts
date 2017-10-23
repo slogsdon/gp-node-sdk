@@ -1,5 +1,6 @@
 import {
   AuthorizationBuilder,
+  CvnPresenceIndicator,
   EncryptionData,
   EntryMethod,
   InquiryType,
@@ -17,6 +18,13 @@ export interface IBalanceable {
 
 export interface ICardData {
   number: string;
+  expMonth: string;
+  expYear: string;
+  cvn: string;
+  cvnPresenceIndicator: CvnPresenceIndicator;
+  cardHolderName: string;
+  cardPresent: boolean;
+  readerPresent: boolean;
 }
 
 export interface IChargable {

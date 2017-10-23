@@ -3,6 +3,7 @@ export class TransactionSummary {
   public authCode: string;
   public authorizedAmount: string;
   public clientTransactionId: string;
+  public convenienceAmt: string;
   public deviceId: string;
   public issuerResponseCode: string;
   public issuerResponseMessage: string;
@@ -13,6 +14,7 @@ export class TransactionSummary {
   public referenceNumber: string;
   public serviceName: string;
   public settlementAmount: string;
+  public shippingAmt: string;
   public status: string;
   public transactionDate: Date;
   public transactionId: string;

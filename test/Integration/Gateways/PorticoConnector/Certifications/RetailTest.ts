@@ -1780,9 +1780,9 @@ test("066 - debit sale mastercard swipe", (t) => {
       t.is(response.responseCode, "00");
       return response;
     })
-    .then((response) => {
+    .then((_response) => {
       // test case 71
-      return response.reverse(14.02)
+      return card.reverse(14.02)
         // .withAllowDuplicates(true)
         .execute()
         .then((reverseResponse) => {
@@ -1858,9 +1858,9 @@ test("069 - debit sale visa partial approval", (t) => {
       t.is(response.authorizedAmount, "33.00");
       return response;
     })
-    .then((response) => {
+    .then((_response) => {
       // test case 72
-      return response.reverse(33.00)
+      return card.reverse(33.00)
         // .withAllowDuplicates(true)
         .execute()
         .then((reverseResponse) => {
@@ -1901,8 +1901,8 @@ test("070a - debit return visa swipe", (t) => {
       t.is(response.responseCode, "00");
       return response;
     })
-    .then((response) => {
-      return response.reverse(14.08)
+    .then((_response) => {
+      return card.reverse(14.08)
         // .withAllowDuplicates(true)
         .execute()
         .then((reverseResponse) => {

@@ -29,4 +29,20 @@ export class StringUtils {
     }
     return uuid;
   }
+
+  public static btoa(t: string) {
+    if (Buffer.from) {
+      return Buffer.from(t, "ascii").toString("base64");
+    }
+
+    return (new Buffer(t, "ascii")).toString("base64");
+  }
+
+  public static atob(t: string) {
+    if (Buffer.from) {
+      return Buffer.from(t, "base64").toString("ascii");
+    }
+
+    return (new Buffer(t, "base64")).toString("ascii");
+  }
 }

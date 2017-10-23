@@ -1,6 +1,6 @@
 export enum AccountType {
-  Checking,
-  Savings,
+  Checking = "CHECKING",
+  Savings = "SAVINGS",
 }
 
 export enum AddressType {
@@ -9,15 +9,15 @@ export enum AddressType {
 }
 
 export enum AliasAction {
-  Create,
-  Add,
-  Delete,
+  Create = "CREATE",
+  Add = "ADD",
+  Delete = "DELETE",
 }
 
 export enum CheckType {
-  Personal,
-  Business,
-  Payroll,
+  Personal = "PERSONAL",
+  Business = "BUSINESS",
+  Payroll = "PAYROLL",
 }
 
 export enum CurrencyType {
@@ -33,21 +33,21 @@ export enum CvnPresenceIndicator {
 }
 
 export enum EcommerceChannel {
-  Ecom,
-  Moto,
+  Ecom = "ECOM",
+  Moto = "MOTO",
 }
 
 export enum EmailReceipt {
-  Never,
-  All,
-  Approvals,
-  Declines,
+  Never = "Never",
+  All = "All",
+  Approvals = "Approvals",
+  Declines = "Declines",
 }
 
 export enum EntryMethod {
-  Swipe,
-  Proximity,
-  Manual,
+  Swipe = "SWIPE",
+  Proximity = "PROXIMITY",
+  Manual = "MANUAL",
 }
 
 export enum ExceptionCodes {
@@ -100,10 +100,10 @@ export enum ExceptionCodes {
 }
 
 export enum FraudFilterMode {
-  None,
-  Off,
-  Active,
-  Passive,
+  None = "NONE",
+  Off = "OFF",
+  Active = "ACTIVE",
+  Passive = "PASSIVE",
 }
 
 export enum GiftEntryMethod {
@@ -113,15 +113,15 @@ export enum GiftEntryMethod {
 }
 
 export enum HppVersion {
-  VERSION_1 = "1",
-  VERSION_2 = "2",
+  Version1 = "1",
+  Version2 = "2",
 }
 
 export enum InquiryType {
-  Standard,
-  Foodstamp,
-  Cash,
-  Points,
+  Standard = "STANDARD",
+  Foodstamp = "FOODSTAMP",
+  Cash = "CASH",
+  Points = "POINTS",
 }
 
 export enum PaymentMethodType {
@@ -173,23 +173,23 @@ export enum ReportType {
 }
 
 export enum ScheduleFrequency {
-  Weekly,
-  BiWeekly,
-  BiMonthly,
-  SemiMonthly,
-  Monthly,
-  Quarterly,
-  SemiAnnually,
-  Annually,
+  Weekly = "Weekly",
+  BiWeekly = "Bi-Weekly",
+  BiMonthly = "Bi-Monthly",
+  SemiMonthly = "Semi-Monthly",
+  Monthly = "Monthly",
+  Quarterly = "Quarterly",
+  SemiAnnually = "Semi-Annually",
+  Annually = "Annually",
 }
 
 export enum SecCode {
-  PPD,
-  CCD,
-  POP,
-  WEB,
-  TEL,
-  EBronze,
+  PPD = "PPD",
+  CCD = "CCD",
+  POP = "POP",
+  WEB = "WEB",
+  TEL = "TEL",
+  EBronze = "EBronze",
 }
 
 export enum TaxType {

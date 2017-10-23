@@ -152,5 +152,5 @@ test("check sale no address", (t) => {
   }, ArgumentError);
 
   t.is(error.name, "ArgumentError");
-  t.true(-1 !== error.message.indexOf("address cannot be null"));
+  t.true(-1 !== error.message.indexOf("billingAddress cannot be null"));
 });

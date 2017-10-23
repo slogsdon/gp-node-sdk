@@ -28,7 +28,7 @@ export class RecurringEntity<TResult extends IRecurringEntity> implements IRecur
   /// <exception cref="UnsupportedTransactionError">
   /// Thrown when gateway does not support retrieving recurring records.
   /// </exception>
-  public static Find<TResult extends IRecurringEntity>(id: string): Promise<TResult | undefined> {
+  public static find<TResult extends IRecurringEntity>(id: string): Promise<TResult | undefined> {
     const client = ServicesContainer.instance().getRecurringClient();
     if (!client.supportsRetrieval) {
       throw new UnsupportedTransactionError();

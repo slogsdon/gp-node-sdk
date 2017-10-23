@@ -20,7 +20,7 @@ export class TestChecks {
     check.accountType = accountType;
     check.secCode = secCode;
     check.entryMode = EntryMethod.Manual;
-    check.checkName = "John Doe";
+    check.checkHolderName = "John Doe";
     check.driversLicenseNumber = "09876543210";
     check.driversLicenseState = "TX";
     check.phoneNumber = "8003214567";

@@ -17,13 +17,13 @@ export class ManagementBuilder
     if (this.paymentMethod instanceof TransactionReference) {
       return this.paymentMethod.authCode;
     }
-    return null;
+    return undefined;
   }
   public get clientTransactionId() {
     if (this.paymentMethod instanceof TransactionReference) {
       return this.paymentMethod.clientTransactionId;
     }
-    return null;
+    return undefined;
   }
   public currency: string;
   public description: string;
@@ -32,7 +32,7 @@ export class ManagementBuilder
     if (this.paymentMethod instanceof TransactionReference) {
       return this.paymentMethod.orderId;
     }
-    return null;
+    return undefined;
   }
   public poNumber: string;
   public reasonCode?: ReasonCode;
@@ -42,7 +42,7 @@ export class ManagementBuilder
     if (this.paymentMethod instanceof TransactionReference) {
       return this.paymentMethod.transactionId;
     }
-    return null;
+    return undefined;
   }
 
   public constructor(type: number) {
@@ -163,6 +163,7 @@ export class ManagementBuilder
    * @returns ManagementBuilder
    */
   public withPoNumber(poNumber?: string) {
+    this.transactionModifier = TransactionModifier.LevelII;
     if (poNumber !== undefined) {
       this.poNumber = poNumber;
     }
@@ -192,6 +193,7 @@ export class ManagementBuilder
    * @returns ManagementBuilder
    */
   public withTaxAmount(amount?: string | number) {
+    this.transactionModifier = TransactionModifier.LevelII;
     if (amount !== undefined) {
       this.taxAmount = amount;
     }
@@ -208,6 +210,7 @@ export class ManagementBuilder
    * @returns ManagementBuilder
    */
   public withTaxType(type?: TaxType) {
+    this.transactionModifier = TransactionModifier.LevelII;
     if (type !== undefined) {
       this.taxType = type;
     }

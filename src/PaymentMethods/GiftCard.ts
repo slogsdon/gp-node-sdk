@@ -152,7 +152,7 @@ export class GiftCard extends PaymentMethod implements
    * @return AuthorizationBuilder
    */
   public deactivate() {
-    return new AuthorizationBuilder(TransactionType.Decline, this);
+    return new AuthorizationBuilder(TransactionType.Deactivate, this);
   }
 
   /**

@@ -42,8 +42,9 @@
     "webpack": "^3.6.0"
   },
   "ava": {
-    "concurrency": 4,
-    "timeout": "1m",
+    "concurrency": 1,
+    "timeout": "5m",
+    "failFast": false,
     "files": [
       "lib/test/**/*Test.js"
     ],

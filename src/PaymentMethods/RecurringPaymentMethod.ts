@@ -45,7 +45,7 @@ export class RecurringPaymentMethod extends RecurringEntity<RecurringPaymentMeth
         this.key = paymentId;
       }
     } else if (customerIdOrPaymentMethod) {
-      this.paymentMethod = customerIdOrPaymentMethod;
+      this._paymentMethod = customerIdOrPaymentMethod;
     }
   }
 

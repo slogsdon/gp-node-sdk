@@ -34,6 +34,7 @@ export class ServicesContainer {
       gateway.refundPassword = config.refundPassword;
       gateway.timeout = config.timeout;
       gateway.serviceUrl = config.serviceUrl;
+      gateway.hostedPaymentConfig = config.hostedPaymentConfig;
       ServicesContainer._instance = new ServicesContainer(gateway, gateway);
     } else {
       const gateway = new PorticoConnector();

@@ -62,6 +62,12 @@ export abstract class EBT extends PaymentMethod implements
       .withAmount(0);
   }
 
+  public benefitWithdrawal(amount?: number | string) {
+    return (new AuthorizationBuilder(TransactionType.BenefitWithDrawal, this))
+      .withAmount(amount)
+      .withCashBack(0);
+  }
+
   /**
    * Refunds the payment method
    *

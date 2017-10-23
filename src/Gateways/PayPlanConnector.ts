@@ -1,14 +1,23 @@
 import {
+  AccountType,
   Address,
+  CheckType,
   Credit,
   Customer,
-  EmailReceipt,
+  ECheck,
+  ICardData,
+  IEncryptable,
+  IPaymentMethod,
   IRecurringEntity,
   IRecurringService,
+  ITokenizable,
+  ITrackData,
+  PaymentMethod,
   PaymentSchedule,
   RecurringBuilder,
   RecurringPaymentMethod,
   Schedule,
+  SecCode,
   StringUtils,
   TransactionType,
   UnsupportedTransactionError,
@@ -111,12 +120,171 @@ export class PayPlanConnector extends RestGateway implements IRecurringService {
     return request;
   }
 
-  protected buildPaymentMethod(request: any, _entity: RecurringPaymentMethod, _transactionType: TransactionType) {
+  protected buildPaymentMethod(request: any, entity: RecurringPaymentMethod, transactionType: TransactionType) {
+    if (entity) {
+      request.preferredPayment = entity.preferredPayment;
+      request.paymentMethodIdentifier = entity.id;
+      request.customerKey = entity.customerKey;
+      request.nameOnAccount = entity.nameOnAccount;
+      request = this.buildAddress(request, entity.address);
+
+      if (transactionType === TransactionType.Create) {
+        const {hasToken, tokenValue} = this.hasToken(entity.paymentMethod);
+        const paymentInfo: any = {};
+        if ((entity.paymentMethod as PaymentMethod).isCardData) {
+          const method = (entity.paymentMethod as any) as ICardData;
+          paymentInfo.type = hasToken ? "SINGLEUSETOKEN" : null;
+          paymentInfo[hasToken ? "token" : "number"] = hasToken ? tokenValue : method.number;
+          paymentInfo.expMon = method.expMonth;
+          paymentInfo.expYear = method.expYear;
+          request.cardVerificationValue = method.cvn;
+          request[hasToken ? "alternateIdentity" : "card"] = paymentInfo;
+        } else if ((entity.paymentMethod as PaymentMethod).isTrackData) {
+          const method = (entity.paymentMethod as any) as ITrackData;
+          paymentInfo.data = method.value;
+          paymentInfo.dataEntryMode = method.entryMethod.toString().toUpperCase();
+          request.track = paymentInfo;
+        } else if (entity.paymentMethod instanceof ECheck) {
+          const check = entity.paymentMethod;
+          request.achType = this.prepareAccountType(check.accountType);
+          request.accountType = this.prepareCheckType(check.checkType);
+          request.telephoneIndicator = (check.secCode === SecCode.CCD || check.SecCode === SecCode.PPD) ? false : true;
+          request.routingNumber = check.routingNumber;
+          request.accountNumber = check.accountNumber;
+          request.accountHolderYob = check.birthYear.toString();
+          request.driversLicenseState = check.driversLicenseState;
+          request.driversLicenseNumber = check.driversLicenseNumber;
+          request.socialSecurityNumberLast4 = check.ssnLast4;
+          delete request.country;
+        }
+
+        if ((entity.paymentMethod as PaymentMethod).isEncryptable) {
+          const enc = ((entity.paymentMethod as any) as IEncryptable).encryptionData;
+          if (enc) {
+            paymentInfo.trackNumber = enc.trackNumber;
+            paymentInfo.key = enc.ktb;
+            paymentInfo.encryptionType = "E3";
+          }
+        }
+      } else { // edit fields
+        delete request.customerKey;
+        request.paymentStatus = entity.status;
+        request.cpcTaxType = entity.taxType;
+        request.expirationDate = entity.expirationDate;
+      }
+    }
+
     return request;
   }
 
-  protected buildSchedule(request: any, _entity: Schedule, _transactionType: TransactionType) {
+  protected buildSchedule(request: any, entity: Schedule, transactionType: TransactionType) {
+    const mapDuration = () => {
+      if (entity.numberOfPayments) {
+        return "Limited Number";
+      } else if (entity.endDate) {
+        return "End Date";
+      } else {
+        return "Ongoing";
+      }
+    };
+
+    const mapProcessingDate = () => {
+      const frequencies = [
+        "Monthly",
+        "Bi-Monthly",
+        "Quarterly",
+        "Semi-Annually",
+      ];
+      if (entity.frequency && frequencies.indexOf(entity.frequency.toString()) !== -1) {
+        switch (entity.paymentSchedule) {
+          case PaymentSchedule.FirstDayOfTheMonth:
+            return "First";
+          case PaymentSchedule.LastDayOfTheMonth:
+            return "Last";
+          default:
+            const day = entity.startDate.getUTCDate();
+            if (day > 28) {
+              return "Last";
+            }
+            return day.toString();
+        }
+      } else if (entity.frequency && entity.frequency.toString() === "Semi-Monthly") {
+        if (entity.paymentSchedule === PaymentSchedule.LastDayOfTheMonth) {
+          return "Last";
+        }
+        return "First";
+      }
+
+      return null;
+    };
+
+    if (entity) {
+      request.scheduleIdentifier = entity.id;
+      request.scheduleName = entity.name;
+      request.scheduleStatus = entity.status;
+      request.paymentMethodKey = entity.paymentKey;
+
+      request = this.buildAmount(request, "subtotalAmount", entity.amount, entity.currency, transactionType);
+      request = this.buildAmount(request, "taxAmount", entity.taxAmount, entity.currency, transactionType);
+
+      request.deviceId = entity.deviceId;
+      request.processingDateInfo = mapProcessingDate();
+      request = this.buildDate(request, "endDate", entity.endDate, (transactionType === TransactionType.Edit));
+      request.reprocessingCount = entity.reprocessingCount || 3;
+      if (entity.emailReceipt) {
+        request.emailReceipt = entity.emailReceipt.toString();
+      }
+      request.emailAdvanceNotice = entity.emailNotification ? "Yes" : "No";
+      // debt repay ind
+      request.invoiceNbr = entity.invoiceNumber;
+      request.poNumber = entity.poNumber;
+      request.description = entity.description;
+      request.numberOfPayments = entity.numberOfPayments;
+
+      if (transactionType === TransactionType.Create) {
+        request.customerKey = entity.customerKey;
+        request = this.buildDate(request, "startDate", entity.startDate);
+        if (entity.frequency) {
+          request.frequency = entity.frequency.toString();
+        }
+        request.duration = mapDuration();
+      } else { // edit Fields
+        if (!entity.hasStarted) {
+          request = this.buildDate(request, "startDate", entity.startDate);
+          if (entity.frequency) {
+            request.frequency = entity.frequency.toString();
+          }
+          request.duration = mapDuration();
+        } else {
+          request = this.buildDate(request, "cancellationDate", entity.cancellationDate);
+          request = this.buildDate(request, "nextProcressingDate", entity.nextProcessingDate);
+        }
+      }
+    }
+
     return request;
+  }
+
+  protected prepareAccountType(type: AccountType) {
+    switch (type) {
+      case AccountType.Savings:
+        return "Savings";
+      case AccountType.Checking:
+      default:
+        return "Checking";
+    }
+  }
+
+  protected prepareCheckType(type: CheckType) {
+    switch (type) {
+      case CheckType.Business:
+        return "Business";
+      case CheckType.Payroll:
+        return "Payroll";
+      case CheckType.Personal:
+      default:
+        return "Personal";
+    }
   }
 
   protected buildAddress(request: any, address: Address) {
@@ -135,7 +303,7 @@ export class PayPlanConnector extends RestGateway implements IRecurringService {
   protected buildAmount(request: any, name: string, amount: number | string, currency: string, transactionType: TransactionType) {
     if (amount) {
       request[name] = {
-        value: amount,
+        value: parseFloat(amount.toString()) * 100,
       } as any;
       if (transactionType === TransactionType.Create) {
         request[name].currency = currency;
@@ -194,10 +362,10 @@ export class PayPlanConnector extends RestGateway implements IRecurringService {
         paymentMethod = builder.entity.paymentMethod instanceof Credit ? "CreditCard" : "ACH";
       } else if (builder.transactionType === TransactionType.Edit) {
         paymentMethod = builder.entity.paymentType.replace(" ", "");
-
-        return (builder.transactionType === TransactionType.Search ? "searchPaymentMethods" : "paymentMethods")
-          + paymentMethod + suffix;
       }
+
+      return (builder.transactionType === TransactionType.Search ? "searchPaymentMethods" : "paymentMethods")
+        + paymentMethod + suffix;
     }
 
     if (builder.entity instanceof Schedule) {
@@ -278,7 +446,7 @@ export class PayPlanConnector extends RestGateway implements IRecurringService {
     schedule.deviceId = response.deviceId;
     schedule.startDate = new Date(response.startDate);
     schedule.paymentSchedule = ((value: string) => {
-      switch (value.toString()) {
+      switch (value) {
         case "Last":
           return PaymentSchedule.LastDayOfTheMonth;
         case "First":
@@ -290,17 +458,12 @@ export class PayPlanConnector extends RestGateway implements IRecurringService {
     schedule.frequency = response.frequency;
     schedule.endDate = new Date(response.endDate);
     schedule.reprocessingCount = response.reprocessingCount;
-    schedule.emailReceipt = ((value: string) => {
-      switch (value.toString()) {
-        default:
-          return EmailReceipt.Never;
-      }
-    })(response.emailReceipt);
+    schedule.emailReceipt = response.emailReceipt;
     schedule.emailNotification = ((value: string) => {
       if (!value) {
         return false;
       }
-      return value.toString() === "No" ? false : true;
+      return value === "No" ? false : true;
     })(response.emailNotification);
     // dept repay indicator
     schedule.invoiceNumber = response.invoiceNbr;
@@ -318,5 +481,21 @@ export class PayPlanConnector extends RestGateway implements IRecurringService {
     // lastChangeDate
     schedule.hasStarted = response.scheduleStarted as boolean;
     return schedule;
+  }
+
+  protected hasToken(paymentMethod: IPaymentMethod) {
+    const tokenizable = (paymentMethod as any) as ITokenizable;
+
+    if (tokenizable.token) {
+      return {
+        hasToken: true,
+        tokenValue: tokenizable.token,
+      };
+    }
+
+    return {
+      hasToken: false,
+      tokenValue: "",
+    };
   }
 }

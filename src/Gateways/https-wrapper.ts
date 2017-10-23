@@ -24,7 +24,7 @@ export const request = (data?: string, options?: https.RequestOptions): Promise<
       res.on("error", reject);
     });
     req.on("socket", (socket: Socket) => {
-      socket.setTimeout(this.timeout || 10000);
+      socket.setTimeout(this.timeout || 100000);
       socket.on("timeout", () => {
         req.abort();
         reject(new ApiError("Socket timeout occurred."));

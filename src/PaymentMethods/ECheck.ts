@@ -15,6 +15,7 @@ export class ECheck extends PaymentMethod implements IChargable {
   public accountType: AccountType;
   public achVerify: boolean;
   public birthYear: string;
+  public checkHolderName: string;
   public checkName: string;
   public checkNumber: string;
   public checkType: CheckType;

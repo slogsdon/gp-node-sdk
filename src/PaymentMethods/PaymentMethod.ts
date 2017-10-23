@@ -71,7 +71,8 @@ export abstract class PaymentMethod implements IPaymentMethod {
   get isTrackData() {
     return ((this as object) as ITrackData).value !== undefined
       && (((this as object) as ITrackData).entryMethod !== undefined
-        || ((this as object) as IPinProtected).pinBlock !== undefined);
+        || ((this as object) as IPinProtected).pinBlock !== undefined
+        || ((this as object) as IEncryptable).encryptionData !== undefined);
   }
 
   get isVerifyable() {

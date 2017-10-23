@@ -1,6 +1,6 @@
 import {
-  ArgumentError,
   BaseBuilder,
+  BuilderError,
   TransactionBuilder,
 } from "../../";
 import { ValidationTarget } from "./ValidationTarget";
@@ -35,8 +35,11 @@ export class Validations {
       this.rules[enumName].forEach((rules, iKey) => {
         let value: number = builder[enumName];
 
-        if ((value === undefined || value === null) && builder instanceof TransactionBuilder) {
-          value = (builder as TransactionBuilder<T>).paymentMethod[enumName];
+        if ((value === undefined || value === null)
+          && builder instanceof TransactionBuilder
+          && builder.paymentMethod
+        ) {
+          value = builder.paymentMethod[enumName];
           if (value === undefined || value === null) {
             return;
           }
@@ -59,7 +62,7 @@ export class Validations {
           }
 
           if (!validation.clause.callback(builder)) {
-            throw new ArgumentError(validation.clause.message);
+            throw new BuilderError(validation.clause.message);
           }
         }
       });
