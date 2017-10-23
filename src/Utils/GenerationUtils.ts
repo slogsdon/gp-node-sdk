@@ -1,13 +1,15 @@
-import * as uuid from "uuid";
-import * as sha1 from "sha1";
+import { hex_sha1 as sha1 } from "./Sha1";
 
 import { StringUtils } from "../";
 
 export class GenerationUtils {
-  public static generateHash(toHash: string, secret: string): string {
-    const toHashFirstPass = sha1(toHash).toString();
+  public static generateHash(toHash: string, secret?: string): string {
+    const toHashFirstPass = sha1(toHash);
+    if (!secret) {
+      return toHashFirstPass;
+    }
     const toHashSecondPass = `${toHashFirstPass}.${secret}`;
-    return sha1(toHashSecondPass).toString();
+    return sha1(toHashSecondPass);
   }
 
   public static generateTimestamp(): string {
@@ -21,8 +23,8 @@ export class GenerationUtils {
   }
 
   public static generateOrderId(): string {
-    const id = uuid.genV4();
-    return Buffer.from(id.toString(), "ascii")
+    const id = StringUtils.uuid();
+    return Buffer.from(id, "ascii")
       .toString("base64")
       .replace("=", "")
       .replace("+", "-")

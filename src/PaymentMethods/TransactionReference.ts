@@ -1,11 +1,16 @@
-import { PaymentMethod } from "./PaymentMethod";
+import { PaymentMethodType } from "../";
+import { IPaymentMethod } from "./Interfaces";
 
-export class TransactionReference extends PaymentMethod {
+export class TransactionReference implements IPaymentMethod {
   public authCode: string;
+  public orderId: string;
   public transactionId: string;
+  public paymentMethodType: PaymentMethodType;
+  public clientTransactionId: string;
 
-  public constructor(transactionId: string) {
-    super();
-    this.transactionId = transactionId;
+  public constructor(transactionId?: string) {
+    if (transactionId) {
+      this.transactionId = transactionId;
+    }
   }
 }

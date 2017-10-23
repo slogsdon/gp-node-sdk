@@ -10,7 +10,11 @@
     "skipLibCheck": true,
     "strictNullChecks": true,
     "declaration": true,
-    "outDir": "./lib"
+    "outDir": "./lib",
+    "baseUrl": ".",
+    "paths": {
+      "N/*": ["node_modules/@hitc/netsuite-types/N/*"]
+    }
   },
   "include": [
     "src/**/*",
@@ -18,6 +22,7 @@
   ],
   "exclude": [
     "node_modules",
-    "lib"
+    "lib",
+    "netsuite"
   ]
 }
