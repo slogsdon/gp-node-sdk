@@ -1,12 +1,12 @@
 {
-  "name": "heartland-nodejs",
-  "version": "3.0.0-dev",
-  "description": "Heartland Payment Systems SDK for NodeJS",
+  "name": "globalpayments-api",
+  "version": "1.0.0-dev",
+  "description": "Global Payments SDK for NodeJS",
   "author": "Heartland Payment Systems",
   "license": "GPL-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hps/heartland-nodejs.git"
+    "url": "https://github.com/globalpayments/node-sdk.git"
   },
   "main": "./lib/src/index.js",
   "typings": "./lib/src/index",
