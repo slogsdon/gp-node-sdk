@@ -14,7 +14,7 @@
     "build": "tsc",
     "build:netsuite": "webpack --config config/webpack.netsuite.js && node bin/netsuite-post.js",
     "build:clean": "rimraf lib",
-    "docs": "typedoc --mode file --name \"GlobalPayments.Api\" --project tsconfig.json --exclude */test/* --out docs",
+    "docs": "typedoc --mode file --name \"GlobalPayments.Api\" --project tsconfig.json --out docs src",
     "prepublish": "npm-run-all build",
     "pretest": "npm-run-all build:clean test:lint build",
     "test": "ava",
@@ -37,7 +37,7 @@
     "promise-polyfill": "^6.0.2",
     "rimraf": "^2.6.2",
     "tslint": "^4.5.1",
-    "typedoc": "^0.7.1",
+    "typedoc": "^0.9.0",
     "typescript": "^2.5.2",
     "webpack": "^3.6.0"
   },
