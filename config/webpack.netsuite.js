@@ -11,7 +11,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      './https-wrapper$': resolve('../netsuite/https.js'),
+      "./https-wrapper$": resolve("../netsuite/https.js"),
+      "./Errors$": resolve("../netsuite/errors.ts"),
     },
     extensions: [".ts", ".js"],
     plugins: [
