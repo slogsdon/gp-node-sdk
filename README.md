@@ -35,21 +35,17 @@ Supported Gateway Calls:
 * reportOpenAuths
 * reportTxnDetail
 
-
-|  <a href="#data-security"><b>Data Security</b></a> | <a href="#documentation-and-examples"><b>API Reference</b></a>  |  <a href="#testing--certification"><b>Testing & <br>Certification</b></a> | <a href="#api-keys"><b>API Keys</b></a> | Links |
-|:--:|:--:|:--:|:--:|:--|
-| [![](http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-icon-secure)](#data-security)  | [![](http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-icon-resources)](#documentation-and-examples)  | [![](http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-icon-tools)](#testing--certification) | [![](http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-icon-keys)](#api-keys) | <a href="http://developer.heartlandpaymentsystems.com/Account/Register" target="_blank">Register an Account</a> <br> <a href="http://developer.heartlandpaymentsystems.com/Partnership" target="_blank">Partner with Heartland</a> <br>  |
-
+|                              <a href="#data-security"><b>Data Security</b></a>                               |                                <a href="#documentation-and-examples"><b>API Reference</b></a>                                |                       <a href="#testing--certification"><b>Testing & <br>Certification</b></a>                       |                                <a href="#api-keys"><b>API Keys</b></a>                                | Links                                                                                                                                                                                                                                   |
+| :----------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [![](http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-icon-secure)](#data-security) | [![](http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-icon-resources)](#documentation-and-examples) | [![](http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-icon-tools)](#testing--certification) | [![](http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-icon-keys)](#api-keys) | <a href="http://developer.heartlandpaymentsystems.com/Account/Register" target="_blank">Register an Account</a> <br> <a href="http://developer.heartlandpaymentsystems.com/Partnership" target="_blank">Partner with Heartland</a> <br> |
 
 #### Developer Support
 
 You are not alone! If you have any questions while you are working through your development process, please feel free to <a href="https://developer.heartlandpaymentsystems.com/Support" target="_blank">reach out to our team for assistance</a>!
 
-
 ## Requirements
 
-- NodeJS
-
+* NodeJS
 
 ## Installation
 
@@ -58,7 +54,6 @@ The SDK can be installed using [npm](https://www.npmjs.com/). To install simply 
 ```
 npm install heartland-nodejs
 ```
-
 
 ## API Keys
 
@@ -74,39 +69,35 @@ You will use your public key when implementing card tokenization and your privat
 
 Note: Multi-Use tokenization is not enabled by default when creating an account. You can contact <a href="mailto:SecureSubmitCert@e-hps.com?subject=Multi-use Token Request&body=Please enable multi-use tokens on my developer portal account which was signed up under the following email : ">Heartland's Specialty Products Team</a> to have this enabled. This is also true if you wish to use Gift & Loyalty, ACH, and Debit.
 
-
-
 ## Data Security
 
  <img src="http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-icon-secure" align="right"/>
  If your app stores, processes, or transmits cardholder data in cleartext then it is in-scope for <a href="https://www.pcisecuritystandards.org/document_library?category=padss" target="_blank">PA-DSS</a>. If your app is hosted, or the data in question otherwise comes into your organization, then the app and your entire company are in-scope for <a href="https://www.pcisecuritystandards.org/document_library?document=pci_dss" target="_blank">PCI DSS</a> (either as a merchant or a service provider). Heartland offers a suite of solutions to help keep integrators' applications and/or environments shielded from cardholder data, whether it motion or at rest.
 
- * **Secure Submit** for eCommerce web or mobile applications ("card-not-present"), which leverages single-use tokenization to prevent card data from passing through the merchant or integrator's webserver. It only requires a simple JavaScript inclusion and provides two options for payment field hosting:
+* **Secure Submit** for eCommerce web or mobile applications ("card-not-present"), which leverages single-use tokenization to prevent card data from passing through the merchant or integrator's webserver. It only requires a simple JavaScript inclusion and provides two options for payment field hosting:
 
-  * **Self-Hosted Fields** - this approach relies upon the standard, appropriately named, HTML form controls on the integrator's served web page.
+* **Self-Hosted Fields** - this approach relies upon the standard, appropriately named, HTML form controls on the integrator's served web page.
 
-  - **Heartland Hosted Fields** - this approach combines the Secure Submit service with iframes to handle presentation of the form fields and collection of sensitive data on Heartland servers. Since PCI version 3.1 the PCI Council and many QSAs advocate the iframe-based approach as enabling a merchant to more readily achieve PCI compliance via the simplified <a href="https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP.pdf" target="_blank">SAQ A-EP</a> form. Check out the CoalFire's [whitepaper](http://developer.heartlandpaymentsystems.com/Resource/Download/coalfire-white-paper) for more information.
+- **Heartland Hosted Fields** - this approach combines the Secure Submit service with iframes to handle presentation of the form fields and collection of sensitive data on Heartland servers. Since PCI version 3.1 the PCI Council and many QSAs advocate the iframe-based approach as enabling a merchant to more readily achieve PCI compliance via the simplified <a href="https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP.pdf" target="_blank">SAQ A-EP</a> form. Check out the CoalFire's [whitepaper](http://developer.heartlandpaymentsystems.com/Resource/Download/coalfire-white-paper) for more information.
 
- - **Heartland Secure** for card-present retailers, hospitality, and other "POS" applications, comprises three distinct security technologies working in concert:
-  - **End-to-End Encryption** (E3) - combines symmetric and asymmetric cryptography to form an "Identity-Based Encryption" methodology which keeps cardholder data encrypted from the moment of the swipe.
+- **Heartland Secure** for card-present retailers, hospitality, and other "POS" applications, comprises three distinct security technologies working in concert:
+- **End-to-End Encryption** (E3) - combines symmetric and asymmetric cryptography to form an "Identity-Based Encryption" methodology which keeps cardholder data encrypted from the moment of the swipe.
 
-  - **Tokenization** - replaces sensitive data values with non-sensitive representations which may be stored for recurring billing, future orders, etc.
+- **Tokenization** - replaces sensitive data values with non-sensitive representations which may be stored for recurring billing, future orders, etc.
 
-  - **EMV** - though less about data security and more about fraud prevention, EMV or chip card technology guarantees the authenticity of the payment card and is thus an important concern for retailers.
+- **EMV** - though less about data security and more about fraud prevention, EMV or chip card technology guarantees the authenticity of the payment card and is thus an important concern for retailers.
 
- Depending on your (or your customers') payment acceptance environment, you may need to support one or more of these technologies in addition to this SDK. This SDK also supports the ability to submit cleartext card numbers as input, but any developer who does so will be expected to demonstrate compliance with PA-DSS. Likewise any third party integrator who is planning on handling cleartext card data on behalf of other merchants will be expected to demonstrate their PCI DSS compliance as a Service Provider prior to completing certification with Heartland.
+Depending on your (or your customers') payment acceptance environment, you may need to support one or more of these technologies in addition to this SDK. This SDK also supports the ability to submit cleartext card numbers as input, but any developer who does so will be expected to demonstrate compliance with PA-DSS. Likewise any third party integrator who is planning on handling cleartext card data on behalf of other merchants will be expected to demonstrate their PCI DSS compliance as a Service Provider prior to completing certification with Heartland.
 
- If you implement Secure Submit tokenization for your web or mobile application you will never have to deal with handling a card number - Heartland will take care of it for you and return a token to initiate the charge from your servers.
+If you implement Secure Submit tokenization for your web or mobile application you will never have to deal with handling a card number - Heartland will take care of it for you and return a token to initiate the charge from your servers.
 
- Similarly, if you implement Heartland Secure with E3 (for both swiped and keyed entry methods) then your POS application will be out-of-scope for PA-DSS. Heartland Secure certified devices will only ever return E3 encrypted data which can safely be passed through your systems as input to this SDK. Heartland Secure devices include many popular models manufactured by PAX and Ingenico.
-
+Similarly, if you implement Heartland Secure with E3 (for both swiped and keyed entry methods) then your POS application will be out-of-scope for PA-DSS. Heartland Secure certified devices will only ever return E3 encrypted data which can safely be passed through your systems as input to this SDK. Heartland Secure devices include many popular models manufactured by PAX and Ingenico.
 
 To summarize, when you create a `paymentMethod` using this SDK you have the following options for securely avoiding interaction with sensitive cardholder data:
 
 * Card data (track or PAN) may be sent directly from a web browser to Heartland, returning a SecureSubmit single use token that is then sent to your server.
 
 * Encrypted card data (track or PAN) may be obtained directly from a Heartland Secure device and passed to the SDK
-
 
 ## Documentation and Examples
 
@@ -115,20 +106,29 @@ To summarize, when you create a `paymentMethod` using this SDK you have the foll
   In addition the included [test suite](https://github.com/hps/heartland-nodejs/tree/master/test) can be a great source of code samples for using the SDK!
 
 ```javascript
-var heartland = require('heartland-nodejs'),
-    config = {
-                secretApiKey:   'skapi_cert_MTyMAQBiHVEAewvIzXVFcmUd2UcyBge_eCpaASUp0A',
-                publicApiKey:   'pkapi_cert_jKc1FtuyAydZhZfbB3',
-                versionNumber:  '1234',
-                developerId:    '123456',
-                siteTrace:      'trace0001'
-            },
-    uri = 'https://cert.api2.heartlandportico.com/Hps.Exchange.PosGateway/PosGatewayService.asmx',
-    hpsCreditService = new heartland.HpsCreditService(config, uri),
-    porticoReport = new heartland.PorticoReport(config, uri);
+var heartland = require("heartland-nodejs"),
+  config = {
+    secretApiKey: "skapi_cert_MTyMAQBiHVEAewvIzXVFcmUd2UcyBge_eCpaASUp0A",
+    publicApiKey: "pkapi_cert_jKc1FtuyAydZhZfbB3",
+    versionNumber: "1234",
+    developerId: "123456",
+    siteTrace: "trace0001",
+  },
+  uri =
+    "https://cert.api2.heartlandportico.com/Hps.Exchange.PosGateway/PosGatewayService.asmx",
+  hpsCreditService = new heartland.HpsCreditService(config, uri),
+  porticoReport = new heartland.PorticoReport(config, uri);
 
 // Charging a credit card via the SecureSubmit API...
-hpsCreditService.chargeWithCard(amount, currency, card, cardHolder, requestMultiUseToken, memo, callback);
+hpsCreditService.chargeWithCard(
+  amount,
+  currency,
+  card,
+  cardHolder,
+  requestMultiUseToken,
+  memo,
+  callback,
+);
 
 // Access the ReportTxnDetail endpoing directly...
 porticoReport.reportTxnDetail(transactionId, callback);
@@ -139,24 +139,24 @@ porticoReport.reportTxnDetail(transactionId, callback);
 <img src="http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-icon-tools" align="right"/>
 Testing your implementation in our Certification/Sandbox environment helps to identify and squash bugs before you begin processing transactions in the production environment. While you are encouraged to run as many test transactions as you can, Heartland provides a specific series of tests that you are required to complete before receiving Certification. Please contact Heartland to initiate certification for your integration. For eComm integrations please email our <a href="mailto:SecureSubmitCert@e-hps.com?Subject=Certification Request&Body=I am ready to start certifying my integration! ">Specialty Products Team</a>, for POS developers please email <a href="mailto:integration@e-hps.com?Subject=Certification Request&Body=I am ready to start certifying my integration! ">Integrations</a>.
 
-*Quick Tip*: You can get a head start on your certification by reviewing the [certification tests](https://github.com/hps/heartland-nodejs/blob/master/test/secure-submit-certification-test.js) in the included test suite.
+_Quick Tip_: You can get a head start on your certification by reviewing the [certification tests](https://github.com/hps/heartland-nodejs/blob/master/test/secure-submit-certification-test.js) in the included test suite.
 
 #### Test Card Data
 
 The following card numbers are used by our Certification environment to verify that your tests worked. Note that while variations (such as 4111111111111111) will work for general testing the cards listed below are required to complete certification. For card present testing Heartland can provide you with EMV enabled test cards.
 
-Name       | Number           | Exp Month | Exp Year | CVV  | Address          | Zip
----------- | ---------------- | --------- | -------- | ---- | ---------------- | ---
-Visa       | 4012002000060016 | 12        | 2025     | 123  | 6860 Dallas Pkwy | 750241234
-MasterCard | 2223000010005780 | 12        | 2019     | 900  | 6860 Dallas Pkwy | 75024
-MasterCard | 5473500000000014 | 12        | 2025     | 123  | 6860 Dallas Pkwy | 75024
-Discover   | 6011000990156527 | 12        | 2025     | 123  | 6860             | 750241234
-Amex       | 372700699251018  | 12        | 2025     | 1234 | 6860             | 75024
-JCB        | 3566007770007321 | 12        | 2025     | 123  | 6860             | 75024
+| Name       | Number           | Exp Month | Exp Year | CVV  | Address          | Zip       |
+| ---------- | ---------------- | --------- | -------- | ---- | ---------------- | --------- |
+| Visa       | 4012002000060016 | 12        | 2025     | 123  | 6860 Dallas Pkwy | 750241234 |
+| MasterCard | 2223000010005780 | 12        | 2019     | 900  | 6860 Dallas Pkwy | 75024     |
+| MasterCard | 5473500000000014 | 12        | 2025     | 123  | 6860 Dallas Pkwy | 75024     |
+| Discover   | 6011000990156527 | 12        | 2025     | 123  | 6860             | 750241234 |
+| Amex       | 372700699251018  | 12        | 2025     | 1234 | 6860             | 75024     |
+| JCB        | 3566007770007321 | 12        | 2025     | 123  | 6860             | 75024     |
 
 #### Testing Exceptions
 
-During your integration you will want to test for specific issuer responses such as 'Card Declined'. Because our sandbox does not actually reach out to card brands for authorizations we have devised specific transaction amounts that will trigger  [issuer response codes](https://cert.api2.heartlandportico.com/Gateway/PorticoDevGuide/build/PorticoDeveloperGuide/Issuer%20Response%20Codes.html) and [gateway response codes](https://cert.api2.heartlandportico.com/Gateway/PorticoDevGuide/build/PorticoDeveloperGuide/Gateway%20Response%20Codes.html). Please <a href="mailto:SecureSubmitCert@e-hps.com?subject=Hard Coded Values Spreadsheet Request">contact</a> Heartland for a complete listing of values you can charge to simulate AVS, CVV and Transaction declines, errors, and other responses that you can catch in your code:
+During your integration you will want to test for specific issuer responses such as 'Card Declined'. Because our sandbox does not actually reach out to card brands for authorizations we have devised specific transaction amounts that will trigger [issuer response codes](https://cert.api2.heartlandportico.com/Gateway/PorticoDevGuide/build/PorticoDeveloperGuide/Issuer%20Response%20Codes.html) and [gateway response codes](https://cert.api2.heartlandportico.com/Gateway/PorticoDevGuide/build/PorticoDeveloperGuide/Gateway%20Response%20Codes.html). Please <a href="mailto:SecureSubmitCert@e-hps.com?subject=Hard Coded Values Spreadsheet Request">contact</a> Heartland for a complete listing of values you can charge to simulate AVS, CVV and Transaction declines, errors, and other responses that you can catch in your code:
 
 ```javascript
 chargeVisa: function (done) {
@@ -165,7 +165,7 @@ chargeVisa: function (done) {
             assert.equal(result.responseCode, '00', 'The response code should be "00".');
             done();
         });
-````
+```
 
 More exceptions can be found [here](https://github.com/hps/heartland-nodejs/blob/master/lib/infrastructure/exception-mapper.js).
 
@@ -192,4 +192,3 @@ $ NODE_VERSION=4.7 docker-compose run --rm test
 ```
 
 where `NODE_VERSION` is any version number compatible with the [official `node` Docker image](https://hub.docker.com/_/node/).
-
