@@ -38,10 +38,11 @@ test("JAVA_Credit_Sample", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -70,10 +71,11 @@ test("JAVA_Credit_006a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -102,10 +104,11 @@ test("JAVA_Credit_006b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -134,10 +137,11 @@ test("JAVA_Credit_006c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -166,10 +170,11 @@ test("JAVA_Credit_006d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -198,10 +203,11 @@ test("JAVA_Credit_006e", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -230,10 +236,11 @@ test("JAVA_Credit_006f", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -262,10 +269,11 @@ test("JAVA_Credit_006g", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -294,10 +302,11 @@ test("JAVA_Credit_006h", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -326,10 +335,11 @@ test("JAVA_Credit_007a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -358,10 +368,11 @@ test("JAVA_Credit_007b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -390,10 +401,11 @@ test("JAVA_Credit_007c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -422,10 +434,11 @@ test("JAVA_Credit_007d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -454,10 +467,11 @@ test("JAVA_Credit_007e", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -486,10 +500,11 @@ test("JAVA_Credit_008a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -518,10 +533,11 @@ test("JAVA_Credit_008b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -550,10 +566,11 @@ test("JAVA_Credit_008c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -582,10 +599,11 @@ test("JAVA_Credit_008d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -614,10 +632,11 @@ test("JAVA_Credit_008e", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -646,10 +665,11 @@ test("JAVA_Credit_009a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -678,10 +698,11 @@ test("JAVA_Credit_009b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -710,10 +731,11 @@ test("JAVA_Credit_009c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -741,10 +763,11 @@ test("JAVA_Credit_009d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -773,10 +796,11 @@ test("JAVA_Credit_010c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -805,10 +829,11 @@ test("JAVA_Credit_010d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -837,10 +862,11 @@ test("JAVA_Credit_010e", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -869,10 +895,11 @@ test("JAVA_Credit_011a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -901,10 +928,11 @@ test("JAVA_Credit_012a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -933,10 +961,11 @@ test("JAVA_Credit_012b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -965,10 +994,11 @@ test("JAVA_Credit_012c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -997,10 +1027,11 @@ test("JAVA_Credit_013a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1029,7 +1060,8 @@ test("JAVA_Credit_013b", async (t) => {
 
   // request
   const error = await t.throws(
-    card.refund(1)
+    card
+      .refund(1)
       .withCurrency("EUR")
       .withDescription("JAVA-Credit")
       .execute(),
@@ -1060,12 +1092,14 @@ test("JAVA_Credit_013c", async (t) => {
   card.cvn = "123";
   card.cvnPresenceIndicator = CvnPresenceIndicator.Present;
   // tslint:disable:max-line-length
-  card.cardHolderName = "Peter Watermelooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo";
+  card.cardHolderName =
+    "Peter Watermelooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo";
   // tslint:enable:max-line-length
 
   // request
   const error = await t.throws(
-    card.refund(1)
+    card
+      .refund(1)
       .withCurrency("EUR")
       .withDescription("JAVA-Credit")
       .execute(),
@@ -1098,10 +1132,11 @@ test("JAVA_Credit_014a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1130,10 +1165,11 @@ test("JAVA_Credit_014b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1162,10 +1198,11 @@ test("JAVA_Credit_014c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1193,7 +1230,8 @@ test("JAVA_Credit_014d", async (t) => {
 
   // request
   const error = await t.throws(
-    card.refund(1)
+    card
+      .refund(1)
       .withCurrency("EUR")
       .withDescription("JAVA-Credit")
       .execute(),
@@ -1226,10 +1264,11 @@ test("JAVA_Credit_015a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1258,10 +1297,11 @@ test("JAVA_Credit_015b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1290,10 +1330,11 @@ test("JAVA_Credit_015c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1322,10 +1363,11 @@ test("JAVA_Credit_016a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1354,10 +1396,11 @@ test("JAVA_Credit_017a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1386,10 +1429,11 @@ test("JAVA_Credit_017b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1419,7 +1463,8 @@ test("JAVA_Credit_017c", async (t) => {
 
   // request
   const error = await t.throws(
-    card.refund(1)
+    card
+      .refund(1)
       .withCurrency("EUR")
       .withDescription("JAVA-Credit")
       .execute(),
@@ -1452,10 +1497,11 @@ test("JAVA_Credit_017d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1485,7 +1531,8 @@ test("JAVA_Credit_017f", async (t) => {
 
   // request
   const error = await t.throws(
-    card.refund(1)
+    card
+      .refund(1)
       .withCurrency("EUR")
       .withDescription("JAVA-Credit")
       .execute(),
@@ -1519,7 +1566,8 @@ test("JAVA_Credit_017g", async (t) => {
 
   // request
   const error = await t.throws(
-    card.refund(1)
+    card
+      .refund(1)
       .withCurrency("EUR")
       .withDescription("JAVA-Credit")
       .execute(),
@@ -1552,10 +1600,11 @@ test("JAVA_Credit_018a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1584,10 +1633,11 @@ test("JAVA_Credit_018b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1616,10 +1666,11 @@ test("JAVA_Credit_018c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1648,10 +1699,11 @@ test("JAVA_Credit_018d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1680,10 +1732,11 @@ test("JAVA_Credit_019a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1712,10 +1765,11 @@ test("JAVA_Credit_019b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1744,10 +1798,11 @@ test("JAVA_Credit_019c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1776,10 +1831,11 @@ test("JAVA_Credit_020a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1809,13 +1865,14 @@ test("JAVA_Credit_020b", async (t) => {
 
   // request
   const error = await t.throws(
-    card.refund(1)
+    card
+      .refund(1)
       .withCurrency("EUR")
       .withDescription("JAVA-Credit")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Credit_021a", async (t) => {
@@ -1842,10 +1899,11 @@ test("JAVA_Credit_021a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1874,10 +1932,11 @@ test("JAVA_Credit_021b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1.005)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1.005)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1906,11 +1965,13 @@ test("JAVA_Credit_021c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const error = t.throws(() =>
-    card.refund()
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute(),
+  const error = t.throws(
+    () =>
+      card
+        .refund()
+        .withCurrency("EUR")
+        .withDescription("JAVA-Credit")
+        .execute(),
     BuilderError,
   );
   t.truthy(error.message);
@@ -1940,11 +2001,13 @@ test("JAVA_Credit_021d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const error = t.throws(() =>
-    card.refund()
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute(),
+  const error = t.throws(
+    () =>
+      card
+        .refund()
+        .withCurrency("EUR")
+        .withDescription("JAVA-Credit")
+        .execute(),
     BuilderError,
   );
   t.truthy(error.message);
@@ -1974,10 +2037,11 @@ test("JAVA_Credit_021e", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(100000)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(100000)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2006,11 +2070,13 @@ test("JAVA_Credit_021f", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const error = t.throws(() =>
-    card.refund()
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute(),
+  const error = t.throws(
+    () =>
+      card
+        .refund()
+        .withCurrency("EUR")
+        .withDescription("JAVA-Credit")
+        .execute(),
     BuilderError,
   );
   t.truthy(error.message);
@@ -2040,10 +2106,11 @@ test("JAVA_Credit_022a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.refund(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Credit")
-      .execute();
+  const response = await card
+    .refund(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Credit")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2073,7 +2140,8 @@ test("JAVA_Credit_022b", async (t) => {
 
   // request
   const error = await t.throws(
-    card.refund(1)
+    card
+      .refund(1)
       .withCurrency("EURO")
       .withDescription("JAVA-Credit")
       .execute(),
@@ -2107,7 +2175,8 @@ test("JAVA_Credit_022c", async (t) => {
 
   // request
   const error = await t.throws(
-    card.refund(1)
+    card
+      .refund(1)
       .withCurrency("EU#")
       .withDescription("JAVA-Credit")
       .execute(),
@@ -2140,10 +2209,12 @@ test("JAVA_Credit_022d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const error = t.throws(() =>
-    card.refund(1)
-      .withDescription("JAVA-Credit")
-      .execute(),
+  const error = t.throws(
+    () =>
+      card
+        .refund(1)
+        .withDescription("JAVA-Credit")
+        .execute(),
     BuilderError,
   );
   t.truthy(error.message);

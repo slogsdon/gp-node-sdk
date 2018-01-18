@@ -1,7 +1,7 @@
-import * as https from 'https';
-import {Socket} from 'net';
+import * as https from "https";
+import { Socket } from "net";
 
-import {ApiError, GatewayError} from '../Entities/Errors';
+import { ApiError, GatewayError } from "../Entities/Errors";
 
 export const request = (
   data?: string,
@@ -12,11 +12,11 @@ export const request = (
       options = {};
     }
 
-    const req = https.request(options, res => {
-      let responseData = '';
+    const req = https.request(options, (res) => {
+      let responseData = "";
 
-      res.on('data', (d: string) => (responseData += d));
-      res.on('end', () => {
+      res.on("data", (d: string) => (responseData += d));
+      res.on("end", () => {
         if (res.statusCode !== 200) {
           reject(
             new GatewayError(`Unexpected HTTP status code [${res.statusCode}]`),
@@ -24,16 +24,16 @@ export const request = (
         }
         resolve(responseData);
       });
-      res.on('error', reject);
+      res.on("error", reject);
     });
-    req.on('socket', (socket: Socket) => {
+    req.on("socket", (socket: Socket) => {
       socket.setTimeout(this.timeout || 100000);
-      socket.on('timeout', () => {
+      socket.on("timeout", () => {
         req.abort();
-        reject(new ApiError('Socket timeout occurred.'));
+        reject(new ApiError("Socket timeout occurred."));
       });
     });
-    req.on('error', reject);
+    req.on("error", reject);
     if (data !== undefined) {
       req.write(data);
     }

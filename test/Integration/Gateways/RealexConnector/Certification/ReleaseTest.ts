@@ -13,7 +13,7 @@ import {
 const throttle = () => new Promise((resolve) => setTimeout(resolve, 1500));
 
 test.beforeEach(async () => {
-    await throttle();
+  await throttle();
 });
 
 test("JAVA_Release_Sample", async (t) => {
@@ -40,26 +40,29 @@ test("JAVA_Release_Sample", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -88,26 +91,29 @@ test("JAVA_Release_006a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -136,26 +142,29 @@ test("JAVA_Release_006b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -184,26 +193,29 @@ test("JAVA_Release_006c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -232,26 +244,29 @@ test("JAVA_Release_006d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -280,26 +295,29 @@ test("JAVA_Release_006e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -328,26 +346,29 @@ test("JAVA_Release_006f", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -376,26 +397,29 @@ test("JAVA_Release_006g", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -424,26 +448,29 @@ test("JAVA_Release_006h", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -472,26 +499,29 @@ test("JAVA_Release_006i", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -520,26 +550,29 @@ test("JAVA_Release_006k", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -568,26 +601,29 @@ test("JAVA_Release_006l", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -616,26 +652,29 @@ test("JAVA_Release_007a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -664,26 +703,29 @@ test("JAVA_Release_007b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -712,26 +754,29 @@ test("JAVA_Release_007c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // hold it first
-  const holdResponse = await saleResponse.hold()
-      .withReasonCode(ReasonCode.OutOfStock)
-      .execute();
+  const holdResponse = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.OutOfStock)
+    .execute();
   t.truthy(holdResponse);
   t.is("00", holdResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.release()
-      .withReasonCode(ReasonCode.InStock)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .release()
+    .withReasonCode(ReasonCode.InStock)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -753,12 +798,13 @@ test("JAVA_Release_007d", async (t) => {
 
   // request
   const error = await t.throws(
-    saleResponse.release()
+    saleResponse
+      .release()
       .withReasonCode(ReasonCode.InStock)
       .execute(),
-        BuilderError,
-    );
-    t.truthy(error.message);
+    BuilderError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Release_007e", async (t) => {
@@ -778,12 +824,13 @@ test("JAVA_Release_007e", async (t) => {
 
   // request
   const error = await t.throws(
-    saleResponse.release()
+    saleResponse
+      .release()
       .withReasonCode(ReasonCode.InStock)
       .execute(),
-      BuilderError,
-    );
-    t.truthy(error.message);
+    BuilderError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Release_008c", async (t) => {
@@ -803,12 +850,13 @@ test("JAVA_Release_008c", async (t) => {
 
   // request
   const error = await t.throws(
-    saleResponse.release()
+    saleResponse
+      .release()
       .withReasonCode(ReasonCode.InStock)
       .execute(),
-      BuilderError,
-    );
-    t.truthy(error.message);
+    BuilderError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Release_008d", async (t) => {
@@ -828,12 +876,13 @@ test("JAVA_Release_008d", async (t) => {
 
   // request
   const error = await t.throws(
-    saleResponse.release()
+    saleResponse
+      .release()
       .withReasonCode(ReasonCode.InStock)
       .execute(),
-      BuilderError,
-    );
-    t.truthy(error.message);
+    BuilderError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Release_008e", async (t) => {
@@ -853,12 +902,13 @@ test("JAVA_Release_008e", async (t) => {
 
   // request
   const error = await t.throws(
-    saleResponse.release()
+    saleResponse
+      .release()
       .withReasonCode(ReasonCode.InStock)
       .execute(),
-      BuilderError,
-    );
-    t.truthy(error.message);
+    BuilderError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Release_009d", async (t) => {
@@ -879,13 +929,14 @@ test("JAVA_Release_009d", async (t) => {
 
   // request
   const error = await t.throws(
-    saleResponse.release()
+    saleResponse
+      .release()
       .withReasonCode(ReasonCode.InStock)
       .withDescription("JAVA-Query")
       .execute(),
-      BuilderError,
-    );
-    t.truthy(error.message);
+    BuilderError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Release_009e", async (t) => {
@@ -906,13 +957,14 @@ test("JAVA_Release_009e", async (t) => {
 
   // request
   const error = await t.throws(
-    saleResponse.release()
+    saleResponse
+      .release()
       .withReasonCode(ReasonCode.InStock)
       .withDescription("JAVA-Query")
       .execute(),
-      BuilderError,
-    );
-    t.truthy(error.message);
+    BuilderError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Release_010a", async (t) => {
@@ -939,18 +991,20 @@ test("JAVA_Release_010a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Other)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Other)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -979,18 +1033,20 @@ test("JAVA_Release_010b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1013,13 +1069,14 @@ test("JAVA_Release_010c", async (t) => {
 
   // request
   const error = await t.throws(
-    saleResponse.hold()
+    saleResponse
+      .hold()
       .withReasonCode(ReasonCode.Fraud)
       .withDescription("JAVA-Hold")
       .execute(),
-      BuilderError,
-    );
-    t.truthy(error.message);
+    BuilderError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Release_010d", async (t) => {
@@ -1046,18 +1103,20 @@ test("JAVA_Release_010d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Other)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Other)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1086,18 +1145,20 @@ test("JAVA_Release_011a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Other)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Other)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1126,18 +1187,20 @@ test("JAVA_Release_011b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(undefined)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(undefined)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1166,17 +1229,19 @@ test("JAVA_Release_011c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1205,18 +1270,20 @@ test("JAVA_Release_011d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(undefined)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(undefined)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1245,18 +1312,20 @@ test("JAVA_Release_012a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Other)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Other)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1285,22 +1354,24 @@ test("JAVA_Release_012b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    saleResponse.hold()
+    saleResponse
+      .hold()
       .withReasonCode(ReasonCode.Other)
       .withDescription("JAVA-Query")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Release_013a", async (t) => {
@@ -1327,18 +1398,20 @@ test("JAVA_Release_013a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Other)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Other)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1367,22 +1440,24 @@ test("JAVA_Release_013b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    saleResponse.hold()
+    saleResponse
+      .hold()
       .withReasonCode(ReasonCode.Other)
       .withDescription("JAVA-Query")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Release_013c", async (t) => {
@@ -1409,20 +1484,22 @@ test("JAVA_Release_013c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    saleResponse.hold()
+    saleResponse
+      .hold()
       .withReasonCode(ReasonCode.Other)
       .withDescription("JAVA-Query")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });

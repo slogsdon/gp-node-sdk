@@ -13,7 +13,7 @@ import {
 const throttle = () => new Promise((resolve) => setTimeout(resolve, 1500));
 
 test.beforeEach(async () => {
-    await throttle();
+  await throttle();
 });
 
 test("JAVA_Manual_006a", async (t) => {
@@ -39,18 +39,20 @@ test("JAVA_Manual_006a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-006a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-006a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -78,18 +80,20 @@ test("JAVA_Manual_006b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-006b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-006b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -117,18 +121,20 @@ test("JAVA_Manual_006c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-006c")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-006c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -156,18 +162,20 @@ test("JAVA_Manual_006d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-006d")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-006d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -195,18 +203,20 @@ test("JAVA_Manual_006e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-006e")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-006e")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -234,18 +244,20 @@ test("JAVA_Manual_006f", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-006f")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-006f")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -273,18 +285,20 @@ test("JAVA_Manual_006g", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-006g")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-006g")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -312,18 +326,20 @@ test("JAVA_Manual_006h", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-006h")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-006h")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -351,18 +367,20 @@ test("JAVA_Manual_006i", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-006i")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-006i")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -390,18 +408,20 @@ test("JAVA_Manual_006j", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-006j")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-006j")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -429,18 +449,20 @@ test("JAVA_Manual_006k", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-006k")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-006k")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -468,18 +490,20 @@ test("JAVA_Manual_007a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-007a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-007a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -507,18 +531,20 @@ test("JAVA_Manual_007b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-007b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-007b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -546,18 +572,20 @@ test("JAVA_Manual_007c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-007c")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-007c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -585,18 +613,20 @@ test("JAVA_Manual_007d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-007d")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-007d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -624,18 +654,20 @@ test("JAVA_Manual_007e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-007e")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-007e")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -663,18 +695,20 @@ test("JAVA_Manual_008a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-008a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-008a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -702,18 +736,20 @@ test("JAVA_Manual_008b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-008b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-008b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -741,18 +777,20 @@ test("JAVA_Manual_008c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-008c")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-008c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -780,18 +818,20 @@ test("JAVA_Manual_008d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-008d")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-008d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -819,18 +859,20 @@ test("JAVA_Manual_008e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-008e")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-008e")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -859,18 +901,20 @@ test("JAVA_Manual_009a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-009a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-009a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -900,7 +944,8 @@ test("JAVA_Manual_009b", async (t) => {
 
   // build transaction
   let error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("USD")
       .execute(),
     GatewayError,
@@ -910,7 +955,8 @@ test("JAVA_Manual_009b", async (t) => {
 
   // request
   error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("USD")
       .withDescription("JAVA-Manual-009b")
       .execute(),
@@ -944,7 +990,8 @@ test("JAVA_Manual_009c", async (t) => {
 
   // build transaction
   let error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .execute(),
     GatewayError,
@@ -954,7 +1001,8 @@ test("JAVA_Manual_009c", async (t) => {
 
   // request
   error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withDescription("JAVA-Manual-009c")
       .execute(),
@@ -986,18 +1034,20 @@ test("JAVA_Manual_009d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-009d")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-009d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1025,18 +1075,20 @@ test("JAVA_Manual_010a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-010a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-010a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1064,18 +1116,20 @@ test("JAVA_Manual_010b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-010b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-010b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1103,18 +1157,20 @@ test("JAVA_Manual_010c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-010c")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-010c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1142,18 +1198,20 @@ test("JAVA_Manual_010d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-010d")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-010d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1181,18 +1239,20 @@ test("JAVA_Manual_010e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-010e")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-010e")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1220,18 +1280,20 @@ test("JAVA_Manual_011a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-011a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-011a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1259,18 +1321,20 @@ test("JAVA_Manual_011b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-011b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-011b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1298,18 +1362,20 @@ test("JAVA_Manual_011c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-011c")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-011c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1337,19 +1403,22 @@ test("JAVA_Manual_011d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const error = t.throws(() =>
-    card.charge()
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-011d")
-      .execute(),
+  const error = t.throws(
+    () =>
+      card
+        .charge()
+        .withCurrency("EUR")
+        .withDescription("JAVA-Manual-011d")
+        .execute(),
     BuilderError,
   );
   t.truthy(error.message);
@@ -1378,18 +1447,20 @@ test("JAVA_Manual_012a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-012a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-012a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1418,7 +1489,8 @@ test("JAVA_Manual_012b", async (t) => {
 
   // build transaction
   let error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("EURO")
       .execute(),
     GatewayError,
@@ -1428,7 +1500,8 @@ test("JAVA_Manual_012b", async (t) => {
 
   // request
   error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("EURO")
       .withDescription("JAVA-Manual-012b")
       .execute(),
@@ -1461,7 +1534,8 @@ test("JAVA_Manual_012c", async (t) => {
 
   // build transaction
   let error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("�UR")
       .execute(),
     GatewayError,
@@ -1471,7 +1545,8 @@ test("JAVA_Manual_012c", async (t) => {
 
   // request
   error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("�UR")
       .withDescription("JAVA-Manual-012c")
       .execute(),
@@ -1503,10 +1578,12 @@ test("JAVA_Manual_012d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const error = t.throws(() =>
-    card.charge(100.01)
-      .withDescription("JAVA-Manual-012d")
-      .execute(),
+  const error = t.throws(
+    () =>
+      card
+        .charge(100.01)
+        .withDescription("JAVA-Manual-012d")
+        .execute(),
     BuilderError,
   );
   t.truthy(error.message);
@@ -1535,18 +1612,20 @@ test("JAVA_Manual_013a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-013a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-013a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1574,18 +1653,20 @@ test("JAVA_Manual_013b1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-013b1")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-013b1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1613,18 +1694,20 @@ test("JAVA_Manual_013b2", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-013b2")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-013b2")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1652,18 +1735,20 @@ test("JAVA_Manual_013c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-013c")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-013c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1691,18 +1776,20 @@ test("JAVA_Manual_014a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-014a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-014a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1730,7 +1817,8 @@ test("JAVA_Manual_014b", async (t) => {
 
   // build transaction
   let error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("USD")
       .execute(),
     GatewayError,
@@ -1740,7 +1828,8 @@ test("JAVA_Manual_014b", async (t) => {
 
   // request
   error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("USD")
       .withDescription("JAVA-Manual-014b")
       .execute(),
@@ -1769,11 +1858,13 @@ test("JAVA_Manual_014c", async (t) => {
   card.expYear = "2020";
   card.cvn = "123";
   card.cvnPresenceIndicator = CvnPresenceIndicator.Present;
-  card.cardHolderName = "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep";
+  card.cardHolderName =
+    "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep";
 
   // build transaction
   let error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .execute(),
     GatewayError,
@@ -1783,7 +1874,8 @@ test("JAVA_Manual_014c", async (t) => {
 
   // request
   error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withDescription("JAVA-Manual-014c")
       .execute(),
@@ -1815,18 +1907,20 @@ test("JAVA_Manual_014d", async (t) => {
   card.cardHolderName = "James~Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-014d")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-014d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1854,18 +1948,20 @@ test("JAVA_Manual_015a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-015a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-015a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1893,18 +1989,20 @@ test("JAVA_Manual_015b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-015b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-015b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1933,7 +2031,8 @@ test("JAVA_Manual_015c", async (t) => {
 
   // build transaction
   let error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("EUR")
       .execute(),
     GatewayError,
@@ -1943,7 +2042,8 @@ test("JAVA_Manual_015c", async (t) => {
 
   // request
   error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("EUR")
       .withDescription("JAVA-Manual-015c")
       .execute(),
@@ -1974,7 +2074,8 @@ test("JAVA_Manual_015d", async (t) => {
 
   // build transaction
   let error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("USD")
       .execute(),
     GatewayError,
@@ -1984,7 +2085,8 @@ test("JAVA_Manual_015d", async (t) => {
 
   // request
   error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("USD")
       .withDescription("JAVA-Manual-015d")
       .execute(),
@@ -2016,18 +2118,20 @@ test("JAVA_Manual_016a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-016a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-016a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2055,18 +2159,20 @@ test("JAVA_Manual_016b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-016b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-016b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2094,18 +2200,20 @@ test("JAVA_Manual_016c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-016c")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-016c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2133,18 +2241,20 @@ test("JAVA_Manual_017a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-017a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-017a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2172,18 +2282,20 @@ test("JAVA_Manual_018a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-018a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-018a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2211,18 +2323,20 @@ test("JAVA_Manual_019a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-019a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-019a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2251,7 +2365,8 @@ test("JAVA_Manual_019b1", async (t) => {
 
   // build transaction
   let error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .execute(),
     GatewayError,
@@ -2261,7 +2376,8 @@ test("JAVA_Manual_019b1", async (t) => {
 
   // request
   error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withDescription("JAVA-Manual-019b1")
       .execute(),
@@ -2294,7 +2410,8 @@ test("JAVA_Manual_019b2", async (t) => {
 
   // build transaction
   let error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .execute(),
     GatewayError,
@@ -2304,7 +2421,8 @@ test("JAVA_Manual_019b2", async (t) => {
 
   // request
   error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withDescription("JAVA-Manual-019b2")
       .execute(),
@@ -2337,17 +2455,19 @@ test("JAVA_Manual_019c", async (t) => {
 
   // build transaction
   let error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("EUR")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
   await throttle();
 
   // request
   error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("EUR")
       .withDescription("JAVA-Manual-019c")
       .execute(),
@@ -2379,18 +2499,20 @@ test("JAVA_Manual_019d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-019d")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-019d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2418,18 +2540,20 @@ test("JAVA_Manual_020a1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-020a1")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-020a1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2457,18 +2581,20 @@ test("JAVA_Manual_020a2", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-020a2")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-020a2")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2496,18 +2622,20 @@ test("JAVA_Manual_020a3", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-020a3")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-020a3")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2535,18 +2663,20 @@ test("JAVA_Manual_020a4", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-020a4")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-020a4")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2575,7 +2705,8 @@ test("JAVA_Manual_020b", async (t) => {
 
   // build transaction
   let error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("EUR")
       .execute(),
     GatewayError,
@@ -2585,7 +2716,8 @@ test("JAVA_Manual_020b", async (t) => {
 
   // request
   error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("EUR")
       .withDescription("JAVA-Manual-020b")
       .execute(),
@@ -2617,18 +2749,20 @@ test("JAVA_Manual_020c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-020c")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-020c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2656,18 +2790,20 @@ test("JAVA_Manual_021a1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-021a1")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-021a1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2695,18 +2831,20 @@ test("JAVA_Manual_021a2", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.authorize(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-021a2")
-      .execute();
+  const response = await card
+    .authorize(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-021a2")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2734,18 +2872,20 @@ test("JAVA_Manual_021a3", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.authorize(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-021a3")
-      .execute();
+  const response = await card
+    .authorize(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-021a3")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2773,18 +2913,20 @@ test("JAVA_Manual_021b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.authorize(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-021b")
-      .execute();
+  const response = await card
+    .authorize(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-021b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2812,18 +2954,20 @@ test("JAVA_Manual_021c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.authorize(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-021c")
-      .execute();
+  const response = await card
+    .authorize(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-021c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2851,18 +2995,20 @@ test("JAVA_Manual_022a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-022a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-022a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2890,18 +3036,20 @@ test("JAVA_Manual_022b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-022b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-022b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2929,18 +3077,20 @@ test("JAVA_Manual_022c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-022c")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-022c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2968,18 +3118,20 @@ test("JAVA_Manual_022d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-022d")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-022d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3007,18 +3159,20 @@ test("JAVA_Manual_022e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-022e")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-022e")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3046,18 +3200,20 @@ test("JAVA_Manual_023a1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-023a1")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-023a1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3085,18 +3241,20 @@ test("JAVA_Manual_023a2", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-023a2")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-023a2")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3124,18 +3282,20 @@ test("JAVA_Manual_023b1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-023b1")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-023b1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3163,18 +3323,20 @@ test("JAVA_Manual_023c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-023c")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-023c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3202,18 +3364,20 @@ test("JAVA_Manual_024a1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-024a1")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-024a1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3241,18 +3405,20 @@ test("JAVA_Manual_024a2", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-024a2")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-024a2")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3280,18 +3446,20 @@ test("JAVA_Manual_024a3", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-024a3")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-024a3")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3319,18 +3487,20 @@ test("JAVA_Manual_024b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-024b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-024b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3358,18 +3528,20 @@ test("JAVA_Manual_024c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-024c")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-024c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3397,18 +3569,20 @@ test("JAVA_Manual_025", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-025")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-025")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3436,18 +3610,20 @@ test("JAVA_Manual_026a1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-026a1")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-026a1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3475,17 +3651,19 @@ test("JAVA_Manual_026a2", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3513,17 +3691,19 @@ test("JAVA_Manual_026b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3551,20 +3731,24 @@ test("JAVA_Manual_026c1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      // tslint:disable:max-line-length
-      .withDescription("3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIep3uviSnW9XEB3a4wpIW9XEB3a")
-      // tslint:enable:max-line-length
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    // tslint:disable:max-line-length
+    .withDescription(
+      "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIep3uviSnW9XEB3a4wpIW9XEB3a",
+    )
+    // tslint:enable:max-line-length
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3592,18 +3776,20 @@ test("JAVA_Manual_026c2", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-026c2")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-026c2")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3631,19 +3817,21 @@ test("JAVA_Manual_027a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withCustomerId("123456")
-      .withDescription("JAVA-Manual-027a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withCustomerId("123456")
+    .withDescription("JAVA-Manual-027a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3671,19 +3859,21 @@ test("JAVA_Manual_028a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("123456")
-      .withDescription("JAVA-Manual-028a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("123456")
+    .withDescription("JAVA-Manual-028a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3711,18 +3901,20 @@ test("JAVA_Manual_028b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-028b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-028b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3750,19 +3942,23 @@ test("JAVA_Manual_028c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("USD")
       // tslint:disable:max-line-length
-      .withCustomerId("3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep33a4wpQQQQQQQQQ1")
+      .withCustomerId(
+        "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep33a4wpQQQQQQQQQ1",
+      )
       // tslint:enable:max-line-length
       .withDescription("JAVA-Manual-028c")
       .execute(),
@@ -3794,16 +3990,18 @@ test("JAVA_Manual_028d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("123456~")
       .withDescription("JAVA-Manual-028d")
@@ -3836,19 +4034,21 @@ test("JAVA_Manual_029a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withProductId("123456")
-      .withDescription("JAVA-Manual-029a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withProductId("123456")
+    .withDescription("JAVA-Manual-029a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3876,18 +4076,20 @@ test("JAVA_Manual_029b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withDescription("JAVA-Manual-029b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withDescription("JAVA-Manual-029b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -3915,19 +4117,23 @@ test("JAVA_Manual_029c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       // tslint:disable:max-line-length
-      .withProductId("3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep33a4wpQQQQQQQQQ1")
+      .withProductId(
+        "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep33a4wpQQQQQQQQQ1",
+      )
       // tslint:enable:max-line-length
       .withDescription("JAVA-Manual-029c")
       .execute(),
@@ -3959,16 +4165,18 @@ test("JAVA_Manual_029d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("EUR")
       .withProductId("123456~")
       .withDescription("JAVA-Manual-029d")
@@ -4001,19 +4209,21 @@ test("JAVA_Manual_030a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withClientTransactionId("123456")
-      .withDescription("JAVA-Manual-030a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withClientTransactionId("123456")
+    .withDescription("JAVA-Manual-030a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4041,18 +4251,20 @@ test("JAVA_Manual_030b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-030b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-030b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4080,19 +4292,23 @@ test("JAVA_Manual_030c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("EUR")
       // tslint:disable:max-line-length
-      .withClientTransactionId("3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep33a4wpQQQQQQQQQ1")
+      .withClientTransactionId(
+        "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep33a4wpQQQQQQQQQ1",
+      )
       // tslint:enable:max-line-length
       .withDescription("JAVA-Manual-030c")
       .execute(),
@@ -4124,16 +4340,18 @@ test("JAVA_Manual_030d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("USD")
       .withClientTransactionId("123456~")
       .withDescription("JAVA-Manual-030d")
@@ -4166,19 +4384,21 @@ test("JAVA_Manual_031a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerIpAddress("123.123.123.123")
-      .withDescription("JAVA-Manual-031a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerIpAddress("123.123.123.123")
+    .withDescription("JAVA-Manual-031a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4206,18 +4426,20 @@ test("JAVA_Manual_031b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-031b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-031b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4245,19 +4467,21 @@ test("JAVA_Manual_031c1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withCustomerIpAddress("123.123.123.123")
-      .withDescription("JAVA-Manual-031c1")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withCustomerIpAddress("123.123.123.123")
+    .withDescription("JAVA-Manual-031c1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4285,19 +4509,21 @@ test("JAVA_Manual_031c2", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerIpAddress("123.123.123.123")
-      .withDescription("JAVA-Manual-031c2")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerIpAddress("123.123.123.123")
+    .withDescription("JAVA-Manual-031c2")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4335,20 +4561,22 @@ test("JAVA_Manual_032a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Manual-032a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Manual-032a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4384,20 +4612,22 @@ test("JAVA_Manual_033a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Manual-033a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Manual-033a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4429,19 +4659,21 @@ test("JAVA_Manual_033b1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withAddress(billingAddress)
-      .withDescription("JAVA-Manual-033b1")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withAddress(billingAddress)
+    .withDescription("JAVA-Manual-033b1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4473,19 +4705,21 @@ test("JAVA_Manual_033b2", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Manual-033b2")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Manual-033b2")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4505,7 +4739,8 @@ test("JAVA_Manual_033c1", async (t) => {
 
   // billing address
   const billingAddress = new Address();
-  billingAddress.postalCode = "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwep4wpIwep3u111";
+  billingAddress.postalCode =
+    "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwep4wpIwep3u111";
 
   // create card
   const card = new CreditCardData();
@@ -4517,19 +4752,21 @@ test("JAVA_Manual_033c1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withAddress(billingAddress)
-      .withDescription("JAVA-Manual-033c1")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withAddress(billingAddress)
+    .withDescription("JAVA-Manual-033c1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4549,7 +4786,8 @@ test("JAVA_Manual_033c2", async (t) => {
 
   // shipping address
   const shippingAddress = new Address();
-  shippingAddress.postalCode = "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwep4wpIwep3u111";
+  shippingAddress.postalCode =
+    "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwep4wpIwep3u111";
 
   // create card
   const card = new CreditCardData();
@@ -4561,19 +4799,21 @@ test("JAVA_Manual_033c2", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Manual-033c2")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Manual-033c2")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4609,20 +4849,22 @@ test("JAVA_Manual_034a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Manual-034a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Manual-034a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4654,19 +4896,21 @@ test("JAVA_Manual_034b1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Manual-034b1")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Manual-034b1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4698,19 +4942,21 @@ test("JAVA_Manual_034b2", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withAddress(billingAddress)
-      .withDescription("JAVA-Manual-034b2")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withAddress(billingAddress)
+    .withDescription("JAVA-Manual-034b2")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4730,7 +4976,8 @@ test("JAVA_Manual_034c1", async (t) => {
 
   // billing address
   const billingAddress = new Address();
-  billingAddress.country = "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwep4wpIwep3u111";
+  billingAddress.country =
+    "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwep4wpIwep3u111";
 
   // create card
   const card = new CreditCardData();
@@ -4742,19 +4989,21 @@ test("JAVA_Manual_034c1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withAddress(billingAddress)
-      .withDescription("JAVA-Manual-034c1")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withAddress(billingAddress)
+    .withDescription("JAVA-Manual-034c1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4774,7 +5023,8 @@ test("JAVA_Manual_034c2", async (t) => {
 
   // shipping address
   const shippingAddress = new Address();
-  shippingAddress.country = "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwep4wpIwep3u111";
+  shippingAddress.country =
+    "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwep4wpIwep3u111";
 
   // create card
   const card = new CreditCardData();
@@ -4786,19 +5036,21 @@ test("JAVA_Manual_034c2", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("USD")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("USD")
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Manual-034c2")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("USD")
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Manual-034c2")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4826,18 +5078,20 @@ test("JAVA_Manual_035a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("GBP")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withDescription("JAVA-Manual-035a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withDescription("JAVA-Manual-035a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -4865,18 +5119,20 @@ test("JAVA_Manual_035b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(100.01)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Manual-035a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Manual-035a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });

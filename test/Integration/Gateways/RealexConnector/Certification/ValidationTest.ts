@@ -49,16 +49,17 @@ test("JAVA_Validation_002a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-002a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-002a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -97,16 +98,17 @@ test("JAVA_Validation_002b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-002b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-002b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -145,16 +147,17 @@ test("JAVA_Validation_002c1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-002c1")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-002c1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -193,16 +196,17 @@ test("JAVA_Validation_002c2", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-002c2")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-002c2")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -242,7 +246,8 @@ test("JAVA_Validation_002d", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -252,9 +257,9 @@ test("JAVA_Validation_002d", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-002d")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_002e", async (t) => {
@@ -291,16 +296,17 @@ test("JAVA_Validation_002e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-002e")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-002e")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -340,7 +346,8 @@ test("JAVA_Validation_002f", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -350,9 +357,9 @@ test("JAVA_Validation_002f", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-002f")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_002g", async (t) => {
@@ -389,16 +396,17 @@ test("JAVA_Validation_002g", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-002g")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-002g")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -438,7 +446,8 @@ test("JAVA_Validation_002h", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -448,9 +457,9 @@ test("JAVA_Validation_002h", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-002h")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_003a", async (t) => {
@@ -487,16 +496,17 @@ test("JAVA_Validation_003a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-003a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-003a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -535,16 +545,17 @@ test("JAVA_Validation_003b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-003b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-003b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -584,7 +595,8 @@ test("JAVA_Validation_003c", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -594,9 +606,9 @@ test("JAVA_Validation_003c", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-003c")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_003d", async (t) => {
@@ -634,7 +646,8 @@ test("JAVA_Validation_003d", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -644,9 +657,9 @@ test("JAVA_Validation_003d", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-003d")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_003e", async (t) => {
@@ -684,7 +697,8 @@ test("JAVA_Validation_003e", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -694,9 +708,9 @@ test("JAVA_Validation_003e", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-003e")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_003f", async (t) => {
@@ -733,16 +747,17 @@ test("JAVA_Validation_003f", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-003f")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-003f")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -781,16 +796,17 @@ test("JAVA_Validation_003g", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-003g")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-003g")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -829,16 +845,17 @@ test("JAVA_Validation_003h", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-003h")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-003h")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -876,7 +893,8 @@ test("JAVA_Validation_003i", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -886,9 +904,9 @@ test("JAVA_Validation_003i", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-003i")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_004a", async (t) => {
@@ -925,16 +943,17 @@ test("JAVA_Validation_004a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-004a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-004a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -974,7 +993,8 @@ test("JAVA_Validation_004b", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -984,9 +1004,9 @@ test("JAVA_Validation_004b", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-004b")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_004c", async (t) => {
@@ -1024,7 +1044,8 @@ test("JAVA_Validation_004c", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -1034,9 +1055,9 @@ test("JAVA_Validation_004c", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-004c")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_004d", async (t) => {
@@ -1073,16 +1094,17 @@ test("JAVA_Validation_004d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-004d")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-004d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1122,7 +1144,8 @@ test("JAVA_Validation_004e", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -1132,9 +1155,9 @@ test("JAVA_Validation_004e", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-004e")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_004f", async (t) => {
@@ -1171,16 +1194,17 @@ test("JAVA_Validation_004f", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-004f")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-004f")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1219,16 +1243,17 @@ test("JAVA_Validation_004g", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-004g")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-004g")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1267,16 +1292,17 @@ test("JAVA_Validation_004h", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-004h")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-004h")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1315,16 +1341,17 @@ test("JAVA_Validation_004i", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-004i")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-004i")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1364,7 +1391,8 @@ test("JAVA_Validation_005a", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -1374,9 +1402,9 @@ test("JAVA_Validation_005a", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-005a")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_005b", async (t) => {
@@ -1413,16 +1441,17 @@ test("JAVA_Validation_005b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-005b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-005b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1462,7 +1491,8 @@ test("JAVA_Validation_005c", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -1472,9 +1502,9 @@ test("JAVA_Validation_005c", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-005c")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_005d", async (t) => {
@@ -1512,7 +1542,8 @@ test("JAVA_Validation_005d", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -1522,9 +1553,9 @@ test("JAVA_Validation_005d", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-005d")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_005e", async (t) => {
@@ -1562,7 +1593,8 @@ test("JAVA_Validation_005e", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -1572,9 +1604,9 @@ test("JAVA_Validation_005e", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-005e")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_005f", async (t) => {
@@ -1612,7 +1644,8 @@ test("JAVA_Validation_005f", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -1622,9 +1655,9 @@ test("JAVA_Validation_005f", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-005f")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_005g", async (t) => {
@@ -1662,7 +1695,8 @@ test("JAVA_Validation_005g", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -1672,9 +1706,9 @@ test("JAVA_Validation_005g", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-005g")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_005h", async (t) => {
@@ -1712,7 +1746,8 @@ test("JAVA_Validation_005h", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -1722,9 +1757,9 @@ test("JAVA_Validation_005h", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-005h")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_006a", async (t) => {
@@ -1761,16 +1796,17 @@ test("JAVA_Validation_006a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-006a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-006a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1809,16 +1845,17 @@ test("JAVA_Validation_006b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-006b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-006b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1858,7 +1895,8 @@ test("JAVA_Validation_006c", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -1868,9 +1906,9 @@ test("JAVA_Validation_006c", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-006c")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_006d", async (t) => {
@@ -1908,7 +1946,8 @@ test("JAVA_Validation_006d", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -1918,9 +1957,9 @@ test("JAVA_Validation_006d", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-006d")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_006e", async (t) => {
@@ -1958,7 +1997,8 @@ test("JAVA_Validation_006e", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -1968,9 +2008,9 @@ test("JAVA_Validation_006e", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-006e")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_007a", async (t) => {
@@ -2007,16 +2047,17 @@ test("JAVA_Validation_007a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-007a")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-007a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2055,16 +2096,17 @@ test("JAVA_Validation_007b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-007b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-007b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2104,7 +2146,8 @@ test("JAVA_Validation_007d", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -2114,9 +2157,9 @@ test("JAVA_Validation_007d", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-007d")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_007e", async (t) => {
@@ -2154,7 +2197,8 @@ test("JAVA_Validation_007e", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -2164,9 +2208,9 @@ test("JAVA_Validation_007e", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-007e")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_007f", async (t) => {
@@ -2204,7 +2248,8 @@ test("JAVA_Validation_007f", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -2214,9 +2259,9 @@ test("JAVA_Validation_007f", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-007f")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_008b", async (t) => {
@@ -2253,16 +2298,17 @@ test("JAVA_Validation_008b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.charge(100.01)
-      .withCurrency("GBP")
-      .withCustomerId("100")
-      .withProductId("999")
-      .withClientTransactionId("test")
-      .withCustomerIpAddress("123.123.123.123")
-      .withAddress(billingAddress)
-      .withAddress(shippingAddress, AddressType.Shipping)
-      .withDescription("JAVA-Validation-008b")
-      .execute();
+  const response = await card
+    .charge(100.01)
+    .withCurrency("GBP")
+    .withCustomerId("100")
+    .withProductId("999")
+    .withClientTransactionId("test")
+    .withCustomerIpAddress("123.123.123.123")
+    .withAddress(billingAddress)
+    .withAddress(shippingAddress, AddressType.Shipping)
+    .withDescription("JAVA-Validation-008b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2302,7 +2348,8 @@ test("JAVA_Validation_008c", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -2312,9 +2359,9 @@ test("JAVA_Validation_008c", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-008c")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_008d", async (t) => {
@@ -2352,7 +2399,8 @@ test("JAVA_Validation_008d", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -2362,9 +2410,9 @@ test("JAVA_Validation_008d", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-008d")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_009b", async (t) => {
@@ -2402,7 +2450,8 @@ test("JAVA_Validation_009b", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -2412,9 +2461,9 @@ test("JAVA_Validation_009b", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-009b")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_009c", async (t) => {
@@ -2452,7 +2501,8 @@ test("JAVA_Validation_009c", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -2462,9 +2512,9 @@ test("JAVA_Validation_009c", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-009c")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Validation_009d", async (t) => {
@@ -2502,7 +2552,8 @@ test("JAVA_Validation_009d", async (t) => {
 
   // request
   const error = await t.throws(
-    card.charge(100.01)
+    card
+      .charge(100.01)
       .withCurrency("GBP")
       .withCustomerId("100")
       .withProductId("999")
@@ -2512,7 +2563,7 @@ test("JAVA_Validation_009d", async (t) => {
       .withAddress(shippingAddress, AddressType.Shipping)
       .withDescription("JAVA-Validation-009d")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });

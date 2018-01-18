@@ -1,6 +1,6 @@
 import test from "ava";
 import {
-//   BuilderError,
+  //   BuilderError,
   CreditCardData,
   CvnPresenceIndicator,
   GatewayError,
@@ -11,7 +11,7 @@ import {
 const throttle = () => new Promise((resolve) => setTimeout(resolve, 1500));
 
 test.beforeEach(async () => {
-    await throttle();
+  await throttle();
 });
 
 // test("JAVA_Settle_Sample", async (t) => {
@@ -1604,19 +1604,20 @@ test("JAVA_Settle_013b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-//   const saleResponse = await ;
-//   t.truthy(saleResponse);
-//   t.is("00", saleResponse.responseCode);
-//   await throttle();
+  //   const saleResponse = await ;
+  //   t.truthy(saleResponse);
+  //   t.is("00", saleResponse.responseCode);
+  //   await throttle();
 
   // request
   const error = await t.throws(
-    card.authorize(1)
+    card
+      .authorize(1)
       .withCurrency("EURO")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Settle_013c", async (t) => {
@@ -1643,19 +1644,20 @@ test("JAVA_Settle_013c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-//   const saleResponse = await ;
-//   t.truthy(saleResponse);
-//   t.is("00", saleResponse.responseCode);
-//   await throttle();
+  //   const saleResponse = await ;
+  //   t.truthy(saleResponse);
+  //   t.is("00", saleResponse.responseCode);
+  //   await throttle();
 
   // request
   const error = await t.throws(
-    card.authorize(1)
+    card
+      .authorize(1)
       .withCurrency("EU#")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });
 
 test("JAVA_Settle_013d", async (t) => {
@@ -1682,17 +1684,19 @@ test("JAVA_Settle_013d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.authorize(1)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .authorize(1)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.capture(1)
-      .withDescription("JAVA-Settle")
-      .execute();
+  const response = await saleResponse
+    .capture(1)
+    .withDescription("JAVA-Settle")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1721,18 +1725,20 @@ test("JAVA_Settle_015a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.authorize(1)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .authorize(1)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.capture(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Settle")
-      .execute();
+  const response = await saleResponse
+    .capture(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Settle")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1761,18 +1767,20 @@ test("JAVA_Settle_014a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.authorize(1)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .authorize(1)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.capture(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Settle")
-      .execute();
+  const response = await saleResponse
+    .capture(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Settle")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1801,18 +1809,20 @@ test("JAVA_Settle_014b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.authorize(1)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .authorize(1)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.capture(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Settle")
-      .execute();
+  const response = await saleResponse
+    .capture(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Settle")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1841,18 +1851,20 @@ test("JAVA_Settle_014c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.authorize(1)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .authorize(1)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.capture(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Settle")
-      .execute();
+  const response = await saleResponse
+    .capture(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Settle")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1881,18 +1893,20 @@ test("JAVA_Settle_014d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.authorize(1)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .authorize(1)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.capture(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Settle")
-      .execute();
+  const response = await saleResponse
+    .capture(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Settle")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1921,18 +1935,20 @@ test("JAVA_Settle_016a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.authorize(1)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .authorize(1)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.capture(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Settle")
-      .execute();
+  const response = await saleResponse
+    .capture(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Settle")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1961,17 +1977,19 @@ test("JAVA_Settle_016b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.authorize(1)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .authorize(1)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.capture(1)
-      .withCurrency("EUR")
-      .execute();
+  const response = await saleResponse
+    .capture(1)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2000,20 +2018,24 @@ test("JAVA_Settle_016c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.authorize(1)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .authorize(1)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.capture(1)
-      .withCurrency("EUR")
-      // tslint:disable:max-line-length
-      .withDescription("JAVA-SettleAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-      // tslint:enable:max-line-length
-      .execute();
+  const response = await saleResponse
+    .capture(1)
+    .withCurrency("EUR")
+    // tslint:disable:max-line-length
+    .withDescription(
+      "JAVA-SettleAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    )
+    // tslint:enable:max-line-length
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2042,18 +2064,20 @@ test("JAVA_Settle_016d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.authorize(1)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .authorize(1)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.capture(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Settle###")
-      .execute();
+  const response = await saleResponse
+    .capture(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Settle###")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2082,18 +2106,20 @@ test("JAVA_Settle_017a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.authorize(1)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .authorize(1)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.capture(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-Settle")
-      .execute();
+  const response = await saleResponse
+    .capture(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-Settle")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2122,20 +2148,22 @@ test("JAVA_Settle_017b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.authorize(1)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .authorize(1)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    saleResponse.capture(1)
+    saleResponse
+      .capture(1)
       .withCurrency("EUR")
       .withDescription("SDK-JAVA-Rebate")
       .execute(),
-      GatewayError,
-    );
-    t.truthy(error.message);
+    GatewayError,
+  );
+  t.truthy(error.message);
 });

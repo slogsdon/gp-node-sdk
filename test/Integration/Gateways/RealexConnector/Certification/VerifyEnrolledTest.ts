@@ -36,10 +36,11 @@ test("JAVA_verifyenrolled_014a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-014a")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-014a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -67,10 +68,11 @@ test("JAVA_verifyenrolled_014b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-014b")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-014b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -98,10 +100,11 @@ test("JAVA_verifyenrolled_014c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-014c")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-014c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -129,10 +132,11 @@ test("JAVA_verifyenrolled_014d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-014d")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-014d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -160,10 +164,11 @@ test("JAVA_verifyenrolled_014e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-014e")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-014e")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -191,10 +196,11 @@ test("JAVA_verifyenrolled_014f", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-014f")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-014f")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -222,10 +228,11 @@ test("JAVA_verifyenrolled_014g", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-014g")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-014g")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -253,10 +260,11 @@ test("JAVA_verifyenrolled_014h", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-014h")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-014h")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -284,10 +292,11 @@ test("JAVA_verifyenrolled_014i", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-014i")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-014i")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -316,7 +325,8 @@ test("JAVA_verifyenrolled_015a", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("EUR")
       .withDescription("JAVA-verifyenrolled-015a")
       .execute(),
@@ -348,10 +358,11 @@ test.skip("JAVA_verifyenrolled_015b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-015b")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-015b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -379,10 +390,11 @@ test.skip("JAVA_verifyenrolled_015c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-015c")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-015c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -410,10 +422,11 @@ test.skip("JAVA_verifyenrolled_015d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-015d")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-015d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -441,10 +454,11 @@ test.skip("JAVA_verifyenrolled_015e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-015e")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-015e")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -472,10 +486,11 @@ test.skip("JAVA_verifyenrolled_015f", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-015f")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-015f")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -503,10 +518,11 @@ test.skip("JAVA_verifyenrolled_015g", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-015g")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-015g")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -534,10 +550,11 @@ test.skip("JAVA_verifyenrolled_015h", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-015h")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-015h")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -565,10 +582,11 @@ test.skip("JAVA_verifyenrolled_015i", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-015i")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-015i")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -597,7 +615,8 @@ test("JAVA_verifyenrolled_016a", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("EUR")
       .withDescription("JAVA-verifyenrolled-016a")
       .execute(),
@@ -629,10 +648,11 @@ test.skip("JAVA_verifyenrolled_016b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-016b")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-016b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -660,10 +680,11 @@ test.skip("JAVA_verifyenrolled_016c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-016c")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-016c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -691,10 +712,11 @@ test.skip("JAVA_verifyenrolled_016d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-016d")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-016d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -722,10 +744,11 @@ test.skip("JAVA_verifyenrolled_016e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-016e")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-016e")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -753,10 +776,11 @@ test.skip("JAVA_verifyenrolled_016f", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-016f")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-016f")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -784,10 +808,11 @@ test.skip("JAVA_verifyenrolled_016g", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-016g")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-016g")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -815,10 +840,11 @@ test.skip("JAVA_verifyenrolled_016h", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-016h")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-016h")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -846,10 +872,11 @@ test.skip("JAVA_verifyenrolled_016i", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-016i")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-016i")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -877,10 +904,11 @@ test("JAVA_verifyenrolled_017a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-017a")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-017a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -908,10 +936,11 @@ test("JAVA_verifyenrolled_017b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-017b")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-017b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -939,10 +968,11 @@ test("JAVA_verifyenrolled_017c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-017c")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-017c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -970,10 +1000,11 @@ test("JAVA_verifyenrolled_017d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-017d")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-017d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1001,10 +1032,11 @@ test("JAVA_verifyenrolled_017e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-017e")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-017e")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1032,10 +1064,11 @@ test("JAVA_verifyenrolled_017f", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-017f")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-017f")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1063,10 +1096,11 @@ test("JAVA_verifyenrolled_017g", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-017g")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-017g")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1094,10 +1128,11 @@ test("JAVA_verifyenrolled_017h", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-017h")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-017h")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1125,10 +1160,11 @@ test("JAVA_verifyenrolled_017i", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-017i")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-017i")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1156,10 +1192,11 @@ test("JAVA_verifyenrolled_017j", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-017j")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-017j")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1187,10 +1224,11 @@ test("JAVA_verifyenrolled_017k", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-017k")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-017k")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1218,10 +1256,11 @@ test("JAVA_verifyenrolled_018a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-018a")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-018a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1249,10 +1288,11 @@ test("JAVA_verifyenrolled_018b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-018b")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-018b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1280,10 +1320,11 @@ test("JAVA_verifyenrolled_018c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-018c")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-018c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1311,10 +1352,11 @@ test("JAVA_verifyenrolled_018d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-018d")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-018d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1342,10 +1384,11 @@ test("JAVA_verifyenrolled_018e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-018e")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-018e")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1373,10 +1416,11 @@ test("JAVA_verifyenrolled_019a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-019a")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-019a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1404,10 +1448,11 @@ test("JAVA_verifyenrolled_019b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-019b")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-019b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1435,10 +1480,11 @@ test("JAVA_verifyenrolled_019c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-019c")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-019c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1466,10 +1512,11 @@ test("JAVA_verifyenrolled_019d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-019d")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-019d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1497,10 +1544,11 @@ test("JAVA_verifyenrolled_019e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-019e")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-019e")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1528,10 +1576,11 @@ test("JAVA_verifyenrolled_020b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-020b")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-020b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1559,10 +1608,11 @@ test("JAVA_verifyenrolled_020c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-020c")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-020c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1590,10 +1640,11 @@ test("JAVA_verifyenrolled_020d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-020d")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-020d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1621,10 +1672,11 @@ test("JAVA_verifyenrolled_020e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-020e")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-020e")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1652,10 +1704,11 @@ test("JAVA_verifyenrolled_021a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-021a")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-021a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1683,10 +1736,11 @@ test("JAVA_verifyenrolled_021b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-021b")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-021b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1714,10 +1768,11 @@ test("JAVA_verifyenrolled_021c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-021c")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-021c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1745,10 +1800,11 @@ test("JAVA_verifyenrolled_021d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-021d")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-021d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1776,10 +1832,11 @@ test("JAVA_verifyenrolled_022a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-022a")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-022a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1807,10 +1864,11 @@ test("JAVA_verifyenrolled_022b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EURO")
-      .withDescription("JAVA-verifyenrolled-022b")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EURO")
+    .withDescription("JAVA-verifyenrolled-022b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1838,10 +1896,11 @@ test("JAVA_verifyenrolled_022c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("�UR")
-      .withDescription("JAVA-verifyenrolled-022c")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("�UR")
+    .withDescription("JAVA-verifyenrolled-022c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1869,9 +1928,10 @@ test("JAVA_verifyenrolled_022d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withDescription("JAVA-verifyenrolled-022d")
-      .execute();
+  const response = await card
+    .verify()
+    .withDescription("JAVA-verifyenrolled-022d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1899,10 +1959,11 @@ test("JAVA_verifyenrolled_023a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-023a")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-023a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1930,10 +1991,11 @@ test("JAVA_verifyenrolled_023b1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-023b1")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-023b1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1962,7 +2024,8 @@ test("JAVA_verifyenrolled_023b2", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("USD")
       .withDescription("JAVA-verifyenrolled-023b2")
       .execute(),
@@ -1995,7 +2058,8 @@ test("JAVA_verifyenrolled_023c", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("GBP")
       .withDescription("JAVA-verifyenrolled-023c")
       .execute(),
@@ -2027,10 +2091,11 @@ test("JAVA_verifyenrolled_024a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-024a")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-024a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2058,7 +2123,8 @@ test("JAVA_verifyenrolled_024b", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("USD")
       .withDescription("JAVA-verifyenrolled-024b")
       .execute(),
@@ -2087,11 +2153,13 @@ test("JAVA_verifyenrolled_024c", async (t) => {
   card.expYear = "2020";
   card.cvn = "123";
   card.cvnPresenceIndicator = CvnPresenceIndicator.Present;
-  card.cardHolderName = "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep";
+  card.cardHolderName =
+    "3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep3a4wpIwep3uviSnW9XEB3a4wpIwep3uviSnW9XEB3a4wpIwepeep";
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("GBP")
       .withDescription("JAVA-verifyenrolled-024c")
       .execute(),
@@ -2123,10 +2191,11 @@ test("JAVA_verifyenrolled_024d", async (t) => {
   card.cardHolderName = "James~Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-024d")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-024d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2154,10 +2223,11 @@ test("JAVA_verifyenrolled_025a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-025a")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-025a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2185,10 +2255,11 @@ test("JAVA_verifyenrolled_025b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-025b")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-025b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2217,7 +2288,8 @@ test("JAVA_verifyenrolled_025c", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("EUR")
       .withDescription("JAVA-verifyenrolled-025c")
       .execute(),
@@ -2248,7 +2320,8 @@ test("JAVA_verifyenrolled_025d", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("USD")
       .withDescription("JAVA-verifyenrolled-025d")
       .execute(),
@@ -2280,10 +2353,11 @@ test("JAVA_verifyenrolled_026a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-026a")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-026a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2311,10 +2385,11 @@ test("JAVA_verifyenrolled_026b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-026b")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-026b")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2342,10 +2417,11 @@ test("JAVA_verifyenrolled_026c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-026c")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-026c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2373,10 +2449,11 @@ test("JAVA_verifyenrolled_027a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-027a")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-027a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2404,10 +2481,11 @@ test("JAVA_verifyenrolled_028a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-028a")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-028a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2435,10 +2513,11 @@ test("JAVA_verifyenrolled_029a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-029a")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-029a")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2467,7 +2546,8 @@ test("JAVA_verifyenrolled_029b1", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("GBP")
       .withDescription("JAVA-verifyenrolled-029b1")
       .execute(),
@@ -2500,7 +2580,8 @@ test("JAVA_verifyenrolled_029b2", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("GBP")
       .withDescription("JAVA-verifyenrolled-029b2")
       .execute(),
@@ -2533,7 +2614,8 @@ test("JAVA_verifyenrolled_029c", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("EUR")
       .withDescription("JAVA-verifyenrolled-029c")
       .execute(),
@@ -2565,10 +2647,11 @@ test.skip("JAVA_verifyenrolled_029d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-029d")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-029d")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2596,10 +2679,11 @@ test("JAVA_verifyenrolled_030a1", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-030a1")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-030a1")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2627,10 +2711,11 @@ test("JAVA_verifyenrolled_030a2", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-verifyenrolled-030a2")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-verifyenrolled-030a2")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2658,10 +2743,11 @@ test("JAVA_verifyenrolled_030a3", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-030a3")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-030a3")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2689,10 +2775,11 @@ test("JAVA_verifyenrolled_030a4", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("GBP")
-      .withDescription("JAVA-verifyenrolled-030a4")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("GBP")
+    .withDescription("JAVA-verifyenrolled-030a4")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -2721,7 +2808,8 @@ test("JAVA_verifyenrolled_030b", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("EUR")
       .withDescription("JAVA-verifyenrolled-030b")
       .execute(),
@@ -2753,10 +2841,11 @@ test("JAVA_verifyenrolled_030c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // request
-  const response = await card.verify()
-      .withCurrency("USD")
-      .withDescription("JAVA-verifyenrolled-030c")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("USD")
+    .withDescription("JAVA-verifyenrolled-030c")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });

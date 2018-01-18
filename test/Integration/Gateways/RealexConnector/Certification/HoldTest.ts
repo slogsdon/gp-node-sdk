@@ -13,7 +13,7 @@ import {
 const throttle = () => new Promise((resolve) => setTimeout(resolve, 1500));
 
 test.beforeEach(async () => {
-    await throttle();
+  await throttle();
 });
 
 // TODO
@@ -41,18 +41,20 @@ test("JAVA_Hold_Sample", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -81,18 +83,20 @@ test("JAVA_Hold_006a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -121,18 +125,20 @@ test("JAVA_Hold_006b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -161,18 +167,20 @@ test("JAVA_Hold_006c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -201,18 +209,20 @@ test("JAVA_Hold_006d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -241,18 +251,20 @@ test("JAVA_Hold_006e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -281,18 +293,20 @@ test("JAVA_Hold_006f", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -321,18 +335,20 @@ test("JAVA_Hold_006g", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -361,18 +377,20 @@ test("JAVA_Hold_006h", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -401,18 +419,20 @@ test("JAVA_Hold_006i", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -441,18 +461,20 @@ test("JAVA_Hold_006k", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -481,18 +503,20 @@ test("JAVA_Hold_006l", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -521,18 +545,20 @@ test("JAVA_Hold_007a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -561,18 +587,20 @@ test("JAVA_Hold_007b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -601,18 +629,20 @@ test("JAVA_Hold_007c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -633,10 +663,12 @@ test("JAVA_Hold_007d", async (t) => {
   const saleResponse = Transaction.fromId(undefined as any);
 
   // request
-  const error = t.throws(() =>
-      saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .execute(),
+  const error = t.throws(
+    () =>
+      saleResponse
+        .hold()
+        .withReasonCode(ReasonCode.Fraud)
+        .execute(),
     BuilderError,
   );
   t.truthy(error.message);
@@ -658,10 +690,12 @@ test("JAVA_Hold_007e", async (t) => {
   const saleResponse = Transaction.fromId(undefined as any);
 
   // request
-  const error = t.throws(() =>
-      saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .execute(),
+  const error = t.throws(
+    () =>
+      saleResponse
+        .hold()
+        .withReasonCode(ReasonCode.Fraud)
+        .execute(),
     BuilderError,
   );
   t.truthy(error.message);
@@ -691,18 +725,20 @@ test("JAVA_Hold_008a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -731,18 +767,20 @@ test("JAVA_Hold_008b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -763,10 +801,12 @@ test("JAVA_Hold_008c", async (t) => {
   const saleResponse = Transaction.fromId(undefined as any);
 
   // request
-  const error = t.throws(() =>
-    saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .execute(),
+  const error = t.throws(
+    () =>
+      saleResponse
+        .hold()
+        .withReasonCode(ReasonCode.Fraud)
+        .execute(),
     BuilderError,
   );
   t.truthy(error.message);
@@ -788,10 +828,12 @@ test("JAVA_Hold_008d", async (t) => {
   const saleResponse = Transaction.fromId(undefined as any);
 
   // request
-  const error = t.throws(() =>
-    saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .execute(),
+  const error = t.throws(
+    () =>
+      saleResponse
+        .hold()
+        .withReasonCode(ReasonCode.Fraud)
+        .execute(),
     BuilderError,
   );
   t.truthy(error.message);
@@ -813,10 +855,12 @@ test("JAVA_Hold_008e", async (t) => {
   const saleResponse = Transaction.fromId(undefined as any);
 
   // request
-  const error = t.throws(() =>
-    saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .execute(),
+  const error = t.throws(
+    () =>
+      saleResponse
+        .hold()
+        .withReasonCode(ReasonCode.Fraud)
+        .execute(),
     BuilderError,
   );
   t.truthy(error.message);
@@ -846,18 +890,20 @@ test("JAVA_Hold_009c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -879,11 +925,13 @@ test("JAVA_Hold_009d", async (t) => {
   const saleResponse = Transaction.fromId(undefined as any);
 
   // request
-  const error = t.throws(() =>
-    saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("SDK-JAVA-Query")
-      .execute(),
+  const error = t.throws(
+    () =>
+      saleResponse
+        .hold()
+        .withReasonCode(ReasonCode.Fraud)
+        .withDescription("SDK-JAVA-Query")
+        .execute(),
     BuilderError,
   );
   t.truthy(error.message);
@@ -906,11 +954,13 @@ test("JAVA_Hold_009e", async (t) => {
   const saleResponse = Transaction.fromId(undefined as any);
 
   // request
-  const error = t.throws(() =>
-    saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("SDK-JAVA-Query")
-      .execute(),
+  const error = t.throws(
+    () =>
+      saleResponse
+        .hold()
+        .withReasonCode(ReasonCode.Fraud)
+        .withDescription("SDK-JAVA-Query")
+        .execute(),
     BuilderError,
   );
   t.truthy(error.message);
@@ -940,18 +990,20 @@ test("JAVA_Hold_010a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -980,18 +1032,20 @@ test("JAVA_Hold_010b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1013,11 +1067,13 @@ test("JAVA_Hold_010c", async (t) => {
   const saleResponse = Transaction.fromId(undefined as any);
 
   // request
-  const error = t.throws(() =>
-    saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute(),
+  const error = t.throws(
+    () =>
+      saleResponse
+        .hold()
+        .withReasonCode(ReasonCode.Fraud)
+        .withDescription("JAVA-Hold")
+        .execute(),
     BuilderError,
   );
   t.truthy(error.message);
@@ -1047,18 +1103,20 @@ test("JAVA_Hold_010d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1087,18 +1145,20 @@ test("JAVA_Hold_011a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1127,18 +1187,20 @@ test("JAVA_Hold_011b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(undefined)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(undefined)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1167,17 +1229,19 @@ test("JAVA_Hold_011c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1206,18 +1270,20 @@ test("JAVA_Hold_011d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(undefined)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(undefined)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1246,18 +1312,20 @@ test("JAVA_Hold_012a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1286,16 +1354,18 @@ test("JAVA_Hold_012b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    saleResponse.hold()
+    saleResponse
+      .hold()
       .withReasonCode(ReasonCode.Fraud)
       .withDescription("SDK-JAVA-Query")
       .execute(),
@@ -1328,18 +1398,20 @@ test("JAVA_Hold_013a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.hold()
-      .withReasonCode(ReasonCode.Fraud)
-      .withDescription("JAVA-Hold")
-      .execute();
+  const response = await saleResponse
+    .hold()
+    .withReasonCode(ReasonCode.Fraud)
+    .withDescription("JAVA-Hold")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1368,16 +1440,18 @@ test("JAVA_Hold_013b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    saleResponse.hold()
+    saleResponse
+      .hold()
       .withReasonCode(ReasonCode.Fraud)
       .withDescription("SDK-JAVA-Query")
       .execute(),
@@ -1410,16 +1484,18 @@ test("JAVA_Hold_013c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    saleResponse.hold()
+    saleResponse
+      .hold()
       .withReasonCode(ReasonCode.Fraud)
       .withDescription("SDK-JAVA-Query")
       .execute(),

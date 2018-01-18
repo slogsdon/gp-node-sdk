@@ -10,7 +10,7 @@ import {
 const throttle = () => new Promise((resolve) => setTimeout(resolve, 1500));
 
 test.beforeEach(async () => {
-    await throttle();
+  await throttle();
 });
 
 test("JAVA_Void_Sample", async (t) => {
@@ -37,17 +37,19 @@ test("JAVA_Void_Sample", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -76,17 +78,19 @@ test("JAVA_Void_006a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -115,17 +119,19 @@ test("JAVA_Void_006b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -154,17 +160,19 @@ test("JAVA_Void_006c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -193,17 +201,19 @@ test("JAVA_Void_006d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -232,17 +242,19 @@ test("JAVA_Void_006e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -271,17 +283,19 @@ test("JAVA_Void_006f", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -310,17 +324,19 @@ test("JAVA_Void_006g", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -349,17 +365,19 @@ test("JAVA_Void_006h", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -388,17 +406,19 @@ test("JAVA_Void_006i", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -427,17 +447,19 @@ test("JAVA_Void_006k", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -466,17 +488,19 @@ test("JAVA_Void_007a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -505,17 +529,19 @@ test("JAVA_Void_007b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -544,17 +570,19 @@ test("JAVA_Void_007c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -583,17 +611,19 @@ test("JAVA_Void_007d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -622,17 +652,19 @@ test("JAVA_Void_007e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -661,17 +693,19 @@ test("JAVA_Void_008a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -700,17 +734,19 @@ test("JAVA_Void_008b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -739,17 +775,19 @@ test("JAVA_Void_008c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -778,17 +816,19 @@ test("JAVA_Void_008d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -817,16 +857,18 @@ test("JAVA_Void_009e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    saleResponse.void()
+    saleResponse
+      .void()
       .withDescription("JAVA-Void")
       .execute(),
     GatewayError,
@@ -858,17 +900,19 @@ test("JAVA_Void_009a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -897,17 +941,19 @@ test("JAVA_Void_009b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -924,7 +970,8 @@ test("JAVA_Void_009c", async (t) => {
   config.serviceUrl = "https://api.sandbox.realexpayments.com/epage-remote.cgi";
   config.timeout = 5000;
   // tslint:disable:max-line-length
-  config.channel = "ECOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOm";
+  config.channel =
+    "ECOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOm";
   // tslint:enable:max-line-length
   ServicesContainer.configure(config);
 
@@ -938,16 +985,18 @@ test("JAVA_Void_009c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    saleResponse.void()
+    saleResponse
+      .void()
       .withDescription("JAVA-Void")
       .execute(),
     GatewayError,
@@ -979,16 +1028,18 @@ test("JAVA_Void_009d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
   const error = await t.throws(
-    saleResponse.void()
+    saleResponse
+      .void()
       .withDescription("JAVA-Void")
       .execute(),
     GatewayError,
@@ -1020,17 +1071,19 @@ test("JAVA_Void_010c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1059,17 +1112,19 @@ test("JAVA_Void_010d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1098,17 +1153,19 @@ test("JAVA_Void_010e", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1137,17 +1194,19 @@ test("JAVA_Void_011a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1176,17 +1235,19 @@ test("JAVA_Void_011b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1215,17 +1276,19 @@ test("JAVA_Void_011c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1254,17 +1317,19 @@ test("JAVA_Void_011d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1293,17 +1358,19 @@ test("JAVA_Void_012a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1332,17 +1399,19 @@ test("JAVA_Void_012b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1371,17 +1440,19 @@ test("JAVA_Void_012c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1410,17 +1481,19 @@ test("JAVA_Void_012d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1449,17 +1522,19 @@ test("JAVA_Void_013a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1488,17 +1563,19 @@ test("JAVA_Void_014a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1527,17 +1604,19 @@ test("JAVA_Void_014b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1566,19 +1645,23 @@ test("JAVA_Void_014c", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      // tslint:disable:max-line-length
-      .withDescription("akshdfgakjdshfgjdshgfkjdsahgfjshagdfjshdagfkjdshgfjshdgfjdshgfkjhdsagfjdsgfdskjgfdsjkhgfdsjhgfkdsjgfkjdshgfkjdsahgfjdskhgfjhdsgfjkhsdgfjkhsdgfjhsdgfjhsdgfkjhgsadjfhgsakjdhgfsajdhgfkjsadgfjhsadgfjkhdsgafjhdsgfjhdsgfjhdsgfkjhdgsafjkhgsfjhsdagfkjsgdafjhsgdfjhgdskjfgdsjfhgjdskhgfjhdsgfjhdsgfkjhgdsfkjhgsdkjfgsdkjhgfkjsahgdfkjgdsajfhgdsjkgfjdshgfjkdsagfjkhdsgfjsdhgfjkdshgfkjhgdsfkjhgdskjfgdskjgfkjdsahgfjhgdsakjfgdsafjhgdsjkhgfkjdshgfakjadshgfjhdsagfjhgdsfjhgsdakjfgdsakjhgfjsdhgfjhdsgfjhdsgfkjgdsajkfhgjdshgfjdsahgfjkhdsagfjhdsgfjkgdsfjhdsgfjhgdsjfhgdsjhfgjdshgfkjdsgfkjsadgfjkgdsfkjhgdsajfkhgdsjkgfkjdsagfkjgdsakjfhgdsfjkhgdsafkjgsadkjgfdkjsahgfkjsagfkjdshgfkjshdgfjgdsfkjgsadkjhgfdsjhgfkjdsagfjhdsgfjhgdsakjfgdsakjhgfjsdahgfjkgdsfjhgdsajkhfgjhdsagfkjhsgdakjf")
-      // tslint:enable:max-line-length
-      .execute();
+  const response = await saleResponse
+    .void()
+    // tslint:disable:max-line-length
+    .withDescription(
+      "akshdfgakjdshfgjdshgfkjdsahgfjshagdfjshdagfkjdshgfjshdgfjdshgfkjhdsagfjdsgfdskjgfdsjkhgfdsjhgfkdsjgfkjdshgfkjdsahgfjdskhgfjhdsgfjkhsdgfjkhsdgfjhsdgfjhsdgfkjhgsadjfhgsakjdhgfsajdhgfkjsadgfjhsadgfjkhdsgafjhdsgfjhdsgfjhdsgfkjhdgsafjkhgsfjhsdagfkjsgdafjhsgdfjhgdskjfgdsjfhgjdskhgfjhdsgfjhdsgfkjhgdsfkjhgsdkjfgsdkjhgfkjsahgdfkjgdsajfhgdsjkgfjdshgfjkdsagfjkhdsgfjsdhgfjkdshgfkjhgdsfkjhgdskjfgdskjgfkjdsahgfjhgdsakjfgdsafjhgdsjkhgfkjdshgfakjadshgfjhdsagfjhgdsfjhgsdakjfgdsakjhgfjsdhgfjhdsgfjhdsgfkjgdsajkfhgjdshgfjdsahgfjkhdsagfjhdsgfjkgdsfjhdsgfjhgdsjfhgdsjhfgjdshgfkjdsgfkjsadgfjkgdsfkjhgdsajfkhgdsjkgfkjdsagfkjgdsakjfhgdsfjkhgdsafkjgsadkjgfdkjsahgfkjsagfkjdshgfkjshdgfjgdsfkjgsadkjhgfdsjhgfkjdsagfjhdsgfjhgdsakjfgdsakjhgfjsdahgfjkgdsfjhgdsajkhfgjhdsagfkjhsgdakjf",
+    )
+    // tslint:enable:max-line-length
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1607,17 +1690,19 @@ test("JAVA_Void_014d", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("SDK#####")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("SDK#####")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1646,17 +1731,19 @@ test("JAVA_Void_015a", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1685,17 +1772,19 @@ test("JAVA_Void_015b", async (t) => {
   card.cardHolderName = "James Mason";
 
   // build transaction
-  const saleResponse = await card.charge(10)
-      .withCurrency("EUR")
-      .execute();
+  const saleResponse = await card
+    .charge(10)
+    .withCurrency("EUR")
+    .execute();
   t.truthy(saleResponse);
   t.is("00", saleResponse.responseCode);
   await throttle();
 
   // request
-  const response = await saleResponse.void()
-      .withDescription("JAVA-Void")
-      .execute();
+  const response = await saleResponse
+    .void()
+    .withDescription("JAVA-Void")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });

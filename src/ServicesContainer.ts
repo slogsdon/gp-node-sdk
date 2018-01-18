@@ -47,7 +47,8 @@ export class ServicesContainer {
       gateway.developerId = config.developerId;
       gateway.versionNumber = config.versionNumber;
       gateway.timeout = config.timeout;
-      gateway.serviceUrl = config.serviceUrl + "/Hps.Exchange.PosGateway/PosGatewayService.asmx";
+      gateway.serviceUrl =
+        config.serviceUrl + "/Hps.Exchange.PosGateway/PosGatewayService.asmx";
       const payplan = new PayPlanConnector();
       payplan.secretApiKey = config.secretApiKey;
       payplan.timeout = config.timeout;

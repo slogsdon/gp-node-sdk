@@ -47,9 +47,13 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
   public supportsUpdatePaymentDetails = true;
   public hostedPaymentConfig: HostedPaymentConfig;
 
-  public processAuthorization(builder: AuthorizationBuilder): Promise<Transaction> {
+  public processAuthorization(
+    builder: AuthorizationBuilder,
+  ): Promise<Transaction> {
     const timestamp = GenerationUtils.generateTimestamp();
-    const orderId = builder.orderId ? builder.orderId : GenerationUtils.generateOrderId();
+    const orderId = builder.orderId
+      ? builder.orderId
+      : GenerationUtils.generateOrderId();
 
     // build Request
     const request = element("request", {
@@ -72,8 +76,12 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
     subElement(request, "orderid").append(cData(orderId));
 
     if (builder.amount) {
-      const amountAttrs = builder.currency ? {currency: builder.currency} : {};
-      subElement(request, "amount", amountAttrs).append(cData(this.numberFormat(builder.amount)));
+      const amountAttrs = builder.currency
+        ? { currency: builder.currency }
+        : {};
+      subElement(request, "amount", amountAttrs).append(
+        cData(this.numberFormat(builder.amount)),
+      );
     }
 
     // hydrate the payment data fields
@@ -82,22 +90,27 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
 
       const cardElement = subElement(request, "card");
       subElement(cardElement, "number").append(cData(card.number));
-      const date = StringUtils.leftPad(card.expMonth, 2, "0")
-        + StringUtils.leftPad((card.expYear || "").substr(2, 2), 2, "0");
+      const date =
+        StringUtils.leftPad(card.expMonth, 2, "0") +
+        StringUtils.leftPad((card.expYear || "").substr(2, 2), 2, "0");
       subElement(cardElement, "expdate").append(cData(date));
-      subElement(cardElement, "type").append(cData(card.getCardType().toUpperCase()));
+      subElement(cardElement, "type").append(
+        cData(card.getCardType().toUpperCase()),
+      );
       subElement(cardElement, "chname").append(cData(card.cardHolderName));
 
       if (card.cvn) {
-          const cvnElement = subElement(cardElement, "cvn");
-          subElement(cvnElement, "number").append(cData(card.cvn));
-          subElement(cvnElement, "presind").append(cData(card.cvnPresenceIndicator.toString()));
+        const cvnElement = subElement(cardElement, "cvn");
+        subElement(cvnElement, "number").append(cData(card.cvn));
+        subElement(cvnElement, "presind").append(
+          cData(card.cvnPresenceIndicator.toString()),
+        );
       }
       // issueno
 
       const isVerify = builder.transactionType === TransactionType.Verify;
-      subElement(request, "sha1hash")
-        .append(cData(
+      subElement(request, "sha1hash").append(
+        cData(
           this.generateHash(
             timestamp,
             orderId,
@@ -106,14 +119,17 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
             card.number,
             isVerify,
           ),
-        ));
+        ),
+      );
     }
 
     if (builder.paymentMethod instanceof RecurringPaymentMethod) {
       const recurring = builder.paymentMethod;
 
       subElement(request, "payerref").append(cData(recurring.customerKey));
-      subElement(request, "paymentmethod").append(cData(recurring.key || recurring.id));
+      subElement(request, "paymentmethod").append(
+        cData(recurring.key || recurring.id),
+      );
 
       if (builder.cvn) {
         const paymentData = subElement(request, "paymentdata");
@@ -122,8 +138,8 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
       }
 
       const isVerify = builder.transactionType === TransactionType.Verify;
-      subElement(request, "sha1hash")
-        .append(cData(
+      subElement(request, "sha1hash").append(
+        cData(
           this.generateHash(
             timestamp,
             orderId,
@@ -132,34 +148,47 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
             recurring.customerKey,
             isVerify,
           ),
-        ));
+        ),
+      );
     }
 
     // refund hash
     if (builder.transactionType === TransactionType.Refund) {
-      subElement(request, "refundhash")
-        .append(cData(GenerationUtils.generateHash(this.refundPassword) || ""));
+      subElement(request, "refundhash").append(
+        cData(GenerationUtils.generateHash(this.refundPassword) || ""),
+      );
     }
 
     // this needs to be figured out based on txn type and set to 0, 1 or MULTI
-    if (builder.transactionType === TransactionType.Sale
-      || builder.transactionType === TransactionType.Auth
+    if (
+      builder.transactionType === TransactionType.Sale ||
+      builder.transactionType === TransactionType.Auth
     ) {
-      const autoSettle = builder.transactionType === TransactionType.Sale ? "1" : "0";
-      subElement(request, "autosettle", {flag: autoSettle});
+      const autoSettle =
+        builder.transactionType === TransactionType.Sale ? "1" : "0";
+      subElement(request, "autosettle", { flag: autoSettle });
     }
 
     if (builder.description) {
       const comments = subElement(request, "comments");
-      subElement(comments, "comment", {id: 1}).append(cData(builder.description));
+      subElement(comments, "comment", { id: 1 }).append(
+        cData(builder.description),
+      );
     }
 
-    if (builder.customerId || builder.productId || builder.customerIpAddress || builder.clientTransactionId) {
+    if (
+      builder.customerId ||
+      builder.productId ||
+      builder.customerIpAddress ||
+      builder.clientTransactionId
+    ) {
       const tssInfo = subElement(request, "tssinfo");
       subElement(tssInfo, "custnum").append(cData(builder.customerId));
       subElement(tssInfo, "prodid").append(cData(builder.productId));
       subElement(tssInfo, "varref").append(cData(builder.clientTransactionId));
-      subElement(tssInfo, "custipaddress").append(cData(builder.customerIpAddress));
+      subElement(tssInfo, "custipaddress").append(
+        cData(builder.customerIpAddress),
+      );
     }
 
     if (builder.ecommerceInfo) {
@@ -169,24 +198,31 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
       subElement(mpi, "eci").append(cData(builder.ecommerceInfo.eci));
     }
 
-    return this.doTransaction(this.buildEnvelope(request))
-      .then((response) => this.mapResponse(response));
+    return this.doTransaction(this.buildEnvelope(request)).then((response) =>
+      this.mapResponse(response),
+    );
   }
 
   public serializeRequest(builder: AuthorizationBuilder): string {
     if (!this.hostedPaymentConfig) {
-      throw new ApiError("Hosted configuration missing. Please check your configuration");
+      throw new ApiError(
+        "Hosted configuration missing. Please check your configuration",
+      );
     }
 
-    const encoder = this.hostedPaymentConfig.version === HppVersion.Version2 ? ((t: string) => t) : StringUtils.btoa;
+    const encoder =
+      this.hostedPaymentConfig.version === HppVersion.Version2
+        ? (t: string) => t
+        : StringUtils.btoa;
     const request: any = {};
 
     const orderId = builder.orderId || GenerationUtils.generateOrderId();
     const timestamp = builder.timestamp || GenerationUtils.generateTimestamp();
 
-    if (builder.transactionType !== TransactionType.Sale
-      && builder.transactionType !== TransactionType.Auth
-      && builder.transactionType !== TransactionType.Verify
+    if (
+      builder.transactionType !== TransactionType.Sale &&
+      builder.transactionType !== TransactionType.Auth &&
+      builder.transactionType !== TransactionType.Verify
     ) {
       throw new UnsupportedTransactionError();
     }
@@ -196,66 +232,101 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
     request.CHANNEL = encoder(this.channel || "");
     request.ORDER_ID = encoder(orderId || "");
     if (builder.amount) {
-        request.AMOUNT = encoder(this.numberFormat(builder.amount) || "");
+      request.AMOUNT = encoder(this.numberFormat(builder.amount) || "");
     }
     request.CURRENCY = encoder(builder.currency || "");
     request.TIMESTAMP = encoder(timestamp || "");
-    request.AUTO_SETTLE_FLAG = encoder((builder.transactionType === TransactionType.Sale) ? "1" : "0" || "");
+    request.AUTO_SETTLE_FLAG = encoder(
+      builder.transactionType === TransactionType.Sale ? "1" : "0" || "",
+    );
     request.COMMENT1 = encoder(builder.Description || "");
     // request.COMMENT2 = encoder( || "");
     if (this.hostedPaymentConfig.requestTransactionStabilityScore) {
-        request.RETURN_TSS = encoder(this.hostedPaymentConfig.requestTransactionStabilityScore ? "1" : "0" || "");
+      request.RETURN_TSS = encoder(
+        this.hostedPaymentConfig.requestTransactionStabilityScore
+          ? "1"
+          : "0" || "",
+      );
     }
     if (this.hostedPaymentConfig.directCurrencyConversionEnabled) {
-        request.DCC_ENABLE = encoder(this.hostedPaymentConfig.directCurrencyConversionEnabled ? "1" : "0" || "");
+      request.DCC_ENABLE = encoder(
+        this.hostedPaymentConfig.directCurrencyConversionEnabled
+          ? "1"
+          : "0" || "",
+      );
     }
     if (builder.hostedPaymentData) {
-        request.CUST_NUM = encoder(builder.hostedPaymentData.customerNumber || "");
-        if (this.hostedPaymentConfig.displaySavedCards && builder.hostedPaymentData.customerKey) {
-          request.HPP_SELECT_STORED_CARD = encoder(builder.hostedPaymentData.customerKey || "");
-        }
-        if (builder.hostedPaymentData.offerToSaveCard) {
-          request.OFFER_SAVE_CARD = encoder(builder.hostedPaymentData.offerToSaveCard ? "1" : "0" || "");
-        }
-        if (builder.hostedPaymentData.customerExists) {
-          request.PAYER_EXIST = encoder(builder.hostedPaymentData.customerExists ? "1" : "0" || "");
-        }
-        request.PAYER_REF = encoder(builder.hostedPaymentData.customerKey || "");
-        request.PMT_REF = encoder(builder.hostedPaymentData.paymentKey || "");
-        request.PROD_ID = encoder(builder.hostedPaymentData.productId || "");
+      request.CUST_NUM = encoder(
+        builder.hostedPaymentData.customerNumber || "",
+      );
+      if (
+        this.hostedPaymentConfig.displaySavedCards &&
+        builder.hostedPaymentData.customerKey
+      ) {
+        request.HPP_SELECT_STORED_CARD = encoder(
+          builder.hostedPaymentData.customerKey || "",
+        );
+      }
+      if (builder.hostedPaymentData.offerToSaveCard) {
+        request.OFFER_SAVE_CARD = encoder(
+          builder.hostedPaymentData.offerToSaveCard ? "1" : "0" || "",
+        );
+      }
+      if (builder.hostedPaymentData.customerExists) {
+        request.PAYER_EXIST = encoder(
+          builder.hostedPaymentData.customerExists ? "1" : "0" || "",
+        );
+      }
+      request.PAYER_REF = encoder(builder.hostedPaymentData.customerKey || "");
+      request.PMT_REF = encoder(builder.hostedPaymentData.paymentKey || "");
+      request.PROD_ID = encoder(builder.hostedPaymentData.productId || "");
     }
     if (builder.shippingAddress) {
-        request.SHIPPING_CODE = encoder(builder.shippingAddress.postalCode || "");
-        request.SHIPPING_CO = encoder(builder.shippingAddress.country || "");
+      request.SHIPPING_CODE = encoder(builder.shippingAddress.postalCode || "");
+      request.SHIPPING_CO = encoder(builder.shippingAddress.country || "");
     }
     if (builder.sillingAddress) {
-        request.BILLING_CODE = encoder(builder.billingAddress.postalCode || "");
-        request.BILLING_CO = encoder(builder.billingAddress.country || "");
+      request.BILLING_CODE = encoder(builder.billingAddress.postalCode || "");
+      request.BILLING_CO = encoder(builder.billingAddress.country || "");
     }
     request.CUST_NUM = encoder(builder.customerId || "");
     request.VAR_REF = encoder(builder.clientTransactionId || "");
     request.HPP_LANG = encoder(this.hostedPaymentConfig.language || "");
-    request.MERCHANT_RESPONSE_URL = encoder(this.hostedPaymentConfig.responseUrl || "");
-    request.CARD_PAYMENT_BUTTON = encoder(this.hostedPaymentConfig.paymentButtonText || "");
+    request.MERCHANT_RESPONSE_URL = encoder(
+      this.hostedPaymentConfig.responseUrl || "",
+    );
+    request.CARD_PAYMENT_BUTTON = encoder(
+      this.hostedPaymentConfig.paymentButtonText || "",
+    );
     if (this.hostedPaymentConfig.cardStorageEnabled) {
-        request.CARD_STORAGE_ENABLE = encoder(this.hostedPaymentConfig.cardStorageEnabled ? "1" : "0" || "");
+      request.CARD_STORAGE_ENABLE = encoder(
+        this.hostedPaymentConfig.cardStorageEnabled ? "1" : "0" || "",
+      );
     }
     if (builder.transactionType === TransactionType.Verify) {
-        request.VALIDATE_CARD_ONLY = encoder("1" || "");
+      request.VALIDATE_CARD_ONLY = encoder("1" || "");
     }
     if (this.hostedPaymentConfig.fraudFilterMode) {
-      request.HPP_FRAUD_FILTER_MODE = encoder(this.hostedPaymentConfig.fraudFilterMode.toString() || "");
+      request.HPP_FRAUD_FILTER_MODE = encoder(
+        this.hostedPaymentConfig.fraudFilterMode.toString() || "",
+      );
     }
     if (builder.recurringType || builder.recurringSequence) {
       if (builder.recurringType) {
-        request.RECURRING_TYPE = encoder(builder.recurringType.toString().toLowerCase() || "");
+        request.RECURRING_TYPE = encoder(
+          builder.recurringType.toString().toLowerCase() || "",
+        );
       }
       if (builder.recurringSequence) {
-        request.RECURRING_SEQUENCE = encoder(builder.recurringSequence.toString().toLowerCase() || "");
+        request.RECURRING_SEQUENCE = encoder(
+          builder.recurringSequence.toString().toLowerCase() || "",
+        );
       }
     }
     if (this.hostedPaymentConfig.version) {
-      request.HPP_VERSION = encoder(this.hostedPaymentConfig.version.toString() || "");
+      request.HPP_VERSION = encoder(
+        this.hostedPaymentConfig.version.toString() || "",
+      );
     }
 
     const toHash = [
@@ -266,16 +337,32 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
       builder.currency,
     ];
 
-    if (this.hostedPaymentConfig.cardStorageEnabled || (builder.hostedPaymentData && builder.hostedPaymentData.offerToSaveCard)) {
-      toHash.push(builder.hostedPaymentData.customerKey ? builder.hostedPaymentData.customerKey : null);
-      toHash.push(builder.hostedPaymentData.paymentKey ? builder.hostedPaymentData.paymentKey : null);
+    if (
+      this.hostedPaymentConfig.cardStorageEnabled ||
+      (builder.hostedPaymentData && builder.hostedPaymentData.offerToSaveCard)
+    ) {
+      toHash.push(
+        builder.hostedPaymentData.customerKey
+          ? builder.hostedPaymentData.customerKey
+          : null,
+      );
+      toHash.push(
+        builder.hostedPaymentData.paymentKey
+          ? builder.hostedPaymentData.paymentKey
+          : null,
+      );
     }
 
-    if (this.hostedPaymentConfig.fraudFilterMode && this.hostedPaymentConfig.fraudFilterMode !== FraudFilterMode.None) {
+    if (
+      this.hostedPaymentConfig.fraudFilterMode &&
+      this.hostedPaymentConfig.fraudFilterMode !== FraudFilterMode.None
+    ) {
       toHash.push(this.hostedPaymentConfig.fraudFilterMode.toString());
     }
 
-    request.SHA1HASH = encoder(GenerationUtils.generateHash(toHash.join("."), this.sharedSecret) || "");
+    request.SHA1HASH = encoder(
+      GenerationUtils.generateHash(toHash.join("."), this.sharedSecret) || "",
+    );
 
     return JSON.stringify(request);
   }
@@ -310,40 +397,55 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
     }
 
     if (builder.amount) {
-      const amountAttrs = builder.currency ? {currency: builder.currency} : {};
-      subElement(request, "amount", amountAttrs).append(cData(this.numberFormat(builder.amount)));
+      const amountAttrs = builder.currency
+        ? { currency: builder.currency }
+        : {};
+      subElement(request, "amount", amountAttrs).append(
+        cData(this.numberFormat(builder.amount)),
+      );
     } else if (builder.transactionType === TransactionType.Capture) {
       throw new BuilderError("Amount cannot be null for capture");
     }
 
     if (builder.transactionType === TransactionType.Refund) {
       if (builder.authorizationCode) {
-        subElement(request, "authcode").append(cData(builder.authorizationCode));
+        subElement(request, "authcode").append(
+          cData(builder.authorizationCode),
+        );
       }
-      subElement(request, "refundhash").append(cData(GenerationUtils.generateHash(this.rebatePassword)));
+      subElement(request, "refundhash").append(
+        cData(GenerationUtils.generateHash(this.rebatePassword)),
+      );
     }
 
     if (builder.reasonCode) {
-      subElement(request, "reasoncode").append(cData(builder.reasonCode.toString()));
+      subElement(request, "reasoncode").append(
+        cData(builder.reasonCode.toString()),
+      );
     }
 
     if (builder.description) {
       const comments = subElement(request, "comments");
-      subElement(comments, "comment", {id: 1}).append(cData(builder.description));
+      subElement(comments, "comment", { id: 1 }).append(
+        cData(builder.description),
+      );
     }
 
-    subElement(request, "sha1hash").append(cData(
-      this.generateHash(
-        timestamp,
-        orderId,
-        builder.amount ? this.numberFormat(builder.amount) : "",
-        builder.currency,
-        "",
+    subElement(request, "sha1hash").append(
+      cData(
+        this.generateHash(
+          timestamp,
+          orderId,
+          builder.amount ? this.numberFormat(builder.amount) : "",
+          builder.currency,
+          "",
+        ),
       ),
-    ));
+    );
 
-    return this.doTransaction(this.buildEnvelope(request))
-      .then((response) => this.mapResponse(response));
+    return this.doTransaction(this.buildEnvelope(request)).then((response) =>
+      this.mapResponse(response),
+    );
   }
 
   public processReport<T>(_builder: ReportBuilder<T>): Promise<T> {
@@ -352,7 +454,9 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
     );
   }
 
-  public processRecurring<T extends IRecurringEntity>(builder: RecurringBuilder<T>): Promise<T> {
+  public processRecurring<T extends IRecurringEntity>(
+    builder: RecurringBuilder<T>,
+  ): Promise<T> {
     const timestamp = GenerationUtils.generateTimestamp();
     const orderId = builder.orderId || GenerationUtils.generateOrderId();
 
@@ -372,25 +476,23 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
 
     subElement(request, "orderid").append(cData(orderId));
 
-    if (builder.transactionType === TransactionType.Create
-      || builder.transactionType === TransactionType.Edit
+    if (
+      builder.transactionType === TransactionType.Create ||
+      builder.transactionType === TransactionType.Edit
     ) {
       if (builder.entity instanceof Customer) {
         const customer = builder.entity;
         request.append(this.buildCustomer(customer));
-        subElement(request, "sha1hash").append(cData(
-          GenerationUtils.generateHash(
-            [
-              timestamp,
-              this.merchantId,
-              orderId,
-              "",
-              "",
-              customer.key,
-            ].join("."),
-            this.sharedSecret,
+        subElement(request, "sha1hash").append(
+          cData(
+            GenerationUtils.generateHash(
+              [timestamp, this.merchantId, orderId, "", "", customer.key].join(
+                ".",
+              ),
+              this.sharedSecret,
+            ),
           ),
-        ));
+        );
       } else if (builder.entity instanceof RecurringPaymentMethod) {
         const payment = builder.entity;
         const cardElement = subElement(request, "card");
@@ -399,8 +501,9 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
 
         if (payment.paymentMethod) {
           const card = payment.paymentMethod as CreditCardData;
-          const expiry = StringUtils.leftPad(card.expMonth, 2, "0")
-            + StringUtils.leftPad((card.expYear || "").substr(2, 2), 2, "0");
+          const expiry =
+            StringUtils.leftPad(card.expMonth, 2, "0") +
+            StringUtils.leftPad((card.expYear || "").substr(2, 2), 2, "0");
           subElement(cardElement, "number").append(cData(card.number));
           subElement(cardElement, "expdate").append(cData(expiry));
           subElement(cardElement, "chname").append(cData(card.cardHolderName));
@@ -446,8 +549,9 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
       }
     }
 
-    return this.doTransaction(this.buildEnvelope(request))
-      .then((response) => this.mapRecurringResponse<T>(response, builder));
+    return this.doTransaction(this.buildEnvelope(request)).then((response) =>
+      this.mapRecurringResponse<T>(response, builder),
+    );
   }
 
   protected buildEnvelope(transaction: Element): string {
@@ -466,14 +570,24 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
 
     if (customer.address) {
       const address = subElement(payer, "address");
-      subElement(address, "line1").append(cData(customer.address.streetAddress1));
-      subElement(address, "line2").append(cData(customer.address.streetAddress2));
-      subElement(address, "line3").append(cData(customer.address.streetAddress3));
+      subElement(address, "line1").append(
+        cData(customer.address.streetAddress1),
+      );
+      subElement(address, "line2").append(
+        cData(customer.address.streetAddress2),
+      );
+      subElement(address, "line3").append(
+        cData(customer.address.streetAddress3),
+      );
       subElement(address, "city").append(cData(customer.address.city));
       subElement(address, "county").append(cData(customer.address.province));
-      subElement(address, "postcode").append(cData(customer.address.postalCode));
+      subElement(address, "postcode").append(
+        cData(customer.address.postalCode),
+      );
       if (customer.address.country) {
-        subElement(address, "country", {code: "GB"}).append(cData(customer.address.country));
+        subElement(address, "country", { code: "GB" }).append(
+          cData(customer.address.country),
+        );
       }
     }
 
@@ -508,7 +622,10 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
     return result;
   }
 
-  protected mapRecurringResponse<T extends IRecurringEntity>(rawResponse: string, builder: RecurringBuilder<T>) {
+  protected mapRecurringResponse<T extends IRecurringEntity>(
+    rawResponse: string,
+    builder: RecurringBuilder<T>,
+  ) {
     const root = xml(rawResponse);
 
     this.checkResponse(root);
@@ -540,11 +657,7 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
     paymentData: string,
     verify = false,
   ): string {
-    const data = [
-      timestamp,
-      this.merchantId,
-      orderId,
-    ];
+    const data = [timestamp, this.merchantId, orderId];
 
     if (false === verify) {
       data.push(amount);
@@ -599,7 +712,9 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
     }
   }
 
-  protected mapRecurringRequestType<T extends IRecurringEntity>(builder: RecurringBuilder<T>) {
+  protected mapRecurringRequestType<T extends IRecurringEntity>(
+    builder: RecurringBuilder<T>,
+  ) {
     const entity = builder.entity;
     switch (builder.transactionType) {
       case TransactionType.Create:

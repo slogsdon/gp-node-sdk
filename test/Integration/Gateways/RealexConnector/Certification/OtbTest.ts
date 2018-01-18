@@ -37,10 +37,11 @@ test("JAVA_OTB_Sample", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -69,10 +70,11 @@ test("JAVA_OTB_006a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -101,10 +103,11 @@ test("JAVA_OTB_006b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -133,10 +136,11 @@ test("JAVA_OTB_006c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -165,10 +169,11 @@ test("JAVA_OTB_006d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -197,10 +202,11 @@ test("JAVA_OTB_006e", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -229,10 +235,11 @@ test("JAVA_OTB_006f", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -261,10 +268,11 @@ test("JAVA_OTB_006g", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -293,10 +301,11 @@ test("JAVA_OTB_006h", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -325,10 +334,11 @@ test("JAVA_OTB_006i", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -357,10 +367,11 @@ test("JAVA_OTB_006k", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.charge(1)
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .charge(1)
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -389,10 +400,11 @@ test("JAVA_OTB_006l", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -421,10 +433,11 @@ test("JAVA_OTB_007a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -453,10 +466,11 @@ test("JAVA_OTB_007b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -485,10 +499,11 @@ test("JAVA_OTB_007c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -517,10 +532,11 @@ test("JAVA_OTB_007d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -549,10 +565,11 @@ test("JAVA_OTB_007e", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -581,10 +598,11 @@ test("JAVA_OTB_008a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -613,10 +631,11 @@ test("JAVA_OTB_008b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -645,10 +664,11 @@ test("JAVA_OTB_008c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -677,10 +697,11 @@ test("JAVA_OTB_008d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -709,10 +730,11 @@ test("JAVA_OTB_008e", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -741,10 +763,11 @@ test("JAVA_OTB_009a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -773,10 +796,11 @@ test("JAVA_OTB_009b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -805,10 +829,11 @@ test("JAVA_OTB_009c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -837,10 +862,11 @@ test("JAVA_OTB_009d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -869,10 +895,11 @@ test("JAVA_OTB_010c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -901,10 +928,11 @@ test("JAVA_OTB_010d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -933,10 +961,11 @@ test("JAVA_OTB_010e", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -965,10 +994,11 @@ test("JAVA_OTB_012a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -997,10 +1027,11 @@ test("JAVA_OTB_012b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1029,10 +1060,11 @@ test("JAVA_OTB_012c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1061,10 +1093,11 @@ test("JAVA_OTB_012d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1093,10 +1126,11 @@ test("JAVA_OTB_012e", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1125,10 +1159,11 @@ test("JAVA_OTB_013a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1157,7 +1192,8 @@ test("JAVA_OTB_013b", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("EUR")
       .withDescription("JAVA-OTB")
       .execute(),
@@ -1188,12 +1224,14 @@ test("JAVA_OTB_013c", async (t) => {
   card.cvn = "123";
   card.cvnPresenceIndicator = CvnPresenceIndicator.Present;
   // tslint:disable:max-line-length
-  card.cardHolderName = "Peter Watermeloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooon";
+  card.cardHolderName =
+    "Peter Watermeloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooon";
   // tslint:enable:max-line-length
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("EUR")
       .withDescription("JAVA-OTB")
       .execute(),
@@ -1226,10 +1264,11 @@ test("JAVA_OTB_013d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1258,10 +1297,11 @@ test("JAVA_OTB_014a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1290,10 +1330,11 @@ test("JAVA_OTB_014b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1323,7 +1364,8 @@ test("JAVA_OTB_014c", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("EUR")
       .withDescription("JAVA-OTB")
       .execute(),
@@ -1355,7 +1397,8 @@ test("JAVA_OTB_014d", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("EUR")
       .withDescription("JAVA-OTB")
       .execute(),
@@ -1388,10 +1431,11 @@ test("JAVA_OTB_015a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1420,10 +1464,11 @@ test("JAVA_OTB_015b", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1452,10 +1497,11 @@ test("JAVA_OTB_015c", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1484,10 +1530,11 @@ test("JAVA_OTB_016a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1516,10 +1563,11 @@ test("JAVA_OTB_017a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1549,7 +1597,8 @@ test("JAVA_OTB_017b", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("EUR")
       .withDescription("JAVA-OTB")
       .execute(),
@@ -1583,7 +1632,8 @@ test("JAVA_OTB_017c", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("EUR")
       .withDescription("JAVA-OTB")
       .execute(),
@@ -1616,10 +1666,11 @@ test("JAVA_OTB_017d", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1649,7 +1700,8 @@ test("JAVA_OTB_017f", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("EUR")
       .withDescription("JAVA-OTB")
       .execute(),
@@ -1683,7 +1735,8 @@ test("JAVA_OTB_017g", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("EUR")
       .withDescription("JAVA-OTB")
       .execute(),
@@ -1716,10 +1769,11 @@ test("JAVA_OTB_018a", async (t) => {
   card.cardHolderName = "Peter Watermelon";
 
   // request
-  const response = await card.verify()
-      .withCurrency("EUR")
-      .withDescription("JAVA-OTB")
-      .execute();
+  const response = await card
+    .verify()
+    .withCurrency("EUR")
+    .withDescription("JAVA-OTB")
+    .execute();
   t.truthy(response);
   t.is("00", response.responseCode);
 });
@@ -1749,7 +1803,8 @@ test("JAVA_OTB_018b", async (t) => {
 
   // request
   const error = await t.throws(
-    card.verify()
+    card
+      .verify()
       .withCurrency("EUR")
       .withDescription("JAVA-OTB")
       .execute(),
