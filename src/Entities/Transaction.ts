@@ -92,6 +92,10 @@ export class Transaction {
     return builder;
   }
 
+  public hold() {
+    return (new ManagementBuilder(TransactionType.Hold)).withPaymentMethod(this.transactionReference);
+  }
+
   /**
    * Allows for a follow-up request to refund the transaction
    *
@@ -103,6 +107,10 @@ export class Transaction {
     return (new ManagementBuilder(TransactionType.Refund))
       .withPaymentMethod(this.transactionReference)
       .withAmount(amount);
+  }
+
+  public release() {
+    return (new ManagementBuilder(TransactionType.Release)).withPaymentMethod(this.transactionReference);
   }
 
   /**

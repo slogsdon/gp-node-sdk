@@ -302,7 +302,7 @@ export class PorticoConnector extends XmlGateway implements IPaymentGateway {
     }
 
     if (builder.paymentMethod.isTokenizable && builder.paymentMethod.paymentMethodType !== PaymentMethodType.ACH) {
-      subElement(cardData, "TokenRequest").append(cData("Y"));
+      subElement(cardData, "TokenRequest").append(cData(builder.requestMultiUseToken ? "Y" : "N"));
     }
 
     if (builder.paymentMethod.isBalanceable && builder.balanceInquiryType) {

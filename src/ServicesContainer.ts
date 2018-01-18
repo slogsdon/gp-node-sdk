@@ -23,7 +23,6 @@ export class ServicesContainer {
 
   public static configure(config: ServicesConfig): void {
     config.validate();
-
     if (config.merchantId && config.merchantId !== "") {
       const gateway = new RealexConnector();
       gateway.merchantId = config.merchantId;
@@ -35,6 +34,7 @@ export class ServicesContainer {
       gateway.timeout = config.timeout;
       gateway.serviceUrl = config.serviceUrl;
       gateway.hostedPaymentConfig = config.hostedPaymentConfig;
+      gateway.channel = config.channel;
       ServicesContainer._instance = new ServicesContainer(gateway, gateway);
     } else {
       const gateway = new PorticoConnector();

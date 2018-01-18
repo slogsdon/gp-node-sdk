@@ -73,7 +73,7 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
 
     if (builder.amount) {
       const amountAttrs = builder.currency ? {currency: builder.currency} : {};
-      subElement(request, "amount", amountAttrs).append(cData((parseFloat(builder.amount.toString()) * 100).toString()));
+      subElement(request, "amount", amountAttrs).append(cData(this.numberFormat(builder.amount)));
     }
 
     // hydrate the payment data fields
@@ -83,7 +83,7 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
       const cardElement = subElement(request, "card");
       subElement(cardElement, "number").append(cData(card.number));
       const date = StringUtils.leftPad(card.expMonth, 2, "0")
-        + StringUtils.leftPad(card.expYear.substr(2, 2), 2, "0");
+        + StringUtils.leftPad((card.expYear || "").substr(2, 2), 2, "0");
       subElement(cardElement, "expdate").append(cData(date));
       subElement(cardElement, "type").append(cData(card.getCardType().toUpperCase()));
       subElement(cardElement, "chname").append(cData(card.cardHolderName));
@@ -101,7 +101,7 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
           this.generateHash(
             timestamp,
             orderId,
-            builder.amount ? (parseFloat(builder.amount.toString()) * 100).toString() : "",
+            builder.amount ? this.numberFormat(builder.amount) : "",
             builder.currency,
             card.number,
             isVerify,
@@ -127,7 +127,7 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
           this.generateHash(
             timestamp,
             orderId,
-            builder.amount ? (parseFloat(builder.amount.toString()) * 100).toString() : "",
+            builder.amount ? this.numberFormat(builder.amount) : "",
             builder.currency,
             recurring.customerKey,
             isVerify,
@@ -196,7 +196,7 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
     request.CHANNEL = encoder(this.channel || "");
     request.ORDER_ID = encoder(orderId || "");
     if (builder.amount) {
-        request.AMOUNT = encoder((parseFloat(builder.amount.toString()) * 100).toString() || "");
+        request.AMOUNT = encoder(this.numberFormat(builder.amount) || "");
     }
     request.CURRENCY = encoder(builder.currency || "");
     request.TIMESTAMP = encoder(timestamp || "");
@@ -262,7 +262,7 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
       timestamp,
       this.merchantId,
       orderId,
-      builder.amount ? (parseFloat(builder.amount.toString()) * 100).toString() : null,
+      builder.amount ? this.numberFormat(builder.amount) : null,
       builder.currency,
     ];
 
@@ -311,7 +311,7 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
 
     if (builder.amount) {
       const amountAttrs = builder.currency ? {currency: builder.currency} : {};
-      subElement(request, "amount", amountAttrs).append(cData((parseFloat(builder.amount.toString()) * 100).toString()));
+      subElement(request, "amount", amountAttrs).append(cData(this.numberFormat(builder.amount)));
     } else if (builder.transactionType === TransactionType.Capture) {
       throw new BuilderError("Amount cannot be null for capture");
     }
@@ -336,7 +336,7 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
       this.generateHash(
         timestamp,
         orderId,
-        builder.amount ? (parseFloat(builder.amount.toString()) * 100).toString() : "",
+        builder.amount ? this.numberFormat(builder.amount) : "",
         builder.currency,
         "",
       ),
@@ -400,7 +400,7 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
         if (payment.paymentMethod) {
           const card = payment.paymentMethod as CreditCardData;
           const expiry = StringUtils.leftPad(card.expMonth, 2, "0")
-            + StringUtils.leftPad(card.expYear.substr(2, 2), 2, "0");
+            + StringUtils.leftPad((card.expYear || "").substr(2, 2), 2, "0");
           subElement(cardElement, "number").append(cData(card.number));
           subElement(cardElement, "expdate").append(cData(expiry));
           subElement(cardElement, "chname").append(cData(card.cardHolderName));
@@ -584,8 +584,12 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
     switch (type) {
       case TransactionType.Capture:
         return "settle";
+      case TransactionType.Hold:
+        return "hold";
       case TransactionType.Refund:
         return "rebate";
+      case TransactionType.Release:
+        return "release";
       case TransactionType.Void:
       case TransactionType.Reversal:
         // a TODO: should be customer type
@@ -622,5 +626,10 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
       default:
         throw new UnsupportedTransactionError();
     }
+  }
+
+  protected numberFormat(amount: number | string) {
+    const f = parseFloat(amount.toString());
+    return (parseFloat(f.toFixed(2)) * 100).toString();
   }
 }

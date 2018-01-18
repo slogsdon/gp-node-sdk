@@ -142,12 +142,12 @@ export enum PaymentSchedule {
 }
 
 export enum ReasonCode {
-  Fraud,
-  FalsePositive,
-  OutOfStock,
-  InStock,
-  Other,
-  NotGiven,
+  Fraud = "FRAUD",
+  FalsePositive = "FALSEPOSITIVE",
+  OutOfStock = "OUTOFSTOCK",
+  InStock = "INSTOCK",
+  Other = "OTHER",
+  NotGiven = "NOTGIVEN",
 }
 
 export enum RecurringSequence {

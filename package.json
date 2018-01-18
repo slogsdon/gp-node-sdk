@@ -18,7 +18,7 @@
     "prepublish": "npm-run-all build",
     "pretest": "npm-run-all build:clean test:lint build",
     "test": "ava",
-    "test:lint": "tslint --project tsconfig.json"
+    "test:lint": "tslint --project tsconfig.json src"
   },
   "dependencies": {
     "@azz/elementtree": "^0.1.6",
@@ -44,7 +44,7 @@
   "ava": {
     "concurrency": 1,
     "timeout": "5m",
-    "failFast": false,
+    "failFast": true,
     "files": [
       "lib/test/**/*Test.js"
     ],
