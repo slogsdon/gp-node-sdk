@@ -26,7 +26,7 @@ export function request(requestBody, options) {
 
       if (response.code !== 200) {
         reject(
-          new Error("Unexpected HTTP status code [" + response.code + "]"),
+          new Error("Unexpected HTTP status code [" + response.code + "]")
         );
       }
 
