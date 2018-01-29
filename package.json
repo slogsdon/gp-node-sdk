@@ -18,7 +18,7 @@
     "docs":
       "typedoc --mode file --name \"GlobalPayments.Api\" --project tsconfig.json --out docs src",
     "format":
-      "prettier --write --config .prettierrc '**/*.js' '**/*.ts' '**/*.md'",
+      "prettier --write --config .prettierrc 'src/**/*.ts' 'test/**/*.ts' '*.md'",
     "prebuild": "npm-run-all test:lint",
     "prepublish": "npm-run-all build",
     "pretest": "npm-run-all build:clean test:lint build",
