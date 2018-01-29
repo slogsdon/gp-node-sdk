@@ -148,6 +148,14 @@ export class AuthorizationBuilder extends TransactionBuilder<Transaction> {
       .isNotEmpty();
 
     this.validations
+      .of("transactionType", TransactionType.Auth | TransactionType.Sale)
+      .with("transactionModifier", TransactionModifier.EncryptedMobile)
+      .check("paymentMethod")
+      .isNotNull()
+      .check("paymentMethod")
+      .isNotEmpty();
+
+    this.validations
       .of("transactionType", TransactionType.BenefitWithDrawal)
       .with("transactionModifier", TransactionModifier.CashBack)
       .check("amount")

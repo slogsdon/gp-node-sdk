@@ -29,6 +29,7 @@ import {
   Schedule,
   StringUtils,
   Transaction,
+  TransactionModifier,
   TransactionReference,
   TransactionType,
   UnsupportedTransactionError,
@@ -58,7 +59,7 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
     // build Request
     const request = element("request", {
       timestamp,
-      type: this.mapAuthRequestType(builder.transactionType),
+      type: this.mapAuthRequestType(builder),
     });
 
     if (this.merchantId) {
@@ -88,25 +89,30 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
     if (builder.paymentMethod instanceof CreditCardData) {
       const card = builder.paymentMethod;
 
-      const cardElement = subElement(request, "card");
-      subElement(cardElement, "number").append(cData(card.number));
-      const date =
-        StringUtils.leftPad(card.expMonth, 2, "0") +
-        StringUtils.leftPad((card.expYear || "").substr(2, 2), 2, "0");
-      subElement(cardElement, "expdate").append(cData(date));
-      subElement(cardElement, "type").append(
-        cData(card.getCardType().toUpperCase()),
-      );
-      subElement(cardElement, "chname").append(cData(card.cardHolderName));
-
-      if (card.cvn) {
-        const cvnElement = subElement(cardElement, "cvn");
-        subElement(cvnElement, "number").append(cData(card.cvn));
-        subElement(cvnElement, "presind").append(
-          cData(card.cvnPresenceIndicator.toString()),
+      if (builder.transactionModifier === TransactionModifier.EncryptedMobile) {
+        subElement(request, "token").append(cData(card.token));
+        subElement(request, "mobile").append(cData(card.mobileType));
+      } else {
+        const cardElement = subElement(request, "card");
+        subElement(cardElement, "number").append(cData(card.number));
+        const date =
+          StringUtils.leftPad(card.expMonth, 2, "0") +
+          StringUtils.leftPad((card.expYear || "").substr(2, 2), 2, "0");
+        subElement(cardElement, "expdate").append(cData(date));
+        subElement(cardElement, "type").append(
+          cData(card.getCardType().toUpperCase()),
         );
+        subElement(cardElement, "chname").append(cData(card.cardHolderName));
+
+        if (card.cvn) {
+          const cvnElement = subElement(cardElement, "cvn");
+          subElement(cvnElement, "number").append(cData(card.cvn));
+          subElement(cvnElement, "presind").append(
+            cData(card.cvnPresenceIndicator.toString()),
+          );
+        }
+        // issueno
       }
-      // issueno
 
       const isVerify = builder.transactionType === TransactionType.Verify;
       subElement(request, "sha1hash").append(
@@ -116,7 +122,9 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
             orderId,
             builder.amount ? this.numberFormat(builder.amount) : "",
             builder.currency,
-            card.number,
+            builder.transactionModifier === TransactionModifier.EncryptedMobile
+              ? card.token
+              : card.number,
             isVerify,
           ),
         ),
@@ -669,27 +677,45 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
     return GenerationUtils.generateHash(data.join("."), this.sharedSecret);
   }
 
-  protected mapAuthRequestType(type: TransactionType): string {
-    switch (type) {
+  protected mapAuthRequestType(builder: AuthorizationBuilder): string {
+    switch (builder.transactionType) {
       case TransactionType.Sale:
       case TransactionType.Auth:
-        return "auth";
+        if (
+          builder.paymentMethod.paymentMethodType === PaymentMethodType.Credit
+        ) {
+          if (builder.transactionModifier === TransactionModifier.Offline) {
+            return "offline";
+          }
+          if (
+            builder.transactionModifier === TransactionModifier.EncryptedMobile
+          ) {
+            return "auth-mobile";
+          }
+          return "auth";
+        }
+        return "receipt-in";
       case TransactionType.Capture:
         return "settle";
       case TransactionType.Verify:
-        return "otb";
+        if (
+          builder.paymentMethod.paymentMethodType === PaymentMethodType.Credit
+        ) {
+          return "otb";
+        }
+        return "receipt-in-otb";
       case TransactionType.Refund:
-        return "credit";
-      case TransactionType.Auth:
-      case TransactionType.Sale:
-        return "offline";
+        if (
+          builder.paymentMethod.paymentMethodType === PaymentMethodType.Credit
+        ) {
+          return "credit";
+        }
+        return "payment-out";
       case TransactionType.Reversal:
-        // a TODO: should be customer type
+      default:
         throw new UnsupportedTransactionError(
           "The selected gateway does not support this transaction type.",
         );
-      default:
-        return "unknown";
     }
   }
 
@@ -705,7 +731,6 @@ export class RealexConnector extends XmlGateway implements IRecurringService {
         return "release";
       case TransactionType.Void:
       case TransactionType.Reversal:
-        // a TODO: should be customer type
         return "void";
       default:
         return "unknown";

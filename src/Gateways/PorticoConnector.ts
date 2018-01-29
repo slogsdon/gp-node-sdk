@@ -661,6 +661,11 @@ export class PorticoConnector extends XmlGateway implements IPaymentGateway {
         }
         throw new UnsupportedTransactionError();
       case TransactionType.Verify:
+        if (
+          builder.transactionModifier === TransactionModifier.EncryptedMobile
+        ) {
+          throw new UnsupportedTransactionError();
+        }
         return "CreditAccountVerify";
       case TransactionType.Capture:
         return "CreditAddToBatch";
@@ -675,14 +680,18 @@ export class PorticoConnector extends XmlGateway implements IPaymentGateway {
           ) {
             return "CreditIncrementalAuth";
           } else if (
-            builder.transactionModifier === TransactionModifier.Offline
-          ) {
-            return "CreditOfflineAuth";
-          } else if (
             builder.paymentMethod.paymentMethodType ===
             PaymentMethodType.Recurring
           ) {
             return "RecurringBillingAuth";
+          } else if (
+            builder.transactionModifier === TransactionModifier.EncryptedMobile
+          ) {
+            throw new UnsupportedTransactionError();
+          } else if (
+            builder.transactionModifier === TransactionModifier.Offline
+          ) {
+            return "CreditOfflineAuth";
           }
 
           return "CreditAuth";
@@ -703,6 +712,10 @@ export class PorticoConnector extends XmlGateway implements IPaymentGateway {
             builder.transactionModifier === TransactionModifier.Recurring
           ) {
             return "RecurringBilling";
+          } else if (
+            builder.transactionModifier === TransactionModifier.EncryptedMobile
+          ) {
+            throw new UnsupportedTransactionError();
           } else {
             return "CreditSale";
           }

@@ -30,7 +30,20 @@ export abstract class Credit extends PaymentMethod
     IBalanceable {
   public encryptionData: EncryptionData;
   public paymentMethodType = PaymentMethodType.Credit;
+
+  /**
+   * The token value representing the card.
+   *
+   * For `TransactionModifier.EncryptedMobile` transactions, this value is the
+   * encrypted payload from the mobile payment scheme.
+   */
   public token: string;
+
+  /**
+   * The type of mobile device used in `Transaction.Modifier.EncryptedMobile`
+   * transactions.
+   */
+  public mobileType: string;
 
   /**
    * Authorizes the payment method

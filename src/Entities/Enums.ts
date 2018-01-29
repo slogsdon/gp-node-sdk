@@ -217,6 +217,7 @@ export enum TransactionModifier {
   Secure3D = 1 << 9,
   HostedRequest = 1 << 10,
   Recurring = 1 << 11,
+  EncryptedMobile = 1 << 12,
 }
 
 export enum TransactionType {
