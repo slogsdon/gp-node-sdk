@@ -13,7 +13,7 @@
   "scripts": {
     "build": "tsc",
     "build:netsuite":
-      "webpack --config config/webpack.netsuite.js && node bin/netsuite-post.js",
+      "webpack --env.GP_NETSUITE_BUILD --config config/webpack.netsuite.js && node bin/netsuite-post.js",
     "build:clean": "rimraf lib",
     "docs":
       "typedoc --mode file --name \"GlobalPayments.Api\" --project tsconfig.json --out docs src",
@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "@azz/elementtree": "^0.1.6",
-    "prettier": "^1.10.2",
     "sha1": "^1.1.1",
     "typedarray": "^0.0.6",
     "url": "^0.11.0"
@@ -40,6 +39,7 @@
     "awesome-typescript-loader": "^3.2.3",
     "es6-promise": "^4.1.1",
     "npm-run-all": "^4.1.1",
+    "prettier": "^1.10.2",
     "promise-polyfill": "^6.0.2",
     "rimraf": "^2.6.2",
     "tslint": "^4.5.1",
